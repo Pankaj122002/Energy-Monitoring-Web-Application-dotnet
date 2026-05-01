@@ -1,0 +1,200 @@
+﻿@model ComplaintMGT.Abstractions.Entities.Configuration.CustmerInfo
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Customer</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <fieldset>
+            <legend>Basic Details</legend>
+            <input type="hidden" asp-for="CustomerId" name="CustomerId" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Name" class="form-control" asp-for="Name" name="Name" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Contect Person Name</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Contect Person Name" class="form-control" asp-for="ContectPersonName" name="ContectPersonName" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <span class="text-danger">*</span>
+                        <input type="email" placeholder="Enter Email" class="form-control" asp-for="Email" name="Email" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <span class="text-danger">*</span>
+                        <input type="number" placeholder="Enter Phone Number" class="form-control" asp-for="PhoneNumber" name="PhoneNumber" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Mobile Number</label>
+                        <span class="text-danger">*</span>
+                        <input type="number" placeholder="Enter Mobile Number" class="form-control" asp-for="MobileNumber" name="MobileNumber" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Description</label>
+
+                        <textarea placeholder="Enter Description" class="form-control" asp-for="Description" name="Description" required> </textarea>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check  form-check-switchery">
+
+                            <label class="form-check-label">
+                                <input type="checkbox" id="IsActive" class="form-check-input-switchery" asp-for="IsActive" name="IsActive" checked data-fouc">
+                                Is Active
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </fieldset>
+
+    </div>
+    <div class="modal-body">
+        <fieldset>
+            <legend>Address Details</legend>
+
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Address Type</label>
+                        <span class="text-danger">*</span>
+                        <select id="AddressTypeId" required class="form-control form-control-select2">
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Address Line 1</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Address Line 1" class="form-control" id="AddressLine1" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Address Line 2</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Address Line 2" class="form-control" id="AddressLine2" required>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Country</label>
+                        <span class="text-danger">*</span>
+                        <select id="CountryId" required class="form-control form-control-select2">
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>State</label>
+                        <span class="text-danger">*</span>
+                        <select id="StateId" required class="form-control form-control-select2">
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>City</label>
+                        <span class="text-danger">*</span>
+                        <select id="CityId" required class="form-control form-control-select2">
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Pin Code</label>
+                        <span class="text-danger">*</span>
+                        <input type="number" placeholder="Enter PinCode" class="form-control" id="PinCode" required>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">&ensp;</div>
+                <div class="col-md-6">
+
+                    <div class="input-group">
+                        <button type="button" onclick="AddAddressMedia();" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400"><i class="icon-add"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table" id="tbl_Address">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th>S No.</th>
+                                <th>Adress Type</th>
+                                <th>Address Line 1</th>
+                                <th>Address Line 2</th>
+                                <th>Country</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Pin Code</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+         
+
+        </fieldset>
+
+    </div>
+
+    <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+        <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+        <button type="submit" id="modSubmit" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+    </div>
+
+</div>
+
+    <script src="~/ViewJs/Configuration/AddCustmer.js?@DateTime.Now.Ticks"></script>
+
+    

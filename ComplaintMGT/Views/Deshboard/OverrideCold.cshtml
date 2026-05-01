@@ -1,0 +1,243 @@
+﻿@{
+    ViewData["Title"] = "Override";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/OverrideCold/Override.css" rel="stylesheet" />
+<link href="~/v2.0/OverrideCold/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="row1">
+        <div class="image1">
+            <img src="../images/Energy assets/override vctr.png" alt="row1-image1">
+
+        </div>
+        <div class="container">
+
+            <div class="stepper-wrapper">
+                <div class="stepper-item">
+                    <a href="/Deshboard/Override" style="text-decoration: none;"><div class="step-counter hot">Hot</div></a>
+                </div>
+                <div class="stepper-item">
+                    <a href="/Deshboard/OverrideWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                </div>
+                <div class="stepper-item">
+                    <a href="/Deshboard/OverrideCold" style="text-decoration: none;"><div class="step-counter active">Cold<span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="report">
+            <a href="#"><button class="report-button">Trends & Reports</button></a>
+        </div>
+
+    </div>
+
+
+
+<div class="row2">
+    <div class="row2-img">
+        <div class="img1-header">
+            <div class="icon-h">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+                <div class="img1-button">Override</div>
+            </div>
+
+
+            <div class="ceContainer">
+                <div class="ceContainer1">
+                    <div class="ceContainer1a">
+                        <div class="chart-containerCG" id="cg1"></div>
+                        <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #0ac0db;">radio_button_unchecked</span><div ">&nbsp; Nos</div></div>
+                    </div>
+                    <div class="ceContainer1a">
+                        <div class="chart-containerCG" id="cg2"></div>
+                        <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color:#0f5f8b ;">radio_button_unchecked</span><div>&nbsp; Hrs</div></div>
+                    </div>
+                </div>
+                <div class="ceContainer2">
+                    <div class="ceContainer2a">
+                        <div class="chart-containerCG" id="cg3"></div>
+                        <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #fb6acb;">radio_button_unchecked</span><div>&nbsp; Nos</div></div>
+                    </div>
+                    <div class="ceContainer2a">
+                        <div class="chart-containerCG" id="cg4"></div>
+                        <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #a3336e;">radio_button_unchecked</span><div>&nbsp; Hrs</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<!-- row3 -->
+
+<div class="row3">
+
+
+    <div class="row3">
+        <div class="row3-img">
+            <div class="img1-header">
+                <div class="icon-h_r3r1">
+                    <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+                    <div class="img1-button_r3r1">Override - Assets Wise </div>
+                </div>
+
+                <!-- table -->
+
+                <div class="table-box">
+                    <table class="table_table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" colspan="3">Today</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="r-header">HVAC Entrance</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+
+                            </tr>
+                            <tr>
+                                <td class="r-header">HVAC Center</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+
+                            </tr>
+                            <tr>
+                                <td class="r-header">HVAC Counter</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">HVAC Right Corner Window</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">Lights</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">Signage</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">3 Phase Exhaust</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">3 Phase Fresh Air</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+
+            <!-- Row 3 part 2 -->
+            <div class="row2_b">
+                <div class="img1-header_r3r2">
+                    <div class="icon-h_r3r2">
+                        <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button_r3r2">Override - Assets Wise</div>
+                    </div>
+                </div>
+                <div class="controlA">
+                    <div class="chart-container_controlA" id="control1"></div>
+                </div>
+                <div class="controlB">
+                    <div class="chart-container_controlB" id="control2"></div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div><br>
+
+
+
+
+</div>
+
+
+<!-- Row 4 -->
+
+<div class="row4">
+    <div class="row4-img">
+        <div class="img1-header">
+            <div class="icon-h_r4">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+                <div class="img1-button">Override - Non Ops Schedule</div>
+            </div>
+        </div>
+
+        <div class="row1-img">
+            <div class="img1-header_r1">
+                <div class="icon-h_r1">
+                    <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+                    <!-- <div class="img1-button_r1">Non Ops Schedule</div> -->
+                    <p class="row4_text">0.00/0.00 <br \>Non Ops Schedule</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row1-img">
+            <div class="img1-header_r1">
+                <div class="icon-h_r1">
+                    <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+                    <!-- <div class="img1-button_r1">Online Delivery - Night</div> -->
+                    <p class="row4_text">0.00/0.00 <br \>Online Delivery</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row1-img">
+            <div class="img1-header_r1">
+                <div class="icon-h_r1">
+                    <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+                    <!-- <div class="img1-button_r1">Store Shutdown</div> -->
+                    <p class="row4_text">0.00/0.00 <br \>Store Shutdown</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+   
+
+
+
+
+    @* <script src="./left.js"></script> *@
+<script src="~/v2.0/OverrideCold/Override.js"></script>

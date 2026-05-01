@@ -1,0 +1,114 @@
+﻿@model ComplaintMGT.Abstractions.Entities.SiteInformationInfo
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Site Information I&C</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <fieldset>
+            <legend>Site Information I&C Details</legend>
+            <input type="hidden" asp-for="SiteInformationId" />
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Site</label>
+                        <span class="text-danger">*</span>
+                        <select asp-for="SiteId" required
+                                class="form-control form-control-select2"
+                                asp-items="@(new SelectList(@ViewBag.Site,"SiteId", "Name"))">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>I&C Start Date</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter I&C Start date" class="form-control DAteTimePick" asp-for="ICStartTime" readonly required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>I&C End Date</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter I&C End Date" class="form-control DAteTimePick" asp-for="ICEndTime" readonly required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>I&C sign off Date</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter I&C Start date" class="form-control DAteTimePick" asp-for="ICSignOffTime" readonly required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>I&C sign off given by</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter I&C sign off given by" class="form-control" asp-for="ICSignOffGivenBy" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check form-check-switchery">
+
+                            <label class="form-check-label">
+                                <input type="checkbox" id="ICSignOffFlag" class="form-check-input-switchery" asp-for="ICSignOffFlag" name="IsActive" checked data-fouc>
+                                I&C Sign off flag
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check form-check-switchery">
+
+                            <label class="form-check-label">
+                                <input type="checkbox" id="IsActive" class="form-check-input-switchery" asp-for="IsActive" name="IsActive" checked data-fouc>
+                                Is Active
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </fieldset>
+
+    </div>
+
+
+    <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+        <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+        <button type="submit" id="modSubmit" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.form-control-select2').each(function () {
+            var $p = $(this).parent();
+            $(this).select2({
+                dropdownParent: $p
+            });
+        });
+        checkboxUI();
+        jQuery('.DAteTimePick').datetimepicker();
+    });
+
+
+</script>

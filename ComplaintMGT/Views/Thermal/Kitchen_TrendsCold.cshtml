@@ -1,0 +1,474 @@
+﻿@{
+    ViewData["Title"] = "Thermal Kitchen - Cold";
+    Layout = "_LayoutNew";
+}
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<link href="~/v2.0/thermal/kitchen_trends/cold/thermalcold.css" rel="stylesheet" />
+
+<div class="main-box">
+    <div class="header-image">
+        <img class="energy-header" src="~/images/Energy assets/Thermal Banner.png" alt="">
+    </div>
+    <div class="navigation-box2">
+        <div class="trends-box">
+            <div class="box1">
+                <button class="trends">Trends</button>
+                <div class="trends-nav">
+                    <a href="/Thermal/Kitchen_TrendsHot">Hot</a>
+                    <a href="/Thermal/Kitchen_TrendsWarm">Warm</a>
+                    <a href="/Thermal/Kitchen_TrendsCold" id="first">Cold</a>
+                </div>
+            </div>
+            <div class="report">
+                <a href="/Thermal/KitchnAsset_ReportsHot"><button class="report-button">Reports</button></a>
+            </div>
+        </div>
+        <div class="links-l">
+            <a href="#"><span class="material-symbols-outlined filter-button">filter_alt</span></a>
+            <a href="#"><span class="material-symbols-outlined calender-button">calendar_month</span></a>
+        </div>
+
+    </div>
+    <div class="navigation-box">
+        <div id="flowBoxes">
+            <div class="right active">Refrigeration</div>
+            <div class="left right ">Non - Refrigeration</div>
+            <div class="left right">Heating</div>
+            <div class="left">Ambient</div>
+        </div>
+    </div>
+    <div class="content-box">
+
+        <div class="content-box3">
+
+            <div class="consumption-box3">
+                <div class="graph-box">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                           @*  <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="9" aria-label="Slide 10"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="10" aria-label="Slide 11"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="11" aria-label="Slide 12"></button> *@
+                        </div>
+                        <div class="carousel-inner">
+                           @*  <div class="carousel-item active" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Monitoring No-Live</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="thermalMonitoringNonLive1"></div>
+                            </div> *@
+                            <div class="carousel-item active" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Monitoring Non-Live with Peak Temperature</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="thermalMonitoringNonLivewithPeakTemperature"></div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="thermalMonitoring2"></div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Daily Avg Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="DailyAvgThermalMonitoring"></div>
+                            </div>
+                           @*  <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Weekly Avg Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="WeeklyAvgThermalMonitoring"></div>
+                            </div> *@
+                            @* <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Fortnightly Avg Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="FortnightlyAvgThermalMonitoring"></div>
+                            </div> *@
+                           @*  <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Monthly Avg Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="MonthlyAvgThermalMonitoring"></div>
+                            </div> *@
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Profile</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="thermalProfile"></div>
+                            </div>
+                            @* <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Daily Avg Thermal Profile</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="DailyAvgthermalProfile"></div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Weekly Avg Thermal Profile</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="WeeklyAvgthermalProfile"></div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Fortnightly Avg Thermal Profile</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="FortnightlyAvgthermalProfile"></div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Monthly Avg Thermal Profile</div>
+                                    </div>
+                                </div>
+                                <div class="chart-container fix_height" id="MonthlyAvgthermalProfile"></div>
+                            </div> *@
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="quick-links">
+    <div class="Savings">
+        <div class="header1">
+
+            <div class="topic topic2">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="Relative-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Relative</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="fixed-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Fixed</button>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="X" id="x">X</button>
+        </div>
+
+        <div class="details">
+            <div class="details-text text-1">
+                <div class="sub-text">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Previous Month
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Last 3 Months
+                    </div>
+                </div>
+                <div class="Apply-filters">
+                    <img src="~/images/Energy assets/ApplyFilters.png" alt="" class="store_button qLinks-button">
+                    <img src="~/images/Energy assets/Clear Filters.png" alt="" class="store_button qLinks-button">
+                </div>
+            </div>
+            <div class="details-text text-2" style="overflow: hidden; display: none;">
+                <div id="calender">
+                </div>
+                <div class="Apply-filters" style="margin-top: 100%;">
+                    <img src="~/images/Energy assets/ApplyFilters.png" alt="" class="store_button qLinks-button">
+                    <img src="~/images/Energy assets/Clear Filters.png" alt="" class="store_button qLinks-button">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="filter-box">
+    <div class="header1">
+        <div class="topic topic2">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Graphs</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Scale</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Assets</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ops-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Ops Schedule</button>
+                </li>
+            </ul>
+
+        </div>
+        <button class="X X1" id="x">X</button>
+    </div>
+
+    <div class="page1">
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Add Graph
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Live Thermal Monitoring
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Live Thermal Monitoring with Peak Temperature
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Thermal Monitoring
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Hourly Avg Thermal Profile
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Thermal Profile
+                </div>
+            </div>
+        </div>
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Frequency
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Actual
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Average
+                </div>
+            </div>
+        </div>
+        <div class="Apply-filters">
+            <img src="~/images/Energy assets/ApplyFilters.png" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+
+    <div class="page2">
+
+        <div class="slider1">
+            <label for="customRange1" class="form-label"> Thermal Kitchen Assets Refrigeration </label>
+            <div id="slider-outer-div1">
+                <div class="slider-label" id="slider-max-label1"></div>
+                <div class="slider-label" id="slider-min-label1"></div>
+                <div class="slider-div" id="slider-div1">
+                    <div></div>
+                    <div>
+                        <input id="ex21" type="text" data-slider-min="0"
+                               data-slider-max="1000" data-slider-value="[0,1000]"
+                               data-slider-tooltip="hide" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider1">
+            <label for="customRange1" class="form-label"> Thermal Kitchen Assets Non - Refrigeration </label>
+            <div id="slider-outer-div2">
+                <div class="slider-label" id="slider-max-label2"></div>
+                <div class="slider-label" id="slider-min-label2"></div>
+                <div class="slider-div" id="slider-div2">
+                    <div></div>
+                    <div>
+                        <input id="ex22" type="text" data-slider-min="0"
+                               data-slider-max="1000" data-slider-value="[0,1000]"
+                               data-slider-tooltip="hide" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="Apply-filters">
+            <img src="~/images/Energy assets/ApplyFilters.png" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+    <div class="page3">
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label> Heating Assets
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Makeline
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Momo Steamer
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Holding Cabinet
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Fryer
+                </div>
+            </div>
+        </div>
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label> Refrigeration Assets
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Vertical Chiller 2 Door
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   4 Door Chiller
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Viscoler
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Under Counter Chiller 3 Door
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Vertical Freezer
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Chest Freezer
+                </div>
+            </div>
+        </div>
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label> Kitchen Assets
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Pepsi Machine
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>   Ice Cube Machine
+                </div>
+            </div>
+        </div>
+        <div class="Apply-filters">
+            <img src="~/images/Energy assets/ApplyFilters.png" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+    <div class="page4">
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Ops & Non Ops Schedule
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Crew Setup
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Pre Lunch
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Peak Lunch
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Post Lunch
+                </div>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Pre Dinner
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Peak Dinner
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  Crew Shutdown
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>  No Operations
+            </div>
+        </div>
+        <div class="Apply-filters">
+            <img src="~/images/Energy assets/ApplyFilters.png" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="~/v2.0/thermal/kitchen_trends/cold/thermalproductiontrendscold.js"></script>
+<script src="~/v2.0/thermal/kitchen_trends/cold/thermalcold.js"></script>

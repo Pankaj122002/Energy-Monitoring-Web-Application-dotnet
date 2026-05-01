@@ -1,0 +1,200 @@
+﻿@{
+    ViewData["Title"] = "Help Desk Support Dashboard";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/helpdesk/helpdesk.css" rel="stylesheet" />
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <div class="step-counter active">Hot <span class="material-symbols-outlined" id="check">check_circle</span></div>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="#" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="#" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row1">
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/8.png" alt="" class="icon"></a>
+                        <div class="img1-button">New Tickets vs Closed</div>
+                    </div>
+                </div>
+                <div class="ntvc-container">
+                    <div class="chart-containerntvc" id="ntvc"></div>
+                </div>
+            </div>
+            <div class="row1_b">
+                <div class="b_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/8.png" alt="" class="icon"></a>
+                        <div class="img1-button">Top Ticket Solver</div>
+                    </div>
+                </div>
+                <div class="table-box" style="padding: .5rem;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Ticket Solver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="row3_a">
+                <div class="threea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/8.png" alt="" class="icon"></a>
+                        <div class="img1-button">Tickets</div>
+                    </div>
+                </div>
+                <div class="t-container">
+                    <div class="tcontainer1A">
+                        <div class="ticket1">
+                            <div class="chart-containerTicket" id="ticketA"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #0ac0db;">radio_button_unchecked</span><div ">&nbsp; Live Ticket</div></div>
+                        </div>
+                        <div class="ticket2">
+                            <div class="chart-containerTicket" id="ticketB"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #fb6acb;">radio_button_unchecked</span><div>&nbsp; Response Time</div></div>
+                        </div>
+                        <div class="ticket3">
+                            <div class="chart-containerTicket" id="ticketC"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800; color: #ffa94e;">radio_button_unchecked</span><div>&nbsp; CSAT</div></div>
+                        </div>
+                    </div>
+                    <div class="tcontainer1B">
+                        <div class="ticket4">
+                            <div class="chart-containerTicket" id="ticketD"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color:#0f5f8b ;">radio_button_unchecked</span><div>&nbsp; Open</div></div>
+                        </div>
+                        <div class="ticket5">
+                            <div class="chart-containerTicket" id="ticketE"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #a3336e;">radio_button_unchecked</span><div>&nbsp; First Response Time</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row3_b">
+                <div class="threeb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/9.png" alt="" class="icon"></a>
+                        <div class="img1-button">Technician</div>
+                    </div>
+                </div>
+                <div class="table-box" style="padding: .5rem;">
+                    <div style="margin: 1rem;color: #848A9C; font-weight: 600;">Technician Status</div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Ticket Solver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-box" style="padding: .5rem;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Ticket Solver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="r-header"></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/v2.0/helpdesk/helpdesk.js"></script>

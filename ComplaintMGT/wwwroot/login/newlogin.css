@@ -1,0 +1,185 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow:hidden;
+}
+
+.parent_div{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+}
+.img-1{
+  width: 21%;
+  position: fixed;
+  z-index: 0;
+  left: 0;
+  top: 0;
+}
+
+.child_div{
+  width: 75vw;
+  height: 91vh;
+  background-color: white;
+  z-index: 1;
+  position: relative;
+  left: 13%;
+  top: 3%;
+  border-radius: 7.65px;
+  overflow: hidden;
+  background-image: url('assests/login-container.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.frame {
+  width: 24%;
+  margin-top: 35vh;
+  float: right;
+  margin-right: 4.5vw;
+}
+
+
+.input-group {
+  margin-bottom: 3%;
+}
+
+.text1 {
+  color: #1e1e1e;
+  font-size: 11px;
+  display: block;
+  margin: 0px 0px -15px 0px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 18vw;
+  padding: 9px;
+  border-radius: 5px;
+  border: 1px solid #908ead;
+  color: #908ead;
+}
+
+.text2 {
+  color: #1e1e1e;
+  font-size: 11px;
+  display: block;
+  margin-bottom: 3px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4%;
+  margin-bottom: 7%;
+}
+
+.checkbox {
+  color: #1e1e1e;
+  font-size: 12px;
+  display: flex;
+  font-weight: 700;
+  align-items: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #1e1e1e;
+  margin-right: 5px;
+}
+
+.checkbox input[type="checkbox"]:checked + .checkmark:after {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: #0984c6;
+}
+
+.forgot-password {
+  color: #1e1e1e;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.sign-in-button {
+  width: 100%;
+  background: #0984c6;
+  border: none;
+  color: #fcfcfc;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+
+.image-box{
+  height: 100%;
+  width: 58%;
+  position: relative;
+  left: -1%;
+  border-radius: 7.65px;
+  background-image: url('assests/Default.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  animation: change 15s;
+  animation-play-state: running;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate-reverse;
+  animation-duration: 40s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes change {
+  0% {
+    background-image: url('assests/Default.png');
+  }
+  10% {
+    background-image: url('assests/Variant2.png');
+  }
+  20% {
+    background-image: url('assests/Variant3.png');
+  }
+  30% {
+    background-image: url('assests/Variant4.png');
+  }
+  40% {
+    background-image: url('assests/Variant5.png');
+  }
+  50% {
+    background-image: url('assests/Variant6.png');
+  }
+  60% {
+    background-image: url('assests/Variant7.png');
+  }
+  70% {
+    background-image: url('assests/Variant8.png');
+  }
+  80% {
+    background-image: url('assests/Variant9.png');
+  }
+  90% {
+    background-image: url('assests/Variant10.png');
+  }
+  100% {
+    background-image: url('assests/Default.png');
+  }
+}

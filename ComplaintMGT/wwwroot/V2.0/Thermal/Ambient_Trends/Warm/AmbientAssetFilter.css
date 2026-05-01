@@ -1,0 +1,327 @@
+/* ============================
+   HVAC Graph Cards
+   ============================ */
+
+.hvac-graph-card {
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.18);
+    padding: 16px 18px 12px 18px;
+    margin-bottom: 28px;
+}
+
+.hvac-graph-header {
+    margin-bottom: 6px;
+}
+
+.hvac-graph-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.hvac-graph-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.hvac-live-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #12CC7D;
+    background: rgba(18, 204, 125, 0.1);
+    border: 1px solid #12CC7D;
+    border-radius: 20px;
+    padding: 2px 9px;
+    letter-spacing: 0.5px;
+    animation: hvac-pulse 1.6s ease-in-out infinite;
+}
+
+.hvac-single-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0984C6;
+    background: rgba(9, 132, 198, 0.1);
+    border: 1px solid #0984C6;
+    border-radius: 20px;
+    padding: 2px 9px;
+}
+
+@keyframes hvac-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ============================
+   Asset Filter Bar
+   ============================ */
+
+.hvac-asset-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 0 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+    min-height: 38px;
+}
+
+.hvac-filter-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #908EAD;
+    letter-spacing: 0.3px;
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+/* ============================
+   Asset Chips
+   ============================ */
+
+.hvac-asset-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px 4px 7px;
+    border-radius: 20px;
+    border: 1.5px solid #d0d0d0;
+    background: #f7f7f7;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.18s ease;
+    user-select: none;
+    white-space: nowrap;
+}
+
+    .hvac-asset-chip input[type="checkbox"],
+    .hvac-asset-chip input[type="radio"] {
+        display: none;
+    }
+
+.hvac-chip-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.hvac-chip-name {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hvac-asset-chip.selected {
+    border-color: var(--chip-color, #5470C6);
+    background: rgba(84, 112, 198, 0.08);
+    color: #222;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+}
+
+.hvac-asset-chip:hover {
+    border-color: var(--chip-color, #5470C6);
+    background: rgba(84, 112, 198, 0.05);
+    color: #222;
+}
+
+/* "All Assets" chip */
+.hvac-select-all {
+    border-style: dashed;
+    border-color: #908EAD;
+    background: #f0f0f6;
+    font-style: italic;
+}
+
+    .hvac-select-all.selected {
+        border-style: solid;
+        border-color: #12CC7D;
+        background: rgba(18, 204, 125, 0.08);
+        color: #0a7a4b;
+        font-style: normal;
+    }
+
+/* ============================
+   Date Picker Bar
+   ============================ */
+
+.hvac-date-picker-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* ============================
+   Date Toggle Button
+   ============================ */
+
+.hvac-date-picker-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.hvac-date-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #0984C6;
+    background: #fff;
+    color: #0984C6;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    .hvac-date-toggle:hover {
+        background: rgba(9, 132, 198, 0.07);
+    }
+
+.hvac-date-icon {
+    font-size: 13px;
+}
+
+.hvac-date-arrow {
+    font-size: 10px;
+    color: #0984C6;
+    margin-left: 2px;
+}
+
+/* ============================
+   Calendar Dropdown
+   ============================ */
+
+.hvac-calendar-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 9999;
+    background: #fff;
+    border: 1.5px solid #dde3ec;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+    padding: 12px 14px 14px 14px;
+    min-width: 240px;
+    width: 260px;
+}
+
+/* ============================
+   Calendar Header (month nav)
+   ============================ */
+
+.hvac-cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hvac-cal-nav {
+    background: none;
+    border: 1.5px solid #dde3ec;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    color: #0984C6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.12s ease;
+}
+
+    .hvac-cal-nav:hover:not([disabled]) {
+        background: rgba(9, 132, 198, 0.08);
+    }
+
+/* ============================
+   Calendar Grid (7-col)
+   ============================ */
+
+.hvac-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.hvac-cal-dow {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #908EAD;
+    padding: 4px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.hvac-cal-blank {
+    /* empty spacer cell */
+}
+
+/* ============================
+   Calendar Day Cells
+   ============================ */
+
+.hvac-cal-cell {
+    text-align: center;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px 2px;
+    border-radius: 6px;
+    line-height: 1.4;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+
+.hvac-cal-available {
+    color: #222;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+    .hvac-cal-available:hover {
+        background: rgba(9, 132, 198, 0.12);
+        color: #0984C6;
+        font-weight: 700;
+    }
+
+.hvac-cal-selected {
+    background: #0984C6;
+    color: #fff !important;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.hvac-cal-disabled {
+    color: #ccc;
+    cursor: default;
+    pointer-events: none;
+}

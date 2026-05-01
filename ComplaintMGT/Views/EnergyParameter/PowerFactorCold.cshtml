@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "PowerFactor - Cold";
+    Layout = "_LayoutNew";
+}
+
+<link href="~/v2.0/EnergyParameter/PowerFactor/powerFactorCold.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/PowerFactorHot" style="text-decoration: none;">
+                            <div class="step-counter hot">Hot </div>
+                        </a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/PowerFactorWarm" style="text-decoration: none;">
+                            <div class="step-counter warm">Warm </div>
+                        </a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/PowerFactorCold" style="text-decoration: none;">
+                            <div class="step-counter cold active">Cold <span class="material-symbols-outlined" id="check">check_circle</span></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- POWER FACTOR CIRCLES SECTION - ALL DEVICES -->
+    <section class="voltage-circles">
+        <h3>
+            <img src="../images/Energy assets/Icons/voltage.png" class="icon-box" /> Power Factor - Real-time
+        </h3>
+        <div class="voltage-grid" id="powerfactor-grid-1">
+            <!-- Dynamic circles will be inserted here by JS -->
+        </div>
+        <div class="voltage-grid" id="powerfactor-grid-2">
+            <!-- Overflow circles will be inserted here by JS -->
+        </div>
+    </section>
+
+    <!-- HIGH POWER FACTOR SECTION -->
+    <section class="voltage-summary-section">
+        <div class="voltage-summary-div">
+            <h3><img src="../images/Energy assets/Icons/voltage.png" alt="icon" class="icon-box" /> High Power Factor (≥ 0.98) - Last 3 Months</h3>
+            <div class="voltage-grid" id="high-pf-summary">
+                <!-- Dynamic high power factor circles will be inserted here by JS -->
+            </div>
+            <div id="no-high-pf-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+                No devices with high power factor detected.
+            </div>
+        </div>
+    </section>
+
+    <!-- LOW POWER FACTOR SECTION -->
+    <section class="voltage-summary-section">
+        <div class="voltage-summary-div">
+            <h3><img src="../images/Energy assets/Icons/voltage.png" alt="icon" class="icon-box" /> Low Power Factor (< 0.95) - Last 3 Months</h3>
+            <div class="voltage-grid" id="low-pf-summary">
+                <!-- Dynamic low power factor circles will be inserted here by JS -->
+            </div>
+            <div id="no-low-pf-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+                No devices with low power factor detected.
+            </div>
+        </div>
+    </section>
+
+    <!-- AVERAGE POWER FACTOR BAR CHART SECTION -->
+    <section class="chart-section avg-voltage-section">
+        <div class="chart-card full-width-chart">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="../images/Energy assets/Icons/voltage.png" />
+                </div>
+                Average Power Factor - Weekly
+            </div>
+            <div class="meter-filter-container">
+                <label style="font-weight: 600; margin-right: 10px;">Filter by Meter Type:</label>
+                <div id="meter-filter-checkboxes" class="filter-checkboxes">
+                    <!-- Checkboxes will be dynamically generated here -->
+                </div>
+            </div>
+            <div id="chart-avg-powerfactor"></div>
+            <div class="legend-footer">
+                Month Wise
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTUAL POWER FACTOR LINE CHART SECTION - SINGLE FULL WIDTH -->
+    <section class="chart-section second-chart">
+        <div class="chart-card full-width-chart">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="../images/Energy assets/Icons/voltage.png" />
+                </div>
+                Actual Power Factor 
+            </div>
+            <div id="line-date-filter"></div>
+            <div class="meter-filter-container">
+                <label style="font-weight: 600; margin-right: 10px;">Filter by Meter Type:</label>
+                <div id="line-meter-filter-checkboxes" class="filter-checkboxes">
+                    <!-- Checkboxes will be dynamically generated here -->
+                </div>
+            </div>
+            <div id="chart-actual-powerfactor"></div>
+            <div class="legend-footer">
+                Last 3 Months - Real-time Data
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/v2.0/EnergyParameter/PowerFactor/powerFactorCold.js"></script>

@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Thermalambient - Hot";
+    Layout = "_LayoutNew";
+}
+
+<link href="~/v2.0/thermal/Ambient/css/slider.css" rel="stylesheet" />
+<link href="~/v2.0/thermal/Ambient/css/ambient.css" rel="stylesheet" />
+<link href="~/v2.0/thermal/Ambient/thermalAmbientdashobard.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+
+<div class="main-box" style="overflow:hidden">
+    <div class="header-image">
+        <img class="energy-header" src="~/v2.0/thermal/Ambient/images/Thermal Banner.png" alt="">
+    </div>
+    <div class="navigation-box">
+        <div id="flowBoxes" style="width: 100%;">
+            <div class="right active" id="hotDataAction">Hot</div>
+            <div class="left right" id="warmDataAction"> Warm</div>
+            <div class="left" id="coldDataAction"> Cold</div>
+        </div>
+        <div class="report">
+            <a href="/Thermal/Ambient_Thermal_TrendsHot"><button class="report-button">Trends & Reports</button></a>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row2">
+            <div class="row2_a">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;">
+                            <img src="~/v2.0/common/images/icons/13.png" alt="" class="icon">
+                        </a>
+                        <div class="img1-button">Alerts</div>
+                    </div>
+                </div>
+                <div class="alerts-container">
+                    <div class="chart-container" id="ambient-chart-container-alert"></div>
+                </div>
+            </div>
+            <div class="row2_b">
+                <div class="twob_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring</div><sub>(Dining Average)</sub>
+                    </div>
+                </div>
+                <div class="table-box" id="ambient-thermal-monitoring">
+                </div>
+            </div>
+            <div class="row2_c">
+                <div class="twoc_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Compliance</div>
+                    </div>
+                </div>
+                <div class="compliance-container">
+                    <div class="chart-container" id="ambient-compliance-chart-container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="row3_a">
+                <div class="threea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring<sub>(Peak Ambient & Dining/Ambient)</sub></div>
+                    </div>
+                </div>
+                <div class="tmAA-graph">
+                    <div class="tmAA-graph1">
+                        <div class="chart-container" id="ambient-chart-container-ops"></div>
+                        <div class='graph_label' style="padding-top: 10%;padding-bottom: 10%;">
+                            <label for="">Ops Schedule (MAX)</label>
+                        </div>
+                    </div>
+                    <div class="tmAA-graph2">
+                        <div class="chart-container" id="ambient-chart-container-nonops"></div>
+                        <div class='graph_label' style="padding-top: 10%;padding-bottom: 10%;">
+                            <label for="">Ops Schedule (MIN)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row3_b">
+                <div class="threeb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring</div><sub>(Current Day)</sub>
+                    </div>
+                </div>
+                <div class="tmpA-container">
+                    <div class="chart-container" id="ambient-chart-container-tempmonitoring"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/V2.0/Thermal/Ambient/js/ambient.js"></script>
+    
+@* <script src="~/v2.0/thermal/Ambient/tmpaandpa-container.js"></script> *@
+
+@* <script src="~/v2.0/thermal/ambient/compliance-graph.js"></script>
+<script src="~/v2.0/thermal/ambient/alerts-graph.js"></script> *@
+@* <script src="~/v2.0/thermal/ambient/tmaa-graph1.js"></script> *@
+@* <script src="~/v2.0/thermal/ambient/tmaa-graph2.js"></script> *@
+@* <script src="~/v2.0/thermal/ambient/tmpa.js"></script> *@
+@* <script src="~/V2.0/Thermal/ambient/ambient-thermal-monitoring.js"></script> *@

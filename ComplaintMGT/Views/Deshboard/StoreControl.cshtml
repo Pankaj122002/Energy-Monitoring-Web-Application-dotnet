@@ -1,0 +1,379 @@
+﻿@{
+    ViewData["Title"] = "RunHr";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/StoreControl/StoreControl.css" rel="stylesheet" />
+<link href="~/v2.0/StoreControl/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/Deshboard/StoreControl" style="text-decoration: none;"><div class="step-counter active">Hot<span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Deshboard/StoreControlWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Deshboard/StoreControlCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Row 2 -->
+<div class="content">
+    <div class="form-row">
+        <div class="dropdown-container">
+            <label for="country">Country</label>
+            <div class="custom-select">
+                <select id="country">
+                    <option value="" selected disabled>Select Country</option>
+                    <option value="us">United States</option>
+                    <option value="in">India</option>
+                    <option value="uk">United Kingdom</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="zone">Zone</label>
+            <div class="custom-select">
+                <select id="zone">
+                    <option value="" selected disabled>Select Zone</option>
+                    <option value="north">North</option>
+                    <option value="south">South</option>
+                    <option value="east">East</option>
+                    <option value="west">West</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="state">State</label>
+            <div class="custom-select">
+                <select id="state">
+                    <option value="" selected disabled>Select State</option>
+                    <option value="ca">California</option>
+                    <option value="tx">Texas</option>
+                    <option value="ny">New York</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="dropdown-container">
+            <label for="city">City</label>
+            <div class="custom-select">
+                <select id="city">
+                    <option value="" selected disabled>Select City</option>
+                    <option value="sf">San Francisco</option>
+                    <option value="la">Los Angeles</option>
+                    <option value="ny">New York</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="dropdown-container">
+            <label for="store">Store/Site Name</label>
+            <div class="custom-select">
+                <select id="store">
+                    <option value="" selected disabled>Select Store/Site</option>
+                    <option value="store1">Store 1</option>
+                    <option value="store2">Store 2</option>
+                    <option value="store3">Store 3</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="schedule-container">
+            <h3>Ops & Non Ops Schedule</h3>
+            <div class="schedule-options">
+                <div class="schedule-column">
+                    <div class="radio-item">
+                        <input type="radio" id="ops-schedule" name="ops-schedule">
+                        <label for="ops-schedule">Ops Schedule</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="store-setup" name="ops-schedule">
+                        <label for="store-setup">Store Setup</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="online-delivery-morning" name="ops-schedule">
+                        <label for="online-delivery-morning">Online Delivery - Morning</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="peak-lunch" name="ops-schedule">
+                        <label for="peak-lunch">Peak Lunch</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="post-lunch" name="ops-schedule">
+                        <label for="post-lunch">Post Lunch</label>
+                    </div>
+                </div>
+                <div class="schedule-column">
+                    <div class="radio-item">
+                        <input type="radio" id="pre-dinner" name="ops-schedule">
+                        <label for="pre-dinner">Pre Dinner</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="peak-dinner" name="ops-schedule">
+                        <label for="peak-dinner">Peak Dinner</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="online-delivery-evening" name="ops-schedule">
+                        <label for="online-delivery-evening">Online Delivery-Morning</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="panel assets-panel">
+            <div class="panel-header">
+                <h3>Assets</h3>
+                <label class="switch">
+                    <input type="checkbox" id="assets-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="assets-grid">
+                <div class="asset-section">
+                    <h4>Mains</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="mains" name="mains">
+                        <label for="mains">Mains</label>
+                    </div>
+                </div>
+
+                <div class="asset-section">
+                    <h4>HVAC</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="hvac-1" name="hvac">
+                        <label for="hvac-1">HVAC - Cassette 1</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="hvac-2" name="hvac">
+                        <label for="hvac-2">HVAC - Cassette 2</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="hvac-3" name="hvac">
+                        <label for="hvac-3">HVAC - Cassette 3</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="hvac-4" name="hvac">
+                        <label for="hvac-4">HVAC - Cassette 4</label>
+                    </div>
+                </div>
+
+                <div class="asset-section">
+                    <h4>Lights</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="lights-foh" name="lights">
+                        <label for="lights-foh">Lights - FOH</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="lights-boh" name="lights">
+                        <label for="lights-boh">Lights - BOH</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="lights-signage" name="lights">
+                        <label for="lights-signage">Lights - Signage</label>
+                    </div>
+                </div>
+
+                <div class="asset-section">
+                    <h4>Kitchen Assets Heating</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="makeline" name="kitchen-heating">
+                        <label for="makeline">Makeline</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kitchen-assets-grid">
+                <div class="asset-section">
+                    <h4>Kitchen Assets</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="fresh-air" name="kitchen-assets-1">
+                        <label for="fresh-air">Fresh Air A-3 phase</label>
+                    </div>
+                </div>
+
+                <div class="asset-section">
+                    <h4>Kitchen Assets</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="exhaust" name="kitchen-assets-2">
+                        <label for="exhaust">Exhaust-3 phase</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-box">
+            <h3>Schedule</h3>
+            <div class="schedule-tabs">
+                <button class="tab-btn active">Relative</button>
+                <button class="tab-btn">Fixed</button>
+            </div>
+            <div class="date-selector">
+                <div class="date-display">Today</div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="panel festive-panel">
+            <h3>Festive period</h3>
+            <div class="festive-content">
+                <div class="festive-left">
+                    <h4>Festivals</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="festival-1" name="festival">
+                        <label for="festival-1">Festivals 1</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="festival-2" name="festival">
+                        <label for="festival-2">Festivals 2</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="festival-3" name="festival">
+                        <label for="festival-3">Festivals 3</label>
+                    </div>
+                </div>
+                <div class="festive-right">
+                    <h4>Duration</h4>
+                    <div class="duration">00:00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel season-panel">
+            <h3>Season</h3>
+            <div class="season-grid">
+                <div class="season-column">
+                    <div class="radio-item">
+                        <input type="radio" id="winter" name="season">
+                        <label for="winter">Winter</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="monsoon" name="season">
+                        <label for="monsoon">Monsoon</label>
+                    </div>
+                </div>
+                <div class="season-column">
+                    <div class="radio-item">
+                        <input type="radio" id="summer" name="season">
+                        <label for="summer">Summer / Pre-Monsoon</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="autumn" name="season">
+                        <label for="autumn">Post- Monsoon / Autumn</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="panel control-panel">
+            <div class="panel-header">
+                <h3>Occupancy Based Control</h3>
+                <label class="switch">
+                    <input type="checkbox" id="occupancy-toggle">
+                    <span class="slider round"></span>
+                    <span class="toggle-text">NO</span>
+                </label>
+            </div>
+            <div class="panel-header">
+                <h3>Heat load Analysis</h3>
+                <label class="switch">
+                    <input type="checkbox" id="heat-toggle">
+                    <span class="slider round"></span>
+                    <span class="toggle-text">NO</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="panel override-panel">
+            <div class="panel-header">
+                <h3>Override</h3>
+                <label class="switch">
+                    <input type="checkbox" id="override-toggle">
+                    <span class="slider round"></span>
+                    <span class="toggle-text">NO</span>
+                </label>
+            </div>
+            <div class="panel-header">
+                <h3>Manual Override</h3>
+                <label class="switch">
+                    <input type="checkbox" id="manual-override-toggle">
+                    <span class="slider round"></span>
+                    <span class="toggle-text">NO</span>
+                </label>
+            </div>
+            <div class="panel-header">
+                <h3>Platform Override</h3>
+                <label class="switch">
+                    <input type="checkbox" id="platform-override-toggle">
+                    <span class="slider round"></span>
+                    <span class="toggle-text">NO</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="panel temperature-panel">
+            <h3>Temperature Based Control</h3>
+            <div class="temp-grid">
+                <div class="temp-column">
+                    <h4>RTA</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="rta-lcl" name="rta">
+                        <label for="rta-lcl">LCL</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="rta-ucl" name="rta">
+                        <label for="rta-ucl">UCL</label>
+                    </div>
+                </div>
+                <div class="temp-column">
+                    <h4>Ambient Temperature</h4>
+                    <div class="radio-item">
+                        <input type="radio" id="ambient-lcl" name="ambient">
+                        <label for="ambient-lcl">LCL</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="ambient-ucl" name="ambient">
+                        <label for="ambient-ucl">UCL</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="apply-btn">Apply</button>
+</div>
+
+</div>
+
+@* <script src="left.js"></script> *@
+<script src="~/v2.0/StoreControl/StoreControl.js"></script>

@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Thermal Ambient - Cold";
+    Layout = "_LayoutNew";
+}
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<link href="~/v2.0/thermal/Ambient_Humidity_trends/cold/thermalcold.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/v2.0/thermal/Ambient_Humidity_trends/hot/AmbientAssetFilter.css" />
+
+<div class="main-box" id="mainBox">
+    <div class="header-image">
+        <img class="energy-header" style="margin-left:-15.5%" src="~/v2.0/common/images/banner 5.png" alt="">
+    </div>
+
+    <div class="navigation-box2"> 
+        <div class="trends-box">
+            <div class="box1">
+                <button class="trends">Trends</button>
+                <div class="trends-nav">
+                    <a href="/Thermal/Ambient_Humidity_TrendsHot" >Hot</a>
+                    <a href="/Thermal/Ambient_Humidity_TrendsWarm">Warm</a>
+                    <a href="/Thermal/Ambient_Humidity_TrendsCold" id="first">Cold</a>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Reports</button></a>
+            </div>
+        </div>
+        <div class="links-l">
+            <a href="#"><img src="~/v2.0/common/images/Quick links.png" alt="" class="store_button qLinks-button"></a>
+        </div>
+    </div>
+
+    <div class="content-box">
+
+        <!-- GRAPH 1: Ambient Thermal Monitoring -->
+        <div class="hvac-graph-card">
+            <div class="hvac-graph-header">
+                <div class="hvac-graph-title-row">
+                    <img src="/v2.0/common/images/4.png" alt="" class="icon">
+                    <span class="hvac-graph-title">Ambient Humidity Monitoring</span>
+                    <span class="hvac-live-badge">● LIVE</span>
+                </div>
+                <div id="assetFilter_hvacLiveGraph" class="hvac-asset-filter-bar"></div>
+            </div>
+            <div class="chart-container fix_height" id="hvacLiveGraph"></div>
+        </div>
+
+        <!-- GRAPH 2: Ambient Thermal Monitoring - Peak Temperature -->
+        <div class="hvac-graph-card">
+            <div class="hvac-graph-header">
+                <div class="hvac-graph-title-row">
+                    <img src="/v2.0/common/images/4.png" alt="" class="icon">
+                    <span class="hvac-graph-title">Ambient Humidity Monitoring - Peak Temperature (Weekly)</span>
+                </div>
+                <div id="assetFilter_hvacPeakGraph" class="hvac-asset-filter-bar"></div>
+            </div>
+            <div class="chart-container fix_height" id="hvacPeakGraph"></div>
+        </div>
+
+        <!-- GRAPH 3: Thermal Monitoring HVAC - Hourly Average -->
+        <div class="hvac-graph-card">
+            <div class="hvac-graph-header">
+                <div class="hvac-graph-title-row">
+                    <img src="/v2.0/common/images/4.png" alt="" class="icon">
+                    <span class="hvac-graph-title">Ambient Humidity Monitoring - Weekly Average</span>
+                </div>
+                <div id="assetFilter_hvacHourlyAvgGraph" class="hvac-asset-filter-bar"></div>
+            </div>
+            <div class="chart-container fix_height" id="hvacHourlyAvgGraph"></div>
+        </div>
+
+        <!-- GRAPH 4: Thermal Profile - Hourly Average (Heatmap, single-select) -->
+        <div class="hvac-graph-card">
+            <div class="hvac-graph-header">
+                <div class="hvac-graph-title-row">
+                    <img src="/v2.0/common/images/4.png" alt="" class="icon">
+                    <span class="hvac-graph-title">Ambient Humidity Profile - Weekly Average</span>
+                    <span class="hvac-single-badge">Single Asset</span>
+                </div>
+                <div id="assetFilter_hvacHeatmapGraph" class="hvac-asset-filter-bar"></div>
+            </div>
+            <div class="chart-container fix_height" id="hvacHeatmapGraph"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="quick-links">
+    <div class="header1">
+        <div class="topic">Quick Links</div>
+        <button class="X" id="x">X</button>
+    </div>
+    <div class="details">
+        <div class="details-text">
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="ql_live" checked>
+                    <label class="form-check-label" for="ql_live">Humidity Monitoring (Live)</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="ql_peak" checked>
+                    <label class="form-check-label" for="ql_peak">Peak Temperature</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="ql_avg" checked>
+                    <label class="form-check-label" for="ql_avg">Weekly Average</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="ql_heatmap" checked>
+                    <label class="form-check-label" for="ql_heatmap">Humidity Profile Heatmap</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Quick-link show/hide graph cards
+    var qlMap = {
+        'ql_live':    'hvacLiveGraph',
+        'ql_peak':    'hvacPeakGraph',
+        'ql_avg':     'hvacHourlyAvgGraph',
+        'ql_heatmap': 'hvacHeatmapGraph'
+    };
+    Object.keys(qlMap).forEach(function (qlId) {
+        var el = document.getElementById(qlId);
+        if (el) {
+            el.addEventListener('change', function () {
+                var card = document.getElementById(qlMap[qlId]);
+                if (card) {
+                    var graphCard = card.closest('.hvac-graph-card');
+                    if (graphCard) graphCard.style.display = this.checked ? '' : 'none';
+                }
+            });
+        }
+    });
+</script>
+
+<script src="~/v2.0/thermal/ambient_humidity_trends/cold/thermalambienttrends.js"></script>
+<script src="/v2.0/thermal/ambient_humidity_trends/cold/thermalcold.js"></script>
+<script>
+    var settings = {};
+    var events = [];
+    var element = document.getElementById('calender');
+    // caleandar(element, events, settings);
+</script>
+

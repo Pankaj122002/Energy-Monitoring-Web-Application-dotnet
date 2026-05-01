@@ -1,0 +1,30 @@
+{
+    "CategoryGraph": [
+        {
+            "Id": 1,
+            "Name": "Ambient Trends",
+            "SubGraph": [
+                {
+                    "Id": 1,
+                    "Name": "Ambient Humidity Monitoring",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 2,
+                    "Name": "Ambient Humidity Monitoring - Peak Temperature",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 3,
+                    "Name": "Ambient Humidity Monitoring - Weekly Average",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 4,
+                    "Name": "Ambient Humidity Profile - Weekly Average",
+                    "EnableGraph": true
+                }
+            ]
+        }
+    ]
+}

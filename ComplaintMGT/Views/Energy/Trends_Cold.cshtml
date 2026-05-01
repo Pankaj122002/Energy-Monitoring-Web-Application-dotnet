@@ -1,0 +1,252 @@
+﻿@{
+    ViewData["Title"] = "Live Energy Cold";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/energy/cold/css/calender.css" rel="stylesheet" />
+<link href="~/v2.0/energy/cold/css/cold.css" rel="stylesheet" />
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<div class="main-box" id="mainBox">
+    <div class="header-image">
+        <img class="energy-header" style="margin-left:-15.5%" src="~/v2.0/common/images/banner 5.png" alt="">
+    </div>
+
+    <div class="navigation-box2">
+        <div class="trends-box">
+            <div class="box1">
+                <button class="trends">Trends</button>
+                <div class="trends-nav">
+                    <a href="/Energy/Trends_Hot">Hot</a>
+                    <a href="/Energy/Trends_Warm">Warm</a>
+                    <a href="/Energy/Trends_Cold" id="first">Cold</a>
+                </div>
+            </div>
+            <div class="report">
+                <a href="/Energy/Reports"><button class="report-button">Reports</button></a>
+            </div>
+        </div>
+        <div class="links-l">
+            <a href="#"><span class="material-symbols-outlined filter-button">filter_alt</span></a>
+            <a href="#"><img src="~/v2.0/common/images/Quick links.png" alt="" class="store_button qLinks-button"></a>
+        </div>
+    </div>
+
+
+    <div class="content-box">
+        <div class="content-box3">
+            <div class="consumption-box3">
+                <!-- Meter Filter Container - Positioned above graph -->
+                <div id="meterFilterContainer" class="meter-filter-container">
+                    <!-- Meter filter buttons will be dynamically inserted here by JavaScript -->
+                </div>
+
+                <!-- Date Filter Container - Shown only for live graphs (1, 2, 3) -->
+                <div id="dateFilterContainer" class="meter-filter-container date-filter-container" style="display:none;">
+                    <!-- Date filter buttons will be dynamically inserted here by JavaScript -->
+                </div>
+
+                <div class="graph-box">
+                    <div id="carouselEnergyTrendColdIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                        </div>
+                        <div class="carousel-inner">
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselEnergyTrendColdIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselEnergyTrendColdIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="quick-links">
+    <div class="Savings">
+        <div class="header1">
+            <div class="topic">Quick Links</div>
+            <button class="X" id="x">X</button>
+        </div>
+        <div class="details">
+            <div class="details-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1">
+                    <label class="form-check-label" for="flexSwitchCheckDefault1">Live Energy Consumption</label>
+                </div>
+                <div class="sub-text">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1_a">
+                        <label class="form-check-label" for="flexSwitchCheckDefault1_a">Mains Energy Consumption</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1_b">
+                        <label class="form-check-label" for="flexSwitchCheckDefault1_b">Asset Wise Energy Consumption</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1_c">
+                        <label class="form-check-label" for="flexSwitchCheckDefault1_c">Ops schedule Wise Energy Consumption</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1_d">
+                        <label class="form-check-label" for="flexSwitchCheckDefault1_d">Ops schedule and Asset Wise Energy Consumption</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
+                    <label class="form-check-label" for="flexSwitchCheckDefault2">Live Energy Consumption vs Live Temperature</label>
+                </div>
+                <div class="sub-text">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2_a">
+                        <label class="form-check-label" for="flexSwitchCheckDefault2_a">Mains Energy Consumption</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2_b">
+                        <label class="form-check-label" for="flexSwitchCheckDefault2_b">Asset Wise Energy Consumption</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2_c">
+                        <label class="form-check-label" for="flexSwitchCheckDefault2_c">Ops schedule Wise Energy Consumption</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2_d">
+                        <label class="form-check-label" for="flexSwitchCheckDefault2_d">Ops schedule and Asset Wise Energy Consumption</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="filter-box">
+    <div class="header1">
+        <div class="topic topic2">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Graphs</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Frequency</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Meters</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ops-tab" data-bs-toggle="tab" data-bs-target="#ops-tab-pane" type="button" role="tab" aria-controls="ops-tab-pane" aria-selected="false">Ops Schedule</button>
+                </li>
+            </ul>
+        </div>
+        <button class="X X1" id="x">X</button>
+    </div>
+
+    <div class="page1">
+        <!-- Graph filter items will be dynamically inserted here by setFilterItem() -->
+        <div class="Apply-filters">
+            <img src="~/v2.0/common/images/ApplyFilters.png" id="imgApplyFilter" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+    <div class="page2">
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="frequency-header">Hourly</label>
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" data-id="17" role="switch" id="flexSwitchCheckDefault17">
+                    <label class="form-check-label" for="flexSwitchCheckDefault17">Hourly Actual</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" data-id="18" role="switch" id="flexSwitchCheckDefault18">
+                    <label class="form-check-label" for="flexSwitchCheckDefault18">Hourly Average</label>
+                </div>
+            </div>
+        </div>
+        <div class="Apply-filters">
+            <img src="~/v2.0/common/images/ApplyFilters.png" id="imgApplyFilter2" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+    <div class="page3">
+        <!-- Meter Filter Section (dynamically populated by JavaScript) -->
+        <div id="meter-filter-container">
+            <!-- Meter checkboxes will be inserted here dynamically -->
+        </div>
+
+        <div class="Apply-filters">
+            <img src="~/v2.0/common/images/ApplyFilters.png" id="imgApplyMeterFilter" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+
+    <div class="page4">
+        <div class="details-text">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckOpsSchedule">
+                <label class="form-check-label" for="flexSwitchCheckOpsSchedule">Ops & Non Ops Schedule</label>
+            </div>
+            <div class="sub-text">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCrewSetup">
+                    <label class="form-check-label" for="flexSwitchCheckCrewSetup">Crew Setup</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckPreLunch">
+                    <label class="form-check-label" for="flexSwitchCheckPreLunch">Pre Lunch</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckPeakLunch">
+                    <label class="form-check-label" for="flexSwitchCheckPeakLunch">Peak Lunch</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckPostLunch">
+                    <label class="form-check-label" for="flexSwitchCheckPostLunch">Post Lunch</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckPreDinner">
+                    <label class="form-check-label" for="flexSwitchCheckPreDinner">Pre Dinner</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckPeakDinner">
+                    <label class="form-check-label" for="flexSwitchCheckPeakDinner">Peak Dinner</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCrewShutdown">
+                    <label class="form-check-label" for="flexSwitchCheckCrewShutdown">Crew Shutdown</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckNoOps">
+                    <label class="form-check-label" for="flexSwitchCheckNoOps">No Operations</label>
+                </div>
+            </div>
+        </div>
+        <div class="Apply-filters">
+            <img src="~/v2.0/common/images/ApplyFilters.png" alt="" class="store_button qLinks-button">
+        </div>
+    </div>
+</div>
+
+<!-- Scripts should be loaded at the end of the body, with proper order -->
+<script>
+    // Ensure DOM is fully loaded before initializing
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializePage);
+    } else {
+        initializePage();
+    }
+
+    function initializePage() {
+        console.log('Page DOM fully loaded and parsed');
+    }
+</script>
+
+<script src="~/v2.0/energy/cold/js/caleander.js"></script>
+<script src="~/v2.0/energy/cold/js/cold.js"></script>
+<script src="~/v2.0/energy/cold/js/cold_liveEnergyConsumption.js"></script>

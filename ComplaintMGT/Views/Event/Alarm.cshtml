@@ -1,0 +1,229 @@
+﻿@{
+    ViewData["Title"] = "Alarm Dashboard - Hot";
+    Layout = "_LayoutNew";
+}
+<link href="~/V2.0/Event/Alarm/alarmdashboard.css" rel="stylesheet" />
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/Event/Alarm" style="text-decoration: none;"><div class="step-counter hot active">Hot <span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Event/AlarmWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Event/AlarmCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row1">
+            <div class="row1_b">
+                <div class="b_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon"></a>
+                        <div class="img1-button">Alarms Summary</div>
+                    </div>
+                </div>
+                <div class="alarms-container1b">
+                    <div class="alarms4">
+                        <div class="chart-containerAlarms" id="alarms-container4"></div>
+                    </div>
+                    <div class="alarms5">
+                        <div class="rowA-boxes">
+                            <div class="a1">
+                                <div class="a1T1">Total</div>
+                                <div class="a1T2">200</div>
+                                <div class="a1T3">100%</div>
+                            </div>
+                            <div class="a2">
+                                <div class="a2T1">Critical</div>
+                                <div class="a2T2">50</div>
+                                <div class="a2T3">100%</div>
+                            </div>
+                            <div class="a3">
+                                <div class="a3T1">Major</div>
+                                <div class="a3T2">50</div>
+                                <div class="a3T3">25%</div>
+                            </div>
+                        </div>
+                        <div class="rowB-boxes">
+                            <div class="b1">
+                                <div class="b1T1">Minor</div>
+                                <div class="b1T2">50</div>
+                                <div class="b1T3">25%</div>
+                            </div>
+                            <div class="b2">
+                                <div class="b2T1">Warning</div>
+                                <div class="b2T2">25</div>
+                                <div class="b2T3">12.5%</div>
+                            </div>
+                            <div class="b3">
+                                <div class="b3T1">Events</div>
+                                <div class="b3T2">25</div>
+                                <div class="b3T3">12.5%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon"></a>
+                        <div class="img1-button">Alarms</div>
+                    </div>
+                </div>
+                <div class="alarms-container1a">
+                    <div class="alarms1">
+                        <div class="chart-containerAlarms" id="alarms-container1"></div>
+                        <div>Energy Alarms</div>
+                    </div>
+                    <div class="alarms2">
+                        <div class="chart-containerAlarms" id="alarms-container2"></div>
+                        <div>Thermal Alarms</div>
+                    </div>
+                    <div class="alarms3">
+                        <div class="chart-containerAlarms" id="alarms-container3"></div>
+                        <div>Electrical Alarms</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row2">
+            <div class="row2_a">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon"></a>
+                        <div class="img1-button">Previous Hr & Today</div>
+                    </div>
+                </div>
+                <div class="gcontainer">
+                    <div class="eca-container_1">
+                        <div id="carouselExampleIndicators1" class="carousel slide" data-bs-theme="dark">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="chart-containerETE1" id="energy_AlarmsA1"></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="chart-containerETE2" id="energyAlarmsA2"></div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="gheading">Energy Alarms</div>
+                    </div>
+                    <div class="eca-container_2">
+                        <div id="carouselExampleIndicators2" class="carousel slide" data-bs-theme="dark">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="chart-containerETE1" id="thermal_Alarms"></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="chart-containerETE2" id="thermal_AlarmsB2"></div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="gheading">Thermal Alarms</div>
+                    </div>
+                    <div class="eca-container_3">
+                        <div id="carouselExampleIndicators3" class="carousel slide" data-bs-theme="dark">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="chart-containerETE1" id="electrical_Alarms"></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="chart-containerETE2" id="electrical_AlarmsC2"></div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="gheading">Electrical Alarms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="row3_a">
+                <div class="threea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon"></a>
+                        <div class="img1-button">Ops Schedule & Non-Ops Schedule</div>
+                    </div>
+                </div>
+                <div class="alarms-container1a">
+                    <div class="alarms1">
+                        <div class="chart-containerAlarms" id="opsSchedule1"></div>
+                        <div>Energy Alarms</div>
+                    </div>
+                    <div class="alarms2">
+                        <div class="chart-containerAlarms" id="opsSchedule2"></div>
+                        <div>Thermal Alarms</div>
+                    </div>
+                    <div class="alarms3">
+                        <div class="chart-containerAlarms" id="opsSchedule3"></div>
+                        <div>Electrical Alarms</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row3_b">
+                <div class="threeb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon"></a>
+                        <div class="img1-button">Ops Schedule wise Distribution of Alarms</div>
+                    </div>
+                </div>
+                <div class="osWiseDistribution-container">
+                    <div class="chart-containerOsWise" id="OpsScheduleWiseDistribution"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/v2.0/event/alarm/alarmdashboard.js"></script>

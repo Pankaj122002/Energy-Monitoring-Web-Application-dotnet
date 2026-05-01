@@ -1,0 +1,238 @@
+﻿@{
+    ViewData["Title"] = "RunHr";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/ConsumptionWarm/Consumption.css" rel="stylesheet" />
+<link href="~/v2.0/ConsumptionWarm/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/Deshboard/Consumption" style="text-decoration: none;"><div class="step-counter hot">Hot</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Deshboard/ConsumptionWarm" style="text-decoration: none;"><div class="step-counter active">Warm<span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Deshboard/ConsumptionCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+    </main>
+
+<!-- Row 2 -->
+<div class="row2">
+    <div class="row2_a">
+        <div class="icon-h">
+            <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+            <div class="img1-button">Gas - Consumption</div>
+        </div>
+        <div class="r2_c1">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top1">Counter number</p>
+                <div class="color1"></div>
+                <p class="lable1">00188</p>
+            </div>
+        </div>
+        <div class="r2_c2">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top">Counter value</p>
+                <div class="color"></div>
+                <p class="lable">619.59 m<sup>3</sup></p>
+            </div>
+        </div>
+        <div class="r2_c3">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top">Last sample date</p>
+                <div class="color"></div>
+                <p class="lable">113/12/24<br \>06:00:00</p>
+            </div>
+        </div>
+        <div class="r2_c4">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top">Daily flow increase</p>
+                <div class="color"></div>
+                <p class="lable">0.33 m<sup>3</sup></p>
+            </div>
+        </div>
+        <div class="r2_c5">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top">Previous day consumption</p>
+                <div class="color"></div>
+                <p class="lable">3.57 m<sup>3</sup></p>
+            </div>
+        </div>
+        <div class="r2_c6">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top">Current month increase</p>
+                <div class="color"></div>
+                <p class="lable">38.62 m<sup>3</sup></p>
+            </div>
+        </div>
+        <div class="r2_c7">
+            <div class="img1-button_r2_a">
+                <p class="img1-button_r2_a_top">Previous month increase</p>
+                <div class="color"></div>
+                <p class="lable">87.32 m<sup>3</sup></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row2_b">
+        <div class="icon-h_a">
+            <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+            <div class="img1-button">Summary </div>
+        </div>
+        <div class="border">
+            <div class="alarms4">
+                <div class="chart-containerAlarms" id="alarms-container4"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row2_c">
+        <div class="device-container">
+            <div class="tabs">
+                <div class="tab active">Device Details</div>
+                <div class="tab">Additional information <i class="info-icon">ℹ</i></div>
+            </div>
+            <div class="device-details">
+                <div class="detail">
+                    <span>Battery level</span>
+                    <span class="icon"><img src="../images/Energy assets/Charged Battery.png" alt="Battery Icon"></span>
+                </div>
+                <div class="detail">
+                    <span>GSM signal level</span>
+                    <span class="icon"><img src="../images/Energy assets/Signal.png" alt="Signal Icon"></span>
+                </div>
+                <div class="detail">
+                    <span>Environment temperature</span>
+                    <span>10 °C</span>
+                </div>
+                <div class="detail">
+                    <span>Last activity</span>
+                    <span>13/12/2024 06:17:01</span>
+                </div>
+                <div class="detail">
+                    <span>Parse priority</span>
+                    <span>Disabled</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<!-- Row 3 -->
+
+<div class="row3">
+
+    <div class="row3_a">
+        <div class="icon-h">
+            <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+            <div class="img1-button">Gas - Consumption (Actual)</div>
+        </div>
+        <div class="controlA">
+            <div class="chart-container_controlA" id="control1"></div>
+        </div>
+    </div>
+
+    <div class="row3_b">
+        <div class="icon-h">
+            <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/4.png" alt="" class="icon"></a>
+            <div class="img1-button">Gas - Consumption (Avg)</div>
+        </div>
+        <div class="controlB">
+            <div class="chart-container_controlB" id="control2"></div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="row4">
+
+    <div class="row4_c">
+        <div class="icon-h">
+            <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Time_of_day.png" alt="" class="icon"></a>
+            <div class="img1-button">Time Of Day</div>
+        </div>
+
+        <div class="r4_a">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Ops Schedule</div>
+            </div>
+        </div>
+
+        <div class="r4_b">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Non Ops Schedule</div>
+            </div>
+        </div>
+
+        <div class="r4_c">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Online delivery - Morning</div>
+            </div>
+        </div>
+
+        <div class="r4_d">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Peak Lunch</div>
+            </div>
+        </div>
+        <div class="r4_e">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Post Lunch</div>
+            </div>
+        </div>
+        <div class="r4_f">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Pre Dinner</div>
+            </div>
+        </div>
+        <div class="r4_g">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Peak Lunch</div>
+            </div>
+        </div>
+        <div class="r4_h">
+            <div class="icon-h_r4_a">
+                <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/T_UPS.png" alt="" class="icon-h_r2_a"></a>
+                <div class="img1-button_r4_a">0.00/0.00<br \> Store Shutdown</div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+
+@* <script src="left.js"></script> *@
+<script src="~/v2.0/ConsumptionWarm/Consumption.js"></script>

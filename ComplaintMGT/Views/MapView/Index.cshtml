@@ -1,0 +1,1530 @@
+﻿
+@{
+    ViewData["Title"] = "Map - View";
+    Layout = "_LayoutNew";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link href="~/v2.0/mapview/css/map.css" rel="stylesheet" />
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25) !important;
+    }
+
+    .main-box {
+        background: #f8f9fa;
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .header {
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+    }
+
+    .mapbtn {
+        background: white;
+        color: #667eea;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+        .mapbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+    .headerbtnholder {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px 20px;
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+    }
+
+    .headbtn {
+        background: white;
+        border: none;
+        padding: 10px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+        .headbtn:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+            .headbtn:hover .btntextcolor {
+                color: white !important;
+            }
+
+        .headbtn.active-mode {
+            background: #667eea;
+        }
+
+            .headbtn.active-mode .btntextcolor {
+                color: white !important;
+            }
+
+    .btntextcolor {
+        color: #667eea;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .filterbtn {
+        background: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+        .filterbtn:hover {
+            transform: rotate(90deg);
+            background: #667eea;
+        }
+
+        .filterbtn::before {
+            content: "⚙";
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .filterbtn:hover::before {
+            color: white;
+        }
+
+    .sidebar-panel {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        height: calc(100vh - 180px);
+        overflow-y: auto;
+        position: sticky;
+        top: 20px;
+        z-index: 1050;
+    }
+
+    .map-container {
+        position: relative;
+        height: calc(100vh - 180px);
+    }
+
+    .measurement-box {
+        border: 2px solid #e0e0e0;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .measurement-box label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 18px;
+        }
+
+        .measurement-box select {
+            margin: 8px 0;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+            .measurement-box select:hover {
+                border-color: #667eea;
+            }
+
+        .measurement-box .form-check {
+            margin: 10px 0;
+        }
+
+        .measurement-box .form-check-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 8px 20px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4) !important;
+        }
+
+    .search-container {
+        position: relative;
+        margin: 20px 0;
+    }
+
+    .search-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .search-input-wrapper:focus-within {
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+    #seacrhtext {
+        width: 100%;
+        border: none;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    #button-addon2 {
+        border: none;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 12px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        #button-addon2 svg {
+            fill: white;
+        }
+
+        #button-addon2:hover {
+            opacity: 0.9;
+        }
+
+    #searchresult {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 300px;
+        overflow-y: auto;
+        border: none;
+        display: none;
+        background: white;
+        position: absolute;
+        width: 100%;
+        z-index: 1100;
+        margin-top: 5px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+        #searchresult li {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+            #searchresult li:first-child {
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+
+            #searchresult li:last-child {
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                border-bottom: none;
+            }
+
+            #searchresult li::before {
+                content: "📍";
+                margin-right: 10px;
+                font-size: 16px;
+            }
+
+            #searchresult li:hover {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+            }
+
+    .map-control-btn {
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        margin: 8px 0;
+        background: white;
+        width: 100%;
+        font-weight: 600;
+        color: #333;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+        .map-control-btn:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .map-control-btn i {
+            font-size: 18px;
+        }
+
+    #map {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .ol-popup {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        padding: 0;
+        border-radius: 15px;
+        border: none;
+        bottom: 12px;
+        left: -50px;
+        min-width: 320px;
+        max-width: 380px;
+        overflow: hidden;
+    }
+
+        .ol-popup:after, .ol-popup:before {
+            top: 100%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .ol-popup:after {
+            border-top-color: white;
+            border-width: 10px;
+            left: 48px;
+            margin-left: -10px;
+        }
+
+        .ol-popup:before {
+            border-top-color: white;
+            border-width: 11px;
+            left: 48px;
+            margin-left: -11px;
+        }
+
+    .popup-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 20px;
+        font-weight: 600;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .popup-content {
+        padding: 20px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .popup-row {
+        display: flex;
+        align-items: flex-start;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+        gap: 12px;
+    }
+
+        .popup-row:last-child {
+            border-bottom: none;
+        }
+
+    .popup-label {
+        font-weight: 600;
+        color: #667eea;
+        min-width: 75px;
+        max-width: 75px;
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        padding-top: 2px;
+        flex-shrink: 0;
+        word-break: keep-all;
+    }
+
+    .popup-value {
+        color: #333;
+        font-weight: 500;
+        line-height: 1.6;
+        flex: 1;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .asset-list-value {
+        color: #333;
+        font-weight: 500;
+        line-height: 2.2;
+        flex: 1;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-inactive {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+        .ol-popup-closer:hover {
+            opacity: 0.8;
+        }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px 15px 0 0;
+        border: none;
+    }
+
+    .modal-title {
+        font-weight: 600;
+    }
+
+    #map-loading {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background: rgba(255,255,255,0.85);
+        padding: 20px 30px;
+        border-radius: 12px;
+        font-weight: 600;
+        color: #667eea;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        pointer-events: none;
+    }
+
+    @@media (max-width: 991px) {
+        .sidebar-panel {
+            position: relative;
+            top: 0;
+            margin-bottom: 20px;
+            height: auto;
+            max-height: 500px;
+        }
+
+        .map-container {
+            height: 500px;
+        }
+
+        #map {
+            height: 500px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .headerbtnholder {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .header {
+            padding: 15px;
+        }
+
+        .main-box {
+            padding: 10px;
+        }
+    }
+</style>
+
+<div class='main-box'>
+    <div class='col-12'>
+        <div class="row">
+            <div class='header'>
+                <div class='headerholder' style="display:flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <button class="mapbtn"><i class="fas fa-map-marked-alt"></i> Map View</button>
+                    </div>
+
+                    <div class='headerbtnholder'>
+                        <button class='headbtn' id="btn-Site" onclick="setLayerMode('Site'); loadDeviceLayer()">
+                            <label class="btntextcolor"><i class="fas fa-building"></i> Site</label>
+                        </button>
+
+                        <button class='headbtn' id="btn-Device" onclick="setLayerMode('Device'); loadDeviceLayer()">
+                            <label class="btntextcolor"><i class="fas fa-mobile-alt"></i> Device</label>
+                        </button>
+
+                        <button class='headbtn' id="btn-Assets" onclick="setLayerMode('Assets'); loadDeviceLayer()">
+                            <label class="btntextcolor"><i class="fas fa-box"></i> Assets</label>
+                        </button>
+                    </div>
+
+                    <div>
+                        <button class='filterbtn' onclick="loadModel()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='col-12'>
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar-panel">
+                    <div class="measurement-box">
+                        <label><i class="fas fa-ruler-combined"></i> Measurement</label>
+                        <select id="MeasurementSelectbox" onchange="typeSelectmeasur(this)">
+                            <option value="LineString" id="lineStringId">📏 Line Distance</option>
+                            <option value="Polygon" id="polygonId">📐 Area</option>
+                        </select>
+                        <select id="UnitSelectbox" onchange="typeUniteMeasur(this)">
+                            <option value="KM">Kilometer (km)</option>
+                            <option value="Metre">Meter (m)</option>
+                        </select>
+
+                        <div class='form-check'>
+                            <input type='checkbox' class='form-check-input' id="ShowSegment" checked />
+                            <label class='form-check-label' for="ShowSegment">Show Segment Lengths</label>
+                        </div>
+                        <div class='form-check'>
+                            <input type='checkbox' class='form-check-input' id="ClearPrevious" checked />
+                            <label class='form-check-label' for="ClearPrevious">Clear Previous Measure</label>
+                        </div>
+
+                        <div class='row mt-3'>
+                            <div class="col-6">
+                                <button id="startmesrment" type="button" style="display:block" class="btn btn-secondary btn-sm w-100" onclick="startMeasurment()">
+                                    <i class="fas fa-play"></i> START
+                                </button>
+                                <button id="stopmesrment" style="display:none" type="button" class="btn btn-secondary btn-sm w-100" onclick="stopMeasurment()">
+                                    <i class="fas fa-stop"></i> STOP
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button id="clearmesrment" type="button" class="btn btn-secondary btn-sm w-100" onclick="clearMeasurment()">
+                                    <i class="fas fa-eraser"></i> Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="seacrhtext" placeholder="🔍 Search locations..." aria-label="Search">
+                            <button type="button" id="button-addon2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <ul id="searchresult"></ul>
+                    </div>
+
+                    <button onclick="loadStartDrag()" class="map-control-btn">
+                        <i class="fas fa-hand-rock"></i> Drag & Zoom
+                    </button>
+                    <button onclick="changeMapType('Street')" class="map-control-btn">
+                        <i class="fas fa-road"></i> Street Map
+                    </button>
+                    <button onclick="changeMapType('Satellite')" class="map-control-btn">
+                        <i class="fas fa-satellite"></i> Satellite Map
+                    </button>
+                    <button onclick="changeMapType('Climate')" class="map-control-btn">
+                        <i class="fas fa-cloud-sun"></i> Climate Map
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <div class="map-container">
+                    <div id="map"></div>
+                    <div id="map-loading"><i class="fas fa-spinner fa-spin"></i> &nbsp; Loading...</div>
+                    <div id="popup" class="ol-popup">
+                        <a href="#" id="popup-closer" class="ol-popup-closer">×</a>
+                        <div id="popup-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="filtermodel" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-filter"></i> Filters</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="nav flex-column">
+                        <a class="nav-item nav-link" href="#">All Devices</a>
+                        <a href="#" class="nav-item nav-link">Active Only</a>
+                        <a href="#" class="nav-item nav-link">Inactive Only</a>
+                        <a href="#" class="nav-item nav-link">By Zone</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    loadModel = () => {
+        const modal = new bootstrap.Modal(document.getElementById('filtermodel'));
+        modal.show();
+    }
+
+    //#region icon
+    let siteicon = '<svg width="25" height="25" viewBox="0 0 70 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M52.8238 64.206C38.2401 83.072 36.1329 99.013 36.1329 99.013C35.8093 100.329 34.5131 100.329 34.1884 99.013C34.1884 99.013 31.4341 83.072 17.1751 64.205C5.34686 49.287 0 43.436 0 31.298C0 13.894 15.3936 0 34.8377 0C54.1201 0 70 13.894 70 31.298C70 43.437 59.6287 55.284 52.8238 64.206Z" fill="black"/> <path d="M52.8954 17.3364C53.6699 17.1905 54.2574 16.5081 54.2574 15.6838C54.2574 14.7531 53.5104 14 52.5884 14H17.4131C16.4916 14 15.7451 14.7531 15.7451 15.6838C15.7451 16.5076 16.3316 17.1905 17.1061 17.3364L10 31.182V33.8763C10 35.0857 11.27 36.0659 12.8355 36.0659C13.361 36.0659 13.852 35.9529 14.274 35.7606V54H55.7255V35.7606C56.1485 35.9539 56.638 36.0659 57.165 36.0659C58.7305 36.0659 60 35.0862 60 33.8763V31.182L52.8954 17.3364ZM18.3886 36.0654C16.8956 36.0654 15.6851 35.0862 15.6851 33.8763V33.624H15.6716V31.1825L21.0296 17.3682H25.3102L21.0926 31.1825V33.8768V33.8779C21.0916 35.0857 19.8816 36.0654 18.3886 36.0654ZM29.4687 36.0654C27.9752 36.0654 26.7647 35.0862 26.7647 33.8763V33.624V31.1825L29.0042 17.3682H33.2712L32.1727 31.1825V33.624V33.8763C32.1717 35.0852 30.9612 36.0654 29.4687 36.0654ZM40.5463 36.0654C39.0538 36.0654 37.8433 35.0862 37.8433 33.8763V33.624V31.1825L36.7433 17.3682H40.9973L43.2368 31.1825V33.8768C43.2368 33.9137 43.2428 33.9505 43.2448 33.9859C43.1728 35.1432 41.9938 36.0654 40.5463 36.0654ZM54.3154 33.8763C54.3154 35.0857 53.1049 36.0654 51.6119 36.0654C50.1194 36.0654 48.9089 35.0862 48.9089 33.8763V33.624V31.1825L44.6899 17.3682H48.9709L54.3289 31.1825V33.624H54.3159L54.3154 33.8763Z" fill="white"/> </svg>';
+    let deviceredicon = '<svg width="25" height="25" viewBox="0 0 70 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M52.8238 64.206C38.2401 83.072 36.1329 99.013 36.1329 99.013C35.8093 100.329 34.5131 100.329 34.1884 99.013C34.1884 99.013 31.4341 83.072 17.1751 64.205C5.34686 49.287 0 43.436 0 31.298C0 13.894 15.3936 0 34.8377 0C54.1201 0 70 13.894 70 31.298C70 43.437 59.6287 55.284 52.8238 64.206Z" fill="#E50A0A"/> <path d="M29.49 34.3645H32.3728C32.624 34.3645 32.8649 34.2644 33.0425 34.0862C33.2201 33.908 33.3199 33.6664 33.3199 33.4144V30.5282C33.3199 30.2762 33.2201 30.0346 33.0425 29.8564C32.8649 29.6782 32.624 29.5781 32.3728 29.5781H29.49C29.2388 29.5781 28.998 29.6782 28.8204 29.8564C28.6427 30.0346 28.543 30.2762 28.543 30.5282V33.4144C28.543 33.6664 28.6427 33.908 28.8204 34.0862C28.998 34.2644 29.2388 34.3645 29.49 34.3645ZM30.4371 31.4782H31.4258V32.4644H30.4427L30.4371 31.4782Z" fill="white"/> <path d="M35.8845 34.3645H38.7617C39.0128 34.3645 39.2537 34.2644 39.4313 34.0862C39.6089 33.908 39.7087 33.6664 39.7087 33.4144V30.5282C39.7087 30.2762 39.6089 30.0346 39.4313 29.8564C39.2537 29.6782 39.0128 29.5781 38.7617 29.5781H35.8845C35.6334 29.5781 35.3925 29.6782 35.2149 29.8564C35.0373 30.0346 34.9375 30.2762 34.9375 30.5282V33.4144C34.9375 33.6664 35.0373 33.908 35.2149 34.0862C35.3925 34.2644 35.6334 34.3645 35.8845 34.3645ZM36.8316 31.4782H37.8146V32.4644H36.8316V31.4782Z" fill="white"/> <path d="M29.49 41.8079H32.3728C32.624 41.8079 32.8649 41.7078 33.0425 41.5296C33.2201 41.3514 33.3199 41.1098 33.3199 40.8578V37.9735C33.3199 37.7215 33.2201 37.4799 33.0425 37.3017C32.8649 37.1235 32.624 37.0234 32.3728 37.0234H29.49C29.2388 37.0234 28.998 37.1235 28.8204 37.3017C28.6427 37.4799 28.543 37.7215 28.543 37.9735V40.8597C28.5435 41.1114 28.6435 41.3525 28.821 41.5303C28.9986 41.708 29.2392 41.8079 29.49 41.8079ZM30.4371 38.9216H31.4258V39.9078H30.4427L30.4371 38.9216Z" fill="white"/> <path d="M35.8845 41.8079H38.7617C39.0128 41.8079 39.2537 41.7078 39.4313 41.5296C39.6089 41.3514 39.7087 41.1098 39.7087 40.8578V37.9735C39.7087 37.7215 39.6089 37.4799 39.4313 37.3017C39.2537 37.1235 39.0128 37.0234 38.7617 37.0234H35.8845C35.6334 37.0234 35.3925 37.1235 35.2149 37.3017C35.0373 37.4799 34.9375 37.7215 34.9375 37.9735V40.8597C34.938 41.1114 35.038 41.3525 35.2156 41.5303C35.3931 41.708 35.6337 41.8079 35.8845 41.8079ZM36.8316 38.9216H37.8146V39.9078H36.8316V38.9216Z" fill="white"/> <path d="M29.49 49.2316H32.3728C32.624 49.2316 32.8649 49.1315 33.0425 48.9534C33.2201 48.7752 33.3199 48.5336 33.3199 48.2816V45.3954C33.3199 45.1434 33.2201 44.9017 33.0425 44.7236C32.8649 44.5454 32.624 44.4453 32.3728 44.4453H29.49C29.2388 44.4453 28.998 44.5454 28.8204 44.7236C28.6427 44.9017 28.543 45.1434 28.543 45.3954V48.2816C28.543 48.5336 28.6427 48.7752 28.8204 48.9534C28.998 49.1315 29.2388 49.2316 29.49 49.2316ZM30.4371 46.3454H31.4258V47.3316H30.4427L30.4371 46.3454Z" fill="white"/> <path d="M35.8845 49.2316H38.7617C39.0128 49.2316 39.2537 49.1315 39.4313 48.9534C39.6089 48.7752 39.7087 48.5336 39.7087 48.2816V45.3954C39.7087 45.1434 39.6089 44.9017 39.4313 44.7236C39.2537 44.5454 39.0128 44.4453 38.7617 44.4453H35.8845C35.6334 44.4453 35.3925 44.5454 35.2149 44.7236C35.0373 44.9017 34.9375 45.1434 34.9375 45.3954V48.2816C34.9375 48.5336 35.0373 48.7752 35.2149 48.9534C35.3925 49.1315 35.6334 49.2316 35.8845 49.2316ZM36.8316 46.3454H37.8146V47.3316H36.8316V46.3454Z" fill="white"/> <path d="M29.49 56.6926H32.3728C32.624 56.6926 32.8649 56.5925 33.0425 56.4143C33.2201 56.2361 33.3199 55.9945 33.3199 55.7425V52.8563C33.3199 52.6043 33.2201 52.3627 33.0425 52.1845C32.8649 52.0063 32.624 51.9062 32.3728 51.9062H29.49C29.2388 51.9062 28.998 52.0063 28.8204 52.1845C28.6427 52.3627 28.543 52.6043 28.543 52.8563V55.7425C28.543 55.9945 28.6427 56.2361 28.8204 56.4143C28.998 56.5925 29.2388 56.6926 29.49 56.6926ZM30.4371 53.8063H31.4258V54.7925H30.4427L30.4371 53.8063Z" fill="white"/> <path d="M35.8845 56.6926H38.7617C39.0128 56.6926 39.2537 56.5925 39.4313 56.4143C39.6089 56.2361 39.7087 55.9945 39.7087 55.7425V52.8563C39.7087 52.6043 39.6089 52.3627 39.4313 52.1845C39.2537 52.0063 39.0128 51.9062 38.7617 51.9062H35.8845C35.6334 51.9062 35.3925 52.0063 35.2149 52.1845C35.0373 52.3627 34.9375 52.6043 34.9375 52.8563V55.7425C34.9375 55.9945 35.0373 56.2361 35.2149 56.4143C35.3925 56.5925 35.6334 56.6926 35.8845 56.6926ZM36.8316 53.8063H37.8146V54.7925H36.8316V53.8063Z" fill="white"/> <path d="M43.3008 25.1094H24.947C24.6959 25.1094 24.455 25.2095 24.2774 25.3876C24.0998 25.5658 24 25.8075 24 26.0594V61.0534C24 61.3054 24.0998 61.547 24.2774 61.7252C24.455 61.9034 24.6959 62.0035 24.947 62.0035H43.3008C43.552 62.0035 43.7929 61.9034 43.9705 61.7252C44.1481 61.547 44.2479 61.3054 44.2479 61.0534V26.0594C44.2479 25.8075 44.1481 25.5658 43.9705 25.3876C43.7929 25.2095 43.552 25.1094 43.3008 25.1094ZM42.3538 60.1034H25.8941V27.0095H42.3538V60.1034Z" fill="white"/> <path d="M41.569 15.9766C36.1178 15.9766 35.3033 19.125 35.2711 19.2599C35.2148 19.4991 35.2543 19.751 35.3811 19.9613C35.5079 20.1716 35.7119 20.3237 35.9492 20.3848C36.1904 20.447 36.4462 20.4133 36.6633 20.2908C36.8803 20.1683 37.0418 19.9664 37.1141 19.7273C37.1368 19.6513 37.7126 17.8786 41.5747 17.8786C45.8837 17.8786 46.4501 19.6684 46.4539 19.6665C46.4975 19.8811 46.6138 20.074 46.7829 20.2125C46.952 20.351 47.1636 20.4266 47.382 20.4266C47.4456 20.4269 47.5091 20.4205 47.5714 20.4076C47.6934 20.3833 47.8094 20.3351 47.9129 20.2658C48.0163 20.1965 48.1052 20.1074 48.1743 20.0036C48.2434 19.8999 48.2915 19.7835 48.3158 19.6611C48.34 19.5387 48.34 19.4127 48.3158 19.2903C48.2381 18.9559 47.4767 15.9766 41.569 15.9766Z" fill="white"/> <path d="M41.3464 12C31.0899 12 29.6371 18.0442 29.5803 18.3007C29.5272 18.5454 29.5725 18.8012 29.7064 19.0125C29.8404 19.2238 30.052 19.3735 30.2954 19.4291C30.5388 19.4847 30.7942 19.4417 31.0061 19.3093C31.218 19.177 31.3693 18.9661 31.427 18.7225C31.4744 18.5325 32.6961 13.9001 41.3464 13.9001C51.0063 13.9001 52.0859 18.4945 52.1257 18.6788C52.1659 18.8969 52.2809 19.0939 52.4508 19.2359C52.6206 19.3778 52.8346 19.4557 53.0557 19.456C53.1135 19.4563 53.1712 19.4513 53.228 19.4408C53.4749 19.3946 53.6934 19.252 53.8355 19.0443C53.9776 18.8365 54.0316 18.5807 53.9857 18.333C53.9402 18.0765 52.6901 12 41.3464 12Z" fill="white"/> <path d="M44.2079 21.4531H39.3533C39.1021 21.4531 38.8612 21.5532 38.6836 21.7314C38.506 21.9096 38.4062 22.1512 38.4062 22.4032C38.4062 22.6551 38.506 22.8968 38.6836 23.075C38.8612 23.2531 39.1021 23.3532 39.3533 23.3532H44.2079C44.459 23.3532 44.6999 23.2531 44.8775 23.075C45.0551 22.8968 45.1549 22.6551 45.1549 22.4032C45.1549 22.1512 45.0551 21.9096 44.8775 21.7314C44.6999 21.5532 44.459 21.4531 44.2079 21.4531Z" fill="white"/> </svg>';
+    let devicegreenicon = '<svg width="25" height="25" viewBox="0 0 70 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M52.8238 64.206C38.2401 83.072 36.1329 99.013 36.1329 99.013C35.8093 100.329 34.5131 100.329 34.1884 99.013C34.1884 99.013 31.4341 83.072 17.1751 64.205C5.34686 49.287 0 43.436 0 31.298C0 13.894 15.3936 0 34.8377 0C54.1201 0 70 13.894 70 31.298C70 43.437 59.6287 55.284 52.8238 64.206Z" fill="#009C4D"/> <path d="M29.49 34.3645H32.3728C32.624 34.3645 32.8649 34.2644 33.0425 34.0862C33.2201 33.908 33.3199 33.6664 33.3199 33.4144V30.5282C33.3199 30.2762 33.2201 30.0346 33.0425 29.8564C32.8649 29.6782 32.624 29.5781 32.3728 29.5781H29.49C29.2388 29.5781 28.998 29.6782 28.8204 29.8564C28.6427 30.0346 28.543 30.2762 28.543 30.5282V33.4144C28.543 33.6664 28.6427 33.908 28.8204 34.0862C28.998 34.2644 29.2388 34.3645 29.49 34.3645ZM30.4371 31.4782H31.4258V32.4644H30.4427L30.4371 31.4782Z" fill="white"/> <path d="M35.8845 34.3645H38.7617C39.0128 34.3645 39.2537 34.2644 39.4313 34.0862C39.6089 33.908 39.7087 33.6664 39.7087 33.4144V30.5282C39.7087 30.2762 39.6089 30.0346 39.4313 29.8564C39.2537 29.6782 39.0128 29.5781 38.7617 29.5781H35.8845C35.6334 29.5781 35.3925 29.6782 35.2149 29.8564C35.0373 30.0346 34.9375 30.2762 34.9375 30.5282V33.4144C34.9375 33.6664 35.0373 33.908 35.2149 34.0862C35.3925 34.2644 35.6334 34.3645 35.8845 34.3645ZM36.8316 31.4782H37.8146V32.4644H36.8316V31.4782Z" fill="white"/> <path d="M29.49 41.8079H32.3728C32.624 41.8079 32.8649 41.7078 33.0425 41.5296C33.2201 41.3514 33.3199 41.1098 33.3199 40.8578V37.9735C33.3199 37.7215 33.2201 37.4799 33.0425 37.3017C32.8649 37.1235 32.624 37.0234 32.3728 37.0234H29.49C29.2388 37.0234 28.998 37.1235 28.8204 37.3017C28.6427 37.4799 28.543 37.7215 28.543 37.9735V40.8597C28.5435 41.1114 28.6435 41.3525 28.821 41.5303C28.9986 41.708 29.2392 41.8079 29.49 41.8079ZM30.4371 38.9216H31.4258V39.9078H30.4427L30.4371 38.9216Z" fill="white"/> <path d="M35.8845 41.8079H38.7617C39.0128 41.8079 39.2537 41.7078 39.4313 41.5296C39.6089 41.3514 39.7087 41.1098 39.7087 40.8578V37.9735C39.7087 37.7215 39.6089 37.4799 39.4313 37.3017C39.2537 37.1235 39.0128 37.0234 38.7617 37.0234H35.8845C35.6334 37.0234 35.3925 37.1235 35.2149 37.3017C35.0373 37.4799 34.9375 37.7215 34.9375 37.9735V40.8597C34.938 41.1114 35.038 41.3525 35.2156 41.5303C35.3931 41.708 35.6337 41.8079 35.8845 41.8079ZM36.8316 38.9216H37.8146V39.9078H36.8316V38.9216Z" fill="white"/> <path d="M29.49 49.2316H32.3728C32.624 49.2316 32.8649 49.1315 33.0425 48.9534C33.2201 48.7752 33.3199 48.5336 33.3199 48.2816V45.3954C33.3199 45.1434 33.2201 44.9017 33.0425 44.7236C32.8649 44.5454 32.624 44.4453 32.3728 44.4453H29.49C29.2388 44.4453 28.998 44.5454 28.8204 44.7236C28.6427 44.9017 28.543 45.1434 28.543 45.3954V48.2816C28.543 48.5336 28.6427 48.7752 28.8204 48.9534C28.998 49.1315 29.2388 49.2316 29.49 49.2316ZM30.4371 46.3454H31.4258V47.3316H30.4427L30.4371 46.3454Z" fill="white"/> <path d="M35.8845 49.2316H38.7617C39.0128 49.2316 39.2537 49.1315 39.4313 48.9534C39.6089 48.7752 39.7087 48.5336 39.7087 48.2816V45.3954C39.7087 45.1434 39.6089 44.9017 39.4313 44.7236C39.2537 44.5454 39.0128 44.4453 38.7617 44.4453H35.8845C35.6334 44.4453 35.3925 44.5454 35.2149 44.7236C35.0373 44.9017 34.9375 45.1434 34.9375 45.3954V48.2816C34.9375 48.5336 35.0373 48.7752 35.2149 48.9534C35.3925 49.1315 35.6334 49.2316 35.8845 49.2316ZM36.8316 46.3454H37.8146V47.3316H36.8316V46.3454Z" fill="white"/> <path d="M29.49 56.6926H32.3728C32.624 56.6926 32.8649 56.5925 33.0425 56.4143C33.2201 56.2361 33.3199 55.9945 33.3199 55.7425V52.8563C33.3199 52.6043 33.2201 52.3627 33.0425 52.1845C32.8649 52.0063 32.624 51.9062 32.3728 51.9062H29.49C29.2388 51.9062 28.998 52.0063 28.8204 52.1845C28.6427 52.3627 28.543 52.6043 28.543 52.8563V55.7425C28.543 55.9945 28.6427 56.2361 28.8204 56.4143C28.998 56.5925 29.2388 56.6926 29.49 56.6926ZM30.4371 53.8063H31.4258V54.7925H30.4427L30.4371 53.8063Z" fill="white"/> <path d="M35.8845 56.6926H38.7617C39.0128 56.6926 39.2537 56.5925 39.4313 56.4143C39.6089 56.2361 39.7087 55.9945 39.7087 55.7425V52.8563C39.7087 52.6043 39.6089 52.3627 39.4313 52.1845C39.2537 52.0063 39.0128 51.9062 38.7617 51.9062H35.8845C35.6334 51.9062 35.3925 52.0063 35.2149 52.1845C35.0373 52.3627 34.9375 52.6043 34.9375 52.8563V55.7425C34.9375 55.9945 35.0373 56.2361 35.2149 56.4143C35.3925 56.5925 35.6334 56.6926 35.8845 56.6926ZM36.8316 53.8063H37.8146V54.7925H36.8316V53.8063Z" fill="white"/> <path d="M43.3008 25.1094H24.947C24.6959 25.1094 24.455 25.2095 24.2774 25.3876C24.0998 25.5658 24 25.8075 24 26.0594V61.0534C24 61.3054 24.0998 61.547 24.2774 61.7252C24.455 61.9034 24.6959 62.0035 24.947 62.0035H43.3008C43.552 62.0035 43.7929 61.9034 43.9705 61.7252C44.1481 61.547 44.2479 61.3054 44.2479 61.0534V26.0594C44.2479 25.8075 44.1481 25.5658 43.9705 25.3876C43.7929 25.2095 43.552 25.1094 43.3008 25.1094ZM42.3538 60.1034H25.8941V27.0095H42.3538V60.1034Z" fill="white"/> <path d="M41.569 15.9766C36.1178 15.9766 35.3033 19.125 35.2711 19.2599C35.2148 19.4991 35.2543 19.751 35.3811 19.9613C35.5079 20.1716 35.7119 20.3237 35.9492 20.3848C36.1904 20.447 36.4462 20.4133 36.6633 20.2908C36.8803 20.1683 37.0418 19.9664 37.1141 19.7273C37.1368 19.6513 37.7126 17.8786 41.5747 17.8786C45.8837 17.8786 46.4501 19.6684 46.4539 19.6665C46.4975 19.8811 46.6138 20.074 46.7829 20.2125C46.952 20.351 47.1636 20.4266 47.382 20.4266C47.4456 20.4269 47.5091 20.4205 47.5714 20.4076C47.6934 20.3833 47.8094 20.3351 47.9129 20.2658C48.0163 20.1965 48.1052 20.1074 48.1743 20.0036C48.2434 19.8999 48.2915 19.7835 48.3158 19.6611C48.34 19.5387 48.34 19.4127 48.3158 19.2903C48.2381 18.9559 47.4767 15.9766 41.569 15.9766Z" fill="white"/> <path d="M41.3464 12C31.0899 12 29.6371 18.0442 29.5803 18.3007C29.5272 18.5454 29.5725 18.8012 29.7064 19.0125C29.8404 19.2238 30.052 19.3735 30.2954 19.4291C30.5388 19.4847 30.7942 19.4417 31.0061 19.3093C31.218 19.177 31.3693 18.9661 31.427 18.7225C31.4744 18.5325 32.6961 13.9001 41.3464 13.9001C51.0063 13.9001 52.0859 18.4945 52.1257 18.6788C52.1659 18.8969 52.2809 19.0939 52.4508 19.2359C52.6206 19.3778 52.8346 19.4557 53.0557 19.456C53.1135 19.4563 53.1712 19.4513 53.228 19.4408C53.4749 19.3946 53.6934 19.252 53.8355 19.0443C53.9776 18.8365 54.0316 18.5807 53.9857 18.333C53.9402 18.0765 52.6901 12 41.3464 12Z" fill="white"/> <path d="M44.2079 21.4531H39.3533C39.1021 21.4531 38.8612 21.5532 38.6836 21.7314C38.506 21.9096 38.4062 22.1512 38.4062 22.4032C38.4062 22.6551 38.506 22.8968 38.6836 23.075C38.8612 23.2531 39.1021 23.3532 39.3533 23.3532H44.2079C44.459 23.3532 44.6999 23.2531 44.8775 23.075C45.0551 22.8968 45.1549 22.6551 45.1549 22.4032C45.1549 22.1512 45.0551 21.9096 44.8775 21.7314C44.6999 21.5532 44.459 21.4531 44.2079 21.4531Z" fill="white"/> </svg>';
+    //#endregion
+
+    //#region variable
+    let draw;
+    let DRAWING_ACTIVE = false;
+    let currentLayerMode = 'Device';
+
+    setLayerMode = (mode) => {
+        currentLayerMode = mode;
+        document.querySelectorAll('.headbtn').forEach(btn => btn.classList.remove('active-mode'));
+        const activeBtn = document.getElementById('btn-' + mode);
+        if (activeBtn) activeBtn.classList.add('active-mode');
+    };
+    //#endregion
+
+    //#region layers
+    loadBaseLayer = () => {
+        const baseLayers = new ol.layer.Group({
+            title: 'basemap',
+            openInLayerSwitcher: true,
+            layers: [
+                new ol.layer.Tile({
+                    title: 'street',
+                    baseLayer: true,
+                    type: "base",
+                    visible: true,
+                    source: new ol.source.XYZ({
+                        url: "https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+                        crossOrigin: "anonymous",
+                    }),
+                }),
+                new ol.layer.Tile({
+                    title: 'satellite',
+                    baseLayer: true,
+                    type: "base",
+                    visible: false,
+                    source: new ol.source.XYZ({
+                        url: "https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}",
+                        crossOrigin: "anonymous",
+                    }),
+                }),
+            ],
+        });
+        return baseLayers;
+    };
+
+    let vectorSourceMeasure = new ol.source.Vector({});
+
+    let deviceVectorLayer = new ol.layer.Vector({
+        Id: 'devicelayer',
+        source: new ol.source.Vector({}),
+        visible: false
+    });
+
+    let climateLayer = new ol.layer.Image({
+        title: 'climate layer',
+        Id: 'Indiaclimate',
+        visible: false,
+        source: new ol.source.ImageWMS({
+            url: "https://www.aajkabharatweb.com/geoserver/Aaj_Ka_Bharat_CONCOR/wms",
+            params: { LAYERS: "Aaj_Ka_Bharat_CONCOR:Climate Zone India Koppen", tiled: true },
+            serverType: "geoserver",
+            ratio: 1,
+            crossOrigin: "anonymous",
+        }),
+    });
+
+    let searchvectorSource = new ol.layer.Vector({
+        source: new ol.source.Vector({}),
+    });
+    //#endregion
+
+    //#region map view & map
+    let MapView = new ol.View({
+        zoom: 4,
+        center: ol.proj.fromLonLat([78.8718, 21.7679]),
+        constrainOnlyCenter: true,
+    });
+
+    let map = new ol.Map({
+        target: "map",
+        layers: [
+            loadBaseLayer(),
+            deviceVectorLayer,
+            climateLayer,
+            searchvectorSource,
+        ],
+        view: MapView,
+    });
+    //#endregion
+
+    //#region current location
+    loadGeolocationTool = () => {
+        const geolocation = new ol.Geolocation({
+            trackingOptions: { enableHighAccuracy: true },
+            projection: map.getView().getProjection(),
+        });
+        geolocation.setTracking(true);
+
+        const positionFeature = new ol.Feature();
+        positionFeature.setStyle(
+            new ol.style.Style({
+                image: new ol.style.Circle({
+                    radius: 6,
+                    fill: new ol.style.Fill({ color: '#667eea' }),
+                    stroke: new ol.style.Stroke({ color: '#fff', width: 3 })
+                })
+            })
+        );
+
+        geolocation.on('change:position', function () {
+            const coordinates = geolocation.getPosition();
+            positionFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+        });
+
+        const currentLocationLayer = new ol.layer.Vector({
+            source: new ol.source.Vector({ features: [positionFeature] }),
+        });
+        map.addLayer(currentLocationLayer);
+    };
+    loadGeolocationTool();
+    //#endregion
+
+    //#region overlay popup
+    const container = document.getElementById('popup');
+    const content   = document.getElementById('popup-content');
+    const closer    = document.getElementById('popup-closer');
+
+    const popup = new ol.Overlay({
+        element: container,
+        autoPan: { animation: { duration: 250 } },
+    });
+    map.addOverlay(popup);
+
+    closer.onclick = function () {
+        popup.setPosition(undefined);
+        closer.blur();
+        return false;
+    };
+    //#endregion
+
+    //#region map click
+    map.on('click', function (evt) {
+        if (DRAWING_ACTIVE) return;
+
+        const pixel      = map.getEventPixel(evt.originalEvent);
+        const coordinate = evt.coordinate;
+        let hasFeature   = false;
+
+        map.forEachFeatureAtPixel(pixel, function (feature) {
+            if (feature.id_ != undefined && feature.id_.includes('device')) {
+                hasFeature = true;
+
+                const deviceId   = feature.get('id');
+                const status     = feature.get('status');
+                const city       = feature.get('city');
+                const zone       = feature.get('zone');
+                const number     = feature.get('number');
+                const name       = feature.get('name');
+                const address    = feature.get('address');
+                const assetList  = feature.get('assetList');
+                const deviceList = feature.get('deviceList');
+
+                const statusClass = status === 'active' ? 'status-active' : 'status-inactive';
+                const statusText  = status === 'active' ? 'Active' : 'Inactive';
+                const statusIcon  = status === 'active' ? '✓' : '✗';
+
+                const modeConfig = {
+                    'Site':   { icon: 'fas fa-building',   title: 'Site Information'   },
+                    'Device': { icon: 'fas fa-mobile-alt', title: 'Device Information' },
+                    'Assets': { icon: 'fas fa-box',        title: 'Assets Information' }
+                };
+                const { icon: modeIcon, title: modeTitle } =
+                    modeConfig[currentLayerMode] || modeConfig['Device'];
+
+                content.innerHTML = `
+                    <div class="popup-header">
+                        <i class="${modeIcon}"></i> ${modeTitle}
+                    </div>
+                    <div class="popup-content">
+
+                        ${currentLayerMode === 'Site' ? `
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-hashtag"></i> ID:</span>
+                            <span class="popup-value">${deviceId}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-building"></i> Name:</span>
+                            <span class="popup-value">${name}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-map-marker-alt"></i> Address:</span>
+                            <span class="popup-value">${address}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-city"></i> City:</span>
+                            <span class="popup-value">${city}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-globe"></i> Zone:</span>
+                            <span class="popup-value">${zone}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-power-off"></i> Status:</span>
+                            <span class="status-badge ${statusClass}">${statusIcon} ${statusText}</span>
+                        </div>
+
+                        ` : currentLayerMode === 'Assets' ? `
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-building"></i> Site:</span>
+                            <span class="popup-value">${name}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-city"></i> City:</span>
+                            <span class="popup-value">${city}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-globe"></i> Zone:</span>
+                            <span class="popup-value">${zone}</span>
+                        </div>
+                        ${(assetList || '').split('<br/>').map(item => {
+                            const parts = item.split(' : ');
+                            const label = parts[0];
+                            const value = parts.slice(1).join(' : ');
+                            return `
+                            <div class="popup-row">
+                                <span class="popup-label" style="min-width:75px; font-weight:600; color:#667eea;">
+                                    <i class="fas fa-box"></i> ${label}:
+                                </span>
+                                <span class="popup-value">${value}</span>
+                            </div>`;
+                        }).join('')}
+
+                        ` : `
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-building"></i> Site:</span>
+                            <span class="popup-value">${name}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-city"></i> City:</span>
+                            <span class="popup-value">${city}</span>
+                        </div>
+                        <div class="popup-row">
+                            <span class="popup-label"><i class="fas fa-globe"></i> Zone:</span>
+                            <span class="popup-value">${zone}</span>
+                        </div>
+                        ${(deviceList || '').split('<br/>').map(item => {
+                            const parts = item.split(' : ');
+                            const label = parts[0];
+                            const value = parts.slice(1).join(' : ');
+                            return `
+                            <div class="popup-row">
+                                <span class="popup-label" style="min-width:75px; font-weight:600; color:#667eea;">
+                                    <i class="fas fa-mobile-alt"></i> ${label}:
+                                </span>
+                                <span class="popup-value">${value}</span>
+                            </div>`;
+                        }).join('')}
+                        `}
+
+                    </div>
+                `;
+
+                popup.setPosition(coordinate);
+            }
+        });
+
+        if (!hasFeature) {
+            popup.setPosition(undefined);
+        }
+    });
+
+    map.on('pointermove', function (evt) {
+        if (DRAWING_ACTIVE) return;
+        const pixel = map.getEventPixel(evt.originalEvent);
+        const hit   = map.hasFeatureAtPixel(pixel);
+        map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+    });
+    //#endregion
+
+    //#region drag & zoom
+    const dragZoomInt = new ol.interaction.DragZoom({
+        condition: ol.events.condition.always,
+        style: new ol.style.Style({
+            fill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.2)" }),
+            stroke: new ol.style.Stroke({ color: "#667eea", width: 3 }),
+        }),
+    });
+
+    map.getView().on('change:resolution', () => {
+        map.removeInteraction(dragZoomInt);
+    });
+
+    loadStartDrag = () => {
+        map.addInteraction(dragZoomInt);
+    }
+    //#endregion
+
+    //#region measurement
+    let typeSelect    = 'LineString';
+    let UnitSelectbox = 'KM';
+
+    typeSelectmeasur = (e) => {
+        typeSelect = e.value;
+        $("#startmesrment").css("display", "block");
+        $("#stopmesrment").css("display", "none");
+        vectorSourceMeasure.clear();
+        if (draw) { draw.setActive(false); DRAWING_ACTIVE = false; }
+    }
+
+    typeUniteMeasur = (e) => {
+        UnitSelectbox = e.value;
+        $("#startmesrment").css("display", "block");
+        $("#stopmesrment").css("display", "none");
+        vectorSourceMeasure.clear();
+        if (draw) { draw.setActive(false); DRAWING_ACTIVE = false; }
+    }
+
+    startMeasurment = () => {
+        if (!draw) { measurementtool(); }
+        draw.setActive(true);
+        DRAWING_ACTIVE = true;
+        $("#startmesrment").css("display", "none");
+        $("#stopmesrment").css("display", "block");
+    }
+
+    stopMeasurment = () => {
+        if (draw) { draw.setActive(false); }
+        DRAWING_ACTIVE = false;
+        $("#startmesrment").css("display", "block");
+        $("#stopmesrment").css("display", "none");
+    }
+
+    clearMeasurment = () => {
+        vectorSourceMeasure.clear();
+    }
+
+    function measurementtool() {
+        let drawUnit      = UnitSelectbox;
+        let showSegments  = document.getElementById("ShowSegment").checked;
+        let clearPrevious = document.getElementById("ClearPrevious").checked;
+
+        const style_new = new ol.style.Style({
+            fill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.2)" }),
+            stroke: new ol.style.Stroke({ color: "#667eea", width: 3 }),
+            image: new ol.style.Circle({
+                radius: 6,
+                stroke: new ol.style.Stroke({ color: "#667eea", width: 2 }),
+                fill: new ol.style.Fill({ color: "white" }),
+            }),
+        });
+
+        let labelStyle = new ol.style.Style({
+            text: new ol.style.Text({
+                font: "14px Segoe UI, sans-serif",
+                fill: new ol.style.Fill({ color: "rgba(255, 255, 255, 1)" }),
+                backgroundFill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.9)" }),
+                padding: [5, 8, 5, 8],
+                textBaseline: "bottom",
+                offsetY: -15,
+            }),
+            image: new ol.style.RegularShape({
+                radius: 8, points: 3, angle: Math.PI,
+                displacement: [0, 10],
+                fill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.9)" }),
+            }),
+        });
+
+        const tipStyle = new ol.style.Style({
+            text: new ol.style.Text({
+                font: "12px Segoe UI, sans-serif",
+                fill: new ol.style.Fill({ color: "rgba(255, 255, 255, 1)" }),
+                backgroundFill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.9)" }),
+                padding: [4, 8, 4, 8],
+                textAlign: "left",
+                offsetX: 15,
+            }),
+        });
+
+        const modifyStyle = new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 6,
+                stroke: new ol.style.Stroke({ color: "#764ba2", width: 2 }),
+                fill: new ol.style.Fill({ color: "white" }),
+            }),
+            text: new ol.style.Text({
+                text: "Drag to modify",
+                font: "12px Segoe UI, sans-serif",
+                fill: new ol.style.Fill({ color: "rgba(255, 255, 255, 1)" }),
+                backgroundFill: new ol.style.Fill({ color: "rgba(118, 75, 162, 0.9)" }),
+                padding: [4, 8, 4, 8],
+                textAlign: "left",
+                offsetX: 15,
+            }),
+        });
+
+        const segmentStyle = new ol.style.Style({
+            text: new ol.style.Text({
+                font: "11px Segoe UI, sans-serif",
+                fill: new ol.style.Fill({ color: "rgba(255, 255, 255, 1)" }),
+                backgroundFill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.8)" }),
+                padding: [3, 6, 3, 6],
+                textBaseline: "bottom",
+                offsetY: -12,
+            }),
+            image: new ol.style.RegularShape({
+                radius: 5, points: 3, angle: Math.PI,
+                displacement: [0, 8],
+                fill: new ol.style.Fill({ color: "rgba(102, 126, 234, 0.8)" }),
+            }),
+        });
+
+        const segmentStyles = [segmentStyle];
+
+        const formatLength = function (line) {
+            const length = ol.sphere.getLength(line, { projection: 'EPSG:3857' });
+            if (drawUnit === "KM") {
+                return length > 100
+                    ? Math.round((length / 1000) * 100) / 100 + " km"
+                    : Math.round(length * 100) / 100 + " m";
+            }
+            return Math.round(length * 100) / 100 + " m";
+        };
+
+        const formatArea = function (polygon) {
+            const area = ol.sphere.getArea(polygon, { projection: 'EPSG:3857' });
+            if (drawUnit === "KM") {
+                return area > 10000
+                    ? Math.round((area / 1000000) * 100) / 100 + " km²"
+                    : Math.round(area * 100) / 100 + " m²";
+            }
+            return Math.round(area * 100) / 100 + " m²";
+        };
+
+        const modify = new ol.interaction.Modify({
+            source: vectorSourceMeasure,
+            style: modifyStyle,
+        });
+
+        let tipPoint;
+
+        function styleFunction(feature, segments, drawType, tip) {
+            let styles   = [style_new];
+            let geometry = feature.getGeometry();
+            let type     = geometry.getType();
+            let point, label, line;
+
+            if (!drawType || drawType === type) {
+                if (type === "Polygon") {
+                    point = geometry.getInteriorPoint();
+                    label = formatArea(geometry);
+                    line  = new ol.geom.LineString(geometry.getCoordinates()[0]);
+                } else if (type === "LineString") {
+                    point = new ol.geom.Point(geometry.getLastCoordinate());
+                    label = formatLength(geometry);
+                    line  = geometry;
+                }
+            }
+
+            if (segments && line) {
+                let count = 0;
+                line.forEachSegment(function (a, b) {
+                    const segment = new ol.geom.LineString([a, b]);
+                    const label   = formatLength(segment);
+                    if (segmentStyles.length - 1 < count) { segmentStyles.push(segmentStyle.clone()); }
+                    const segmentPoint = new ol.geom.Point(segment.getCoordinateAt(0.5));
+                    segmentStyles[count].setGeometry(segmentPoint);
+                    segmentStyles[count].getText().setText(label);
+                    styles.push(segmentStyles[count]);
+                    count++;
+                });
+            }
+
+            if (label) {
+                labelStyle.setGeometry(point);
+                labelStyle.getText().setText(label);
+                styles.push(labelStyle);
+            }
+
+            if (tip && type === "Point" && !modify.getOverlay().getSource().getFeatures().length) {
+                tipPoint = geometry;
+                tipStyle.getText().setText(tip);
+                styles.push(tipStyle);
+            }
+
+            return styles;
+        }
+
+        const vector = new ol.layer.Vector({
+            source: vectorSourceMeasure,
+            style: function (feature) { return styleFunction(feature, showSegments, typeSelect); }
+        });
+
+        map.addLayer(vector);
+        map.addInteraction(modify);
+
+        let drawType  = typeSelect;
+        let idleTip   = "Click to start measuring";
+        let tip       = idleTip;
+
+        draw = new ol.interaction.Draw({
+            source: vectorSourceMeasure,
+            type: drawType === "Polygon" ? "Polygon" : "LineString",
+            style: function (feature) { return styleFunction(feature, showSegments, drawType, tip); },
+        });
+
+        let activeTip = "Click to continue drawing";
+
+        draw.on("drawstart", function () {
+            if (clearPrevious) { vectorSourceMeasure.clear(); }
+            modify.setActive(false);
+            tip = activeTip;
+        });
+
+        draw.on("drawend", function () {
+            modifyStyle.setGeometry(tipPoint);
+            modify.setActive(true);
+            map.once("pointermove", function () { modifyStyle.setGeometry(); });
+            tip = idleTip;
+        });
+
+        modify.setActive(true);
+        map.addInteraction(draw);
+        draw.setActive(false);
+    }
+    //#endregion
+
+    //#region device layer
+    const loadDeviceLayer = () => {
+
+        // ── SITE MODE ─────────────────────────────────────────────────────
+        if (currentLayerMode === 'Site') {
+            document.getElementById('map-loading').style.display = 'block';
+
+            fetch('/api/MapView/GetMapSites')
+                .then(response => {
+                    if (!response.ok) throw new Error('API error: ' + response.status);
+                    return response.json();
+                })
+                .then(sitedata => {
+                    let siteFeatures = [];
+                    sitedata.forEach((element, ind) => {
+                        if (!element.Latitude || !element.Longitude) return;
+                        if (element.Latitude == 0 || element.Longitude == 0) return;
+
+                        const coordinates = ol.proj.transform(
+                            [parseFloat(element.Longitude), parseFloat(element.Latitude)],
+                            'EPSG:4326', 'EPSG:3857'
+                        );
+
+                        const siteFeature = new ol.Feature({
+                            geometry : new ol.geom.Point(coordinates),
+                            status   : (element.IsActive == true || element.IsActive == 'true' || element.IsActive == 'True' || element.IsActive == 1 || element.IsActive == '1') ? 'active' : 'deactive',
+                            id       : element.SiteId,
+                            city     : element.CityName,
+                            zone     : element.ZoneName,
+                            number   : element.SiteId,
+                            name     : element.SiteName,
+                            address  : element.Address
+                        });
+
+                        siteFeature.setId('device' + ind);
+                        createDeviceStyle(siteFeature);
+                        siteFeatures.push(siteFeature);
+                    });
+
+                    deviceVectorLayer.getSource().clear();
+                    deviceVectorLayer.getSource().addFeatures(siteFeatures);
+                    deviceVectorLayer.setVisible(true);
+                })
+                .catch(err => {
+                    console.error('GetMapSites API Error:', err);
+                    alert('Could not load site data.');
+                })
+                .finally(() => {
+                    document.getElementById('map-loading').style.display = 'none';
+                });
+
+        // ── ASSETS MODE ───────────────────────────────────────────────────
+        } else if (currentLayerMode === 'Assets') {
+            document.getElementById('map-loading').style.display = 'block';
+
+            fetch('/api/MapView/GetMapAssets')
+                .then(response => {
+                    if (!response.ok) throw new Error('API error: ' + response.status);
+                    return response.json();
+                })
+                .then(assetdata => {
+                    let assetFeatures = [];
+
+                    assetdata.forEach((element, ind) => {
+                        if (!element.Latitude || !element.Longitude) return;
+                        if (element.Latitude == 0 || element.Longitude == 0) return;
+
+                        const coordinates = ol.proj.transform(
+                            [parseFloat(element.Longitude), parseFloat(element.Latitude)],
+                            'EPSG:4326', 'EPSG:3857'
+                        );
+
+                        const assetFeature = new ol.Feature({
+                            geometry  : new ol.geom.Point(coordinates),
+                            status    : 'active',
+                            id        : element.SiteId,
+                            name      : element.SiteName,
+                            number    : element.SiteId,
+                            city      : element.CityName,
+                            zone      : element.ZoneName,
+                            assetList : element.AssetList
+                        });
+
+                        assetFeature.setId('device' + ind);
+                        createDeviceStyle(assetFeature);
+                        assetFeatures.push(assetFeature);
+                    });
+
+                    deviceVectorLayer.getSource().clear();
+                    deviceVectorLayer.getSource().addFeatures(assetFeatures);
+                    deviceVectorLayer.setVisible(true);
+                })
+                .catch(err => {
+                    console.error('GetMapAssets API Error:', err);
+                    alert('Could not load asset data.');
+                })
+                .finally(() => {
+                    document.getElementById('map-loading').style.display = 'none';
+                });
+
+        // ── DEVICE MODE ───────────────────────────────────────────────────
+        } else if (currentLayerMode === 'Device') {
+            document.getElementById('map-loading').style.display = 'block';
+
+            fetch('/api/MapView/GetMapDevices')
+                .then(response => {
+                    if (!response.ok) throw new Error('API error: ' + response.status);
+                    return response.json();
+                })
+                .then(devicedata => {
+                    let deviceFeatures = [];
+
+                    devicedata.forEach((element, ind) => {
+                        if (!element.Latitude || !element.Longitude) return;
+                        if (element.Latitude == 0 || element.Longitude == 0) return;
+
+                        const coordinates = ol.proj.transform(
+                            [parseFloat(element.Longitude), parseFloat(element.Latitude)],
+                            'EPSG:4326', 'EPSG:3857'
+                        );
+
+                        const deviceFeature = new ol.Feature({
+                            geometry   : new ol.geom.Point(coordinates),
+                            status     : 'active',
+                            id         : element.SiteId,
+                            name       : element.SiteName,
+                            number     : element.SiteId,
+                            city       : element.CityName,
+                            zone       : element.ZoneName,
+                            deviceList : element.DeviceList
+                        });
+
+                        deviceFeature.setId('device' + ind);
+                        createDeviceStyle(deviceFeature);
+                        deviceFeatures.push(deviceFeature);
+                    });
+
+                    deviceVectorLayer.getSource().clear();
+                    deviceVectorLayer.getSource().addFeatures(deviceFeatures);
+                    deviceVectorLayer.setVisible(true);
+                })
+                .catch(err => {
+                    console.error('GetMapDevices API Error:', err);
+                    alert('Could not load device data.');
+                })
+                .finally(() => {
+                    document.getElementById('map-loading').style.display = 'none';
+                });
+        }
+    };
+
+    // ── ICON STYLE ────────────────────────────────────────────────────────
+     const createDeviceStyle = (feature) => {
+        let status = feature.get("status");
+
+        const greenIconStyle = new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 36],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                opacity: 1,
+                src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(devicegreenicon),
+                scale: 1.1
+            }),
+        });
+
+        const redIconStyle = new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 36],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                opacity: 1,
+                src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(deviceredicon),
+                scale: 1.1
+            }),
+        });
+
+        if (status === 'active') {
+            feature.setStyle(greenIconStyle);
+        } else {
+            feature.setStyle(redIconStyle);
+        }
+    };
+    //#endregion
+
+    //#region map type
+    changeMapType = (type) => {
+        if (type === 'Street') {
+            map.getLayers().getArray()[0].values_.layers.array_[0].setVisible(true);
+            map.getLayers().getArray()[0].values_.layers.array_[1].setVisible(false);
+            climateLayer.setVisible(false);
+        } else if (type === 'Satellite') {
+            map.getLayers().getArray()[0].values_.layers.array_[0].setVisible(false);
+            map.getLayers().getArray()[0].values_.layers.array_[1].setVisible(true);
+            climateLayer.setVisible(false);
+        } else if (type === 'Climate') {
+            climateLayer.setVisible(true);
+        }
+    }
+    //#endregion
+
+    //#region search
+    const inputElement = document.getElementById('seacrhtext');
+    let searchaddressdata = [
+        { name: 'BELMONTE APARTMENT',                 latitude: 28.440253, longitude: 77.100897 },
+        { name: 'PVR Naraina',                        latitude: 28.633236, longitude: 77.138667 },
+        { name: 'World Trade Park',                   latitude: 26.852988, longitude: 75.804667 },
+        { name: 'Larsen & Toubro Limited',            latitude: 23.026675, longitude: 72.570168 },
+        { name: 'Movie Time Cubic Mall',              latitude: 19.045545, longitude: 72.903297 },
+        { name: 'Lal Imli Mill',                      latitude: 26.477199, longitude: 80.339335 },
+        { name: 'Murugappa Polytechnic College',      latitude: 13.125777, longitude: 80.117415 },
+        { name: 'Treasure Island Mall (TI Mall)',     latitude: 22.721674, longitude: 75.878636 },
+        { name: 'R P Sharma Institute Of Technology', latitude: 25.604432, longitude: 85.048575 },
+        { name: 'Pizza Express',                      latitude: 19.116288, longitude: 72.909122 },
+    ];
+
+    inputElement.addEventListener('input', function () {
+        filterSearch(inputElement.value);
+    });
+
+    filterSearch = (value) => {
+        const searchResult = document.getElementById('searchresult');
+        if (value.trim() === '') {
+            searchResult.style.display = 'none';
+            searchResult.innerHTML = '';
+            return;
+        }
+        const filtered = searchaddressdata.filter(item =>
+            item.name.toLowerCase().includes(value.toLowerCase())
+        );
+        if (filtered.length > 0) {
+            let fragment = '';
+            filtered.forEach(element => {
+                fragment += `<li data-lat="${element.latitude}" data-lng="${element.longitude}" data-name="${element.name}">${element.name}</li>`;
+            });
+            searchResult.innerHTML = fragment;
+            searchResult.style.display = 'block';
+        } else {
+            searchResult.style.display = 'none';
+        }
+    }
+
+    document.getElementById('searchresult').addEventListener('click', function (e) {
+        if (e.target.tagName === 'LI') {
+            const lat  = parseFloat(e.target.getAttribute('data-lat'));
+            const lng  = parseFloat(e.target.getAttribute('data-lng'));
+            const name = e.target.getAttribute('data-name');
+            searchzoom({ name: name, latitude: lat, longitude: lng });
+            document.getElementById('seacrhtext').value = name;
+            document.getElementById('searchresult').style.display = 'none';
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        const searchContainer = document.querySelector('.search-container');
+        if (!searchContainer.contains(e.target)) {
+            document.getElementById('searchresult').style.display = 'none';
+        }
+    });
+
+    let markerSVG = '<svg xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="-4 0 36 36" version="1.1"><g id="Vivid.JS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Vivid-Icons" transform="translate(-125.000000, -643.000000)"><g id="Icons" transform="translate(37.000000, 169.000000)"><g id="map-marker" transform="translate(78.000000, 468.000000)"><g transform="translate(10.000000, 6.000000)"><path d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z" id="Shape" fill="#667eea"></path><circle id="Oval" fill="#764ba2" fill-rule="nonzero" cx="14" cy="14" r="7"></circle></g></g></g></g></g></svg>';
+
+    createMapMarker = (searchdata) => {
+        return new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 36],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                opacity: 1,
+                src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markerSVG),
+                scale: 1.2
+            }),
+            text: new ol.style.Text({
+                text: searchdata.name,
+                scale: 1.3,
+                font: 'bold 12px Segoe UI, sans-serif',
+                offsetX: 25,
+                offsetY: -10,
+                placement: 'point',
+                textAlign: 'left',
+                fill: new ol.style.Fill({ color: '#ffffff' }),
+                backgroundFill: new ol.style.Fill({ color: '#667eea' }),
+                padding: [8, 12, 8, 12],
+            })
+        });
+    };
+
+    searchzoom = (searchdata) => {
+        let coordinates = ol.proj.transform(
+            [searchdata.longitude, searchdata.latitude],
+            'EPSG:4326', 'EPSG:3857'
+        );
+        map.getView().animate({ center: coordinates, zoom: 14, duration: 1000 });
+        searchvectorSource.getSource().clear();
+        let searchmarkerfeature = new ol.Feature({
+            geometry: new ol.geom.Point(coordinates),
+            name: searchdata.name
+        });
+        searchmarkerfeature.setStyle(createMapMarker(searchdata));
+        searchvectorSource.getSource().addFeature(searchmarkerfeature);
+        searchvectorSource.setVisible(true);
+    }
+    //#endregion
+
+    document.querySelector('.main-box').addEventListener('click', function () {
+        document.querySelectorAll('.navbar-collapse.show').forEach(d => d.classList.remove('show'));
+        document.querySelectorAll('.nav-item.show').forEach(i => i.classList.remove('show'));
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidebarMenu = document.querySelector('.sidebar-menu');
+        if (sidebarMenu) {
+            sidebarMenu.classList.remove('active');
+        }
+    });
+</script>

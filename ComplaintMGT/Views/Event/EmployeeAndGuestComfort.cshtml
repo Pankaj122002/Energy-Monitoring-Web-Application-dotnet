@@ -1,0 +1,221 @@
+﻿@{
+    ViewData["Title"] = "Employee & Guest Comfort Dashboard";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/employeeandguestcomfort/employee&guestcomfortdashboard.css" rel="stylesheet" />
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/Event/EmployeeAndGuestComfort" style="text-decoration: none;"><div class="step-counter hot active">Hot <span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Event/EmployeeAndGuestComfortWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Event/EmployeeAndGuestComfortCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row1">
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/18.png" alt="" class="icon"></a>
+                        <div class="img1-button">Comfort Compliance</div>
+                    </div>
+                </div>
+                <div class="alarms-container1a">
+                    <div class="alarms1">
+                        <div class="chart-containerGuest" id="guest-container1"></div>
+                        <div>Employee & Guest</div>
+                    </div>
+
+                    <div class="alarms2">
+                        <div class="header-with-button">
+                            <button class="detail-toggle-btn" id="btn-detail-employee">+</button>
+                            <div class="chart-containerGuest" id="guest-container2"></div>
+                        </div>
+                        <div> Employee </div>
+                    </div>
+
+                    <div class="alarms3">
+                        <div class="header-with-button">
+                            <button class="detail-toggle-btn" id="btn-detail-guest">+</button>
+                            <div class="chart-containerGuest" id="guest-container3"></div>
+                        </div>
+                        <div>Guest</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row2">
+            <div class="row2_a">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/18.png" alt="" class="icon"></a>
+                        <div class="img1-button">Employee & Guest Comfort Compliance</div>
+                    </div>
+                </div>
+                <div class="gcontainer">
+                    <div class="gcontainerA">
+                        <div class="eca-container_1">
+                            <div id="carouselExampleIndicators1" class="carousel slide" data-bs-theme="dark">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="chart-containerETE1" id="hr1"></div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="chart-containerETE2" id="hr2"></div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div class="gheading">Employee Comfort</div>
+                        </div>
+                        <div class="eca-container_2">
+                            <div id="carouselExampleIndicators2" class="carousel slide" data-bs-theme="dark">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="chart-containerETE1" id="hr3"></div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="chart-containerETE2" id="hr4"></div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div class="gheading">Guest Comfort</div>
+                        </div>
+                    </div>
+                    <div class="gcontainerA">
+                        <div class="eca-container_3">
+                            <div id="carouselExampleIndicators3" class="carousel slide" data-bs-theme="dark">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="chart-containerETE1" id="hr5"></div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="chart-containerETE2" id="hr6"></div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <div class="gheading">Employee  Comfort- Under cooling & Overcooling</div>
+                        </div>
+                        <div class="eca-container_4">
+                            <div id="carouselExampleIndicators4" class="carousel slide" data-bs-theme="dark">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="chart-containerETE1" id="hr7"></div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="chart-containerETE2" id="hr8"></div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                            <div class="gheading">Guest Comfort - Under cooling & Overcooling</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="row3_a">
+                <div class="threea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/18.png" alt="" class="icon"></a>
+                        <div class="img1-button">Employee comfort & Guest comfort </div>
+                    </div>
+                </div>
+                <div class="alarms-container1a">
+                    <div class="PAandD1">
+                        <div class="chart-containerGuest" id="opsSchedule1"></div>
+                        <div>Ops Schedule</div>
+                    </div>
+                    <div class="PAandD2">
+                        <div class="chart-containerGuest" id="opsSchedule2"></div>
+                        <div>Non Ops Schedule</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row3_b">
+                <div class="threeb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/18.png" alt="" class="icon"></a>
+                        <div class="img1-button">Employee comfort & Guest comfort - Overcooling & Undercooling</div>
+                    </div>
+                </div>
+                <div class="alarms-container1a">
+                    <div class="PAandD1">
+                        <div class="chart-containerGuest" id="opsScheduleOU1"></div>
+                        <div>Ops Schedule</div>
+                    </div>
+                    <div class="PAandD2">
+                        <div class="chart-containerGuest" id="opsScheduleOU2"></div>
+                        <div>Non Ops Schedule</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/v2.0/employeeandguestcomfort/employee&guestcomfort.js"></script>

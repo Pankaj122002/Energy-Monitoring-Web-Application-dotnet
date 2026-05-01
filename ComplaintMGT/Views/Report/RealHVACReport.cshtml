@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "RealHVACReport";
+
+}
+<div class="row">
+    <div class="col-xl-12">
+        <!-- Show values -->
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title"><i class="fas fa-file-excel mr-0 "></i> Real Time Temperature-HVAC </h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="fullscreen"></a>
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                @*<div class="col-sm-12">
+                    <div class="form-group" style="padding-top:25px">
+
+                        <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" onclick="GetFile('Excel');">
+                            <i class="icon-file-excel"></i> Excel
+                        </button>
+                        <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" onclick="GetFile('Pdf');">
+                            <i class="icon-file-pdf"></i> Pdf
+                        </button>
+                    </div>
+                </div>*@
+                <div class="dataTables_wrapper no-footer">
+
+                    <div class="datatable-scroll-wrap">
+
+                        <table class="table table-striped media-library" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>Zone</th>
+                                    <th>Site </th>
+                                    <th>Asset</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Temperature</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                            </tfoot>
+                            <tbody></tbody>
+                        </table>
+                        <input type="hidden" id="hfTotalrows" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /show values -->
+    </div>
+
+
+</div>
+
+
+@section scripts {
+
+
+
+ 
+       <script src="~/ViewJs/Report/RealTimeHVAC.js"></script>
+}

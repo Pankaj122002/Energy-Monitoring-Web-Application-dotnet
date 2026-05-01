@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "CpLoaction";
+}
+
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Cp site</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">Cp site</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+
+    <div class="row">
+
+
+        <div class="col-xl-12">
+
+            <!-- Basic donut -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="icon-location3 mr-2"></i>Cp site on Map</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="map-container" id="map_basic" style="height:400px;"></div>
+                </div>
+            </div>
+            <!-- /basic donut -->
+
+        </div>
+
+    </div>
+    <!-- /pie and donut -->
+
+</div>
+<!-- /content area -->
+@section scripts {
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbDwPN59e4wcuNqJEbCd3yTq2tYOvP3JU"></script>
+    <script src="~/ViewJs/DeshBoard/mapt.js?@DateTime.Now.Ticks"></script>
+}

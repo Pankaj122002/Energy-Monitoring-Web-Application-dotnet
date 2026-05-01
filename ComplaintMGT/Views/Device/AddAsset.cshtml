@@ -1,0 +1,148 @@
+﻿@model ComplaintMGT.Abstractions.Entities.Device.AssetInfo
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Asset</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <fieldset>
+            <legend>Asset Details</legend>
+            <input type="hidden" asp-for="AssetId" name="AssetId" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Asset Type</label>
+                        <span class="text-danger">*</span>
+                        <select id="AssetTypeId" asp-for="AssetTypeId" required
+                                class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.AssetType,"AssetTypeId", "Description")) ">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Tag</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Tag" class="form-control" asp-for="Tag" name="Tag" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Name" class="form-control" asp-for="Name" name="Name" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Description" class="form-control" asp-for="Description" name="Description" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>OEM</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter OEM" class="form-control" asp-for="OEM" name="OEM" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Make</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Make" class="form-control" asp-for="Make" name="Make" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Model</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Model" class="form-control" asp-for="Model" name="Model" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Serial No</label>
+
+                        <input type="text" placeholder="Enter Serial No" class="form-control" asp-for="SerialNo" name="SerialNo" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Quanitity</label>
+
+                        <input type="number" placeholder="Enter Quanitity" class="form-control" asp-for="Quanitity" name="Quanitity" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Price</label>
+
+                        <input type="number" placeholder="Enter Price" class="form-control" asp-for="Price" name="Price" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Asset Rating</label>
+
+                        <input type="text" placeholder="Enter Asset Rating" class="form-control" asp-for="Asset_Rating" name="Quanitity" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Asset Capacity</label>
+
+                        <input type="text" placeholder="Enter Asset Capacity" class="form-control" asp-for="Asset_Capacity" name="Price" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check form-check-switchery">
+
+                            <label class="form-check-label">
+                                <input type="checkbox" id="IsActive" class="form-check-input-switchery" asp-for="IsActive" name="IsActive" checked data-fouc>
+                                Is Active
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </fieldset>
+
+    </div>
+
+
+    <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+        <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+        <button type="submit" id="modSubmit" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        checkboxUI();
+    });
+
+
+</script>

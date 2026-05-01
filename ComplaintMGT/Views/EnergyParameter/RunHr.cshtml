@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "RunHr - Hot";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/RunHr/runhr.css" rel="stylesheet" />
+<link href="~/v2.0/RunHr/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/RunHr" style="text-decoration: none;"><div class="step-counter hot active">Hot<span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/RunHrWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/RunHrCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Row 2: RunHrs Section -->
+    <div class="row2">
+        <div class="row2_a">
+            <div class="icon-h">
+                <a href="#" style="text-decoration: none;">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" alt="" class="icon">
+                </a>
+                <div class="img1-button">RunHrs</div>
+            </div>
+
+            <div class="ceContainer">
+                <!-- Single container for all gauges -->
+                <div class="ceContainer1">
+                    <!-- Dynamic gauges will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3: Bar Charts -->
+    <div class="row3">
+        <div class="row3_a">
+            <div class="icon-h">
+                <a href="#" style="text-decoration: none;">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" alt="" class="icon">
+                </a>
+                <div class="img1-button">Avg RunHrs</div>
+            </div>
+            <div class="controlA">
+                <div class="chart-container_controlA" id="control1"></div>
+            </div>
+        </div>
+
+        <div class="row3_b">
+            <div class="icon-h">
+                <a href="#" style="text-decoration: none;">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" alt="" class="icon">
+                </a>
+                <div class="img1-button">Actual RunHrs</div>
+            </div>
+            <div class="controlB">
+                <div class="chart-container_controlB" id="control2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 4: High RunHrs -->
+    <div class="row4">
+        <div class="row4_c">
+            <div class="icon-h">
+                <a href="#" style="text-decoration: none;">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" alt="" class="icon">
+                </a>
+                <div class="img1-button">High RunHrs</div>
+            </div>
+
+            <div class="ceContainer3">
+                <!-- Dynamic high runhr gauges will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 5: Low RunHrs -->
+    <div class="row5">
+        <div class="row5_c">
+            <div class="icon-h">
+                <a href="#" style="text-decoration: none;">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" alt="" class="icon">
+                </a>
+                <div class="img1-button">Low RunHrs</div>
+            </div>
+
+            <div class="ceContainer4">
+                <!-- Dynamic low runhr gauges will be inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* <script src="left.js"></script> *@
+<script src="~/v2.0/RunHr/runhr.js"></script>
+
+

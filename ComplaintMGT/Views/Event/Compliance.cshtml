@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Compliance Dashboard - Hot";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/event/compliance/compliancedahboard.css" rel="stylesheet" />
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/Event/Compliance" style="text-decoration: none;"><div class="step-counter hot active">Hot <span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Event/ComplianceWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Event/ComplianceCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="content-area">
+
+        <!-- Row 1: Compliance Overview -->
+        <div class="row1">
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;">
+                            <img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon">
+                        </a>
+                        <div class="img1-button">Compliance Overview</div>
+                    </div>
+                </div>
+                <!-- This container will be populated dynamically by JavaScript -->
+                <div class="compliance"></div>
+            </div>
+        </div>
+
+        <!-- Row 2: Historical Trends (Previous Months & Today) -->
+        <div class="row2">
+            <div class="row2_a">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;">
+                            <img src="~/v2.0/common/images/Icons/18.png" alt="" class="icon">
+                        </a>
+                        <div class="img1-button">Monthly Compliance </div>
+                    </div>
+                </div>
+                <!-- This container will be populated dynamically by JavaScript -->
+                <div class="gcontainer"></div>
+            </div>
+        </div>
+
+        <!-- Row 3: Ops Schedule Compliance -->
+        <div class="row3">
+            <div class="row3_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;">
+                            <img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon">
+                        </a>
+                        <div class="img1-button">Ops Schedule Compliance</div>
+                    </div>
+                </div>
+                <!-- This container will be populated dynamically by JavaScript -->
+                <div class="OsContainer"></div>
+            </div>
+        </div>
+
+        <!-- Row 4: Non-Ops Schedule Compliance -->
+        <div class="row4">
+            <div class="row4_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;">
+                            <img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon">
+                        </a>
+                        <div class="img1-button">Non-Ops Schedule Compliance</div>
+                    </div>
+                </div>
+                <!-- This container will be populated dynamically by JavaScript -->
+                <div class="OsContainer"></div>
+            </div>
+        </div>
+
+        <!-- Row 5: Operations-wise Distribution -->
+        <div class="row5">
+            <div class="row5_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;">
+                            <img src="~/v2.0/common/images/Icons/2.png" alt="" class="icon">
+                        </a>
+                        <div class="img1-button">Operations Schedule-wise Distribution of Compliance</div>
+                    </div>
+                    <div class="toggle-animation">
+                        <button id="toggleAnimBtn" class="anim-toggle-btn">Stop Animation</button>
+                    </div>
+                </div>
+                <div class="osw-cont">
+                    <div class="chart-containerOsw" id="osw-gContainer"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/v2.0/event/compliance/compliancedashboard.js"></script>

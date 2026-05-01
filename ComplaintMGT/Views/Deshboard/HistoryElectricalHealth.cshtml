@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewData["Title"] = "HistoryElectricalHealth";
+}
+
+
+
+
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Electrical Health Details</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">Electrical Health Details</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="order-2 order-md-1"></div>
+
+    <div class="mb-3">
+        <h6 class="mb-0">
+            ELECTRICAL HEALTH (Average)
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+        <div class="col-xl-3">
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Power Factor</td>
+
+                        </tr>
+                        <tr>
+                            <td>Voltage(R)</td>
+
+                        </tr>
+                        <tr>
+                            <td>Voltage(Y)</td>
+
+                        </tr>
+                        <tr>
+                            <td>Voltage(B)</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-xl-9">
+
+            <div class="table-responsive">
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>Prev Day</th>
+                            <th>Current Week</th>
+                            <th>Pre Week</th>
+                            <th>Current Month</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td id="PowYesterday">0</td>
+                            <td id="PowCurrentWeek">0</td>
+                            <td id="PowLastWeek">0</td>
+                            <td id="PowMonth">0</td>
+
+                        </tr>
+                        <tr>
+
+                            <td id="VolYesterday">0</td>
+                            <td id="VolCurrentWeek">0</td>
+                            <td id="VolLastWeek">0</td>
+                            <td id="VolMonth">0</td>
+                        </tr>
+                        <tr>
+
+                            <td id="VolYYesterday">0</td>
+                            <td id="VolYCurrentWeek">0</td>
+                            <td id="VolYLastWeek">0</td>
+                            <td id="VolYMonth">0</td>
+                        </tr>
+                        <tr>
+
+                            <td id="VolBYesterday">0</td>
+                            <td id="VolBCurrentWeek">0</td>
+                            <td id="VolBLastWeek">0</td>
+                            <td id="VolBMonth">0</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- /content area -->
+
+@section scripts {
+    <script src="~/ViewJs/DeshBoard/Deshboard.js?@DateTime.Now.Ticks"></script>
+    <script>
+        $(document).ready(function () {
+            ELECTRICALHEALTHAverage();
+            
+
+        });
+        
+        function ELECTRICALHEALTHAverage() {
+
+            $.ajax({
+                type: "post",
+                url: "/Deshboard/ELECTRICALHEALTHAverage",
+                data: {},
+                datatype: "json",
+                //traditional: true,
+                success: function (data) {
+                    var myJSON = JSON.parse(data);
+                    if (myJSON.length > 0) {
+
+                        $("#PowYesterday").empty();
+                        $("#PowCurrentWeek").empty();
+                        $("#PowLastWeek").empty();
+                        $("#PowMonth").empty();
+
+                        $("#VolYesterday").empty();
+                        $("#VolCurrentWeek").empty();
+                        $("#VolLastWeek").empty();
+                        $("#VolMonth").empty();
+
+                        $("#VolYYesterday").empty();
+                        $("#VolYCurrentWeek").empty();
+                        $("#VolYLastWeek").empty();
+                        $("#VolYMonth").empty();
+
+                        $("#VolBYesterday").empty();
+                        $("#VolBCurrentWeek").empty();
+                        $("#VolBLastWeek").empty();
+                        $("#VolBMonth").empty();
+
+                        $("#PowYesterday").append(myJSON[0].PowYesterday);
+                        $("#PowCurrentWeek").append(myJSON[0].PowCurrentWeek);
+                        $("#PowLastWeek").append(myJSON[0].PowLastWeek);
+                        $("#PowMonth").append(myJSON[0].PowMonth);
+
+                        $("#VolYesterday").append(myJSON[0].VolYesterday);
+                        $("#VolCurrentWeek").append(myJSON[0].VolCurrentWeek);
+                        $("#VolLastWeek").append(myJSON[0].VolLastWeek);
+                        $("#VolMonth").append(myJSON[0].VolMonth);
+
+                        $("#VolYYesterday").append(myJSON[0].VolYYesterday);
+                        $("#VolYCurrentWeek").append(myJSON[0].VolYCurrentWeek);
+                        $("#VolYLastWeek").append(myJSON[0].VolYLastWeek);
+                        $("#VolYMonth").append(myJSON[0].VolYMonth);
+
+                        $("#VolBYesterday").append(myJSON[0].VolBYesterday);
+                        $("#VolBCurrentWeek").append(myJSON[0].VolBCurrentWeek);
+                        $("#VolBLastWeek").append(myJSON[0].VolBLastWeek);
+                        $("#VolBMonth").append(myJSON[0].VolBMonth);
+
+                    }
+
+                }
+            });
+
+        }
+       
+
+    </script>
+}
+
+

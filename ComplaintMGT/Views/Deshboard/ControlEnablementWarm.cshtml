@@ -1,0 +1,246 @@
+﻿@{
+    ViewData["Title"] = "ControlEnablement";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/ControlEnablementWarm/ControlEnablement.css" rel="stylesheet" />
+<link href="~/v2.0/ControlEnablementWarm/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/Deshboard/ControlEnablement" style="text-decoration: none;"><div class="step-counter hot">Hot</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Deshboard/ControlEnablementWarm" style="text-decoration: none;"><div class="step-counter active">Warm<span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/Deshboard/ControlEnablementCold" style="text-decoration: none;"><div class="step-counter cold">Cold</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row1">
+            <div class="row1_b">
+                <div class="b_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/10.png" alt="" class="icon"></a>
+                        <div class="img1-button">Control Enablement - Assets Wise</div>
+                    </div>
+                </div>
+                <div class="table-box">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" colspan="3">Previous Hour</th>
+                                <th scope="col" colspan="3">Today</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="r-header">HVAC Entrance</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">HVAC Center</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">HVAC Counter</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">HVAC Right Corner Window</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">Lights</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">Signage</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">3 Phase Exhaust</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td class="r-header">3 Phase Fresh Air</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/10.png" alt="" class="icon"></a>
+                        <div class="img1-button">Control Enablement</div>
+                    </div>
+                </div>
+                <div class="ceContainer">
+                    <div class="ceContainer1">
+                        <div class="ceContainer1a">
+                            <div class="chart-containerCG" id="cg1"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #0ac0db;">radio_button_unchecked</span><div ">&nbsp; Nos</div></div>
+                        </div>
+                        <div class="ceContainer1a">
+                            <div class="chart-containerCG" id="cg2"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color:#0f5f8b ;">radio_button_unchecked</span><div>&nbsp; Hrs</div></div>
+                        </div>
+                    </div>
+                    <div class="ceContainer2">
+                        <div class="ceContainer2a">
+                            <div class="chart-containerCG" id="cg3"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #fb6acb;">radio_button_unchecked</span><div>&nbsp; Nos</div></div>
+                        </div>
+                        <div class="ceContainer2a">
+                            <div class="chart-containerCG" id="cg4"></div>
+                            <div class="gtag"><span class="material-symbols-outlined" style="font-size: .8rem;font-weight: 800;color: #a3336e;">radio_button_unchecked</span><div>&nbsp; Hrs</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row2">
+            <div class="row2_a">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/10.png" alt="" class="icon"></a>
+                        <div class="img1-button">Ops Schedule & Non-Ops Schedule</div>
+                    </div>
+                </div>
+                <div class="ops-cotainer">
+                    <div class="ops-containerA">
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Ops Schedule</div>
+                        </div>
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Non Ops Schedule</div>
+                        </div>
+                    </div>
+                    <div class="ops-containerA">
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Online Delivery - Morning</div>
+                        </div>
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Online Delivery - Night</div>
+                        </div>
+                    </div>
+                    <div class="ops-containerA">
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Peak Lunch</div>
+                        </div>
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Post Lunch</div>
+                        </div>
+                    </div>
+                    <div class="ops-containerB">
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Pre Dinner</div>
+                        </div>
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Peak Dinner</div>
+                        </div>
+                        <div class="ops-box">
+                            <img src="../images/Energy assets/Icons/ops_box_icon.png" alt="ops box icon" style="width: 30%;">
+                            <div class="ops-BoxHeader">0.00/0.00</div>
+                            <div class="ops-BoxContent">Store Shutdown</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row2_b">
+                <div class="twob_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="../images/Energy assets/Icons/10.png" alt="" class="icon"></a>
+                        <div class="img1-button">Ops Schedule & Non-ops Schedule</div>
+                    </div>
+                </div>
+                <div class="controlA">
+                    <div class="chart-container_control" id="control1"></div>
+                </div>
+                <div class="controlB">
+                    <div class="chart-container_control" id="control2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+   
+
+@* <script src="left.js"></script> *@
+<script src="~/v2.0/ControlEnablementWarm/ControlEnablement.js"></script>
+
+

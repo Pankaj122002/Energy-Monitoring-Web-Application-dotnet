@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SynCoTics - @ViewData["Title"]</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/fontawesome/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/js/highcharts/css/highcharts.css" rel="stylesheet" />
+    <link href="~/assets/css/all.min.css" rel="stylesheet" />
+    <link id="one" href="~/assets/css/Dark.css" rel="stylesheet" />
+    <link href="~/js/DateTimePicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/js/FullScreenJS/full-screen-helper.css" rel="stylesheet" />
+
+   @*  <!-- Mobiscroll CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.mobiscroll.com/5.28.0/css/mobiscroll.min.css" />
+ *@
+
+    <!-- /global stylesheets -->
+    <style type="text/css">
+        .box {
+            margin: 10px;
+            padding: 10px;
+            background-color: #ccc !important;
+            border-radius: 4px;
+            font-size: 120%;
+        }
+
+        .full-screen-helper {
+            border-radius: 0 !important;
+            overflow: auto !important;
+        }
+    </style>
+</head>
+<body class="Dark-body">
+    <!-- Main navbar -->
+    <div class="navbar navbar-expand-md navbar-dark" style="padding: 0px 0.25rem;">
+        <div class="navbar-brand bg-dark">
+            <a href="/" class="d-inline-block">
+                <img src="~/global_assets/images/lo1.png" style="height:50px" alt="">
+
+            </a>
+        </div>
+
+        <div class="d-md-none">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+                <i class="icon-tree5"></i>
+            </button>
+            <button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+                <i class="icon-paragraph-justify3"></i>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-mobile">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+                        <i class="icon-paragraph-justify3"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="navbar-nav-link sidebar-control sidebar-component-toggle d-none d-md-block">
+                        <i class="icon-drag-left"></i>
+                    </a>
+                </li>
+                @*<li class="nav-item dropdown">
+            <a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+                <i class="icon-git-compare"></i>
+                <span class="d-md-none ml-2">Git updates</span>
+                <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span>
+            </a>
+
+            <div class="dropdown-menu dropdown-content wmin-md-350">
+                <div class="dropdown-content-header">
+                    <span class="font-weight-semibold">Git updates</span>
+                    <a href="#" class="text-default"><i class="icon-sync"></i></a>
+                </div>
+
+                <div class="dropdown-content-body dropdown-scrollable">
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="mr-3">
+                                <a href="#" class="btn bg-transparent border-primary text-primary rounded-round border-2 btn-icon"><i class="icon-git-pull-request"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                Drop the IE <a href="#">specific hacks</a> for temporal inputs
+                                <div class="text-muted font-size-sm">4 minutes ago</div>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="mr-3">
+                                <a href="#" class="btn bg-transparent border-warning text-warning rounded-round border-2 btn-icon"><i class="icon-git-commit"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                Add full font overrides for popovers and tooltips
+                                <div class="text-muted font-size-sm">36 minutes ago</div>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="mr-3">
+                                <a href="#" class="btn bg-transparent border-info text-info rounded-round border-2 btn-icon"><i class="icon-git-branch"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#">Chris Arney</a> created a new <span class="font-weight-semibold">Design</span> branch
+                                <div class="text-muted font-size-sm">2 hours ago</div>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="mr-3">
+                                <a href="#" class="btn bg-transparent border-success text-success rounded-round border-2 btn-icon"><i class="icon-git-merge"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#">Eugene Kopyov</a> merged <span class="font-weight-semibold">Master</span> and <span class="font-weight-semibold">Dev</span> branches
+                                <div class="text-muted font-size-sm">Dec 18, 18:36</div>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="mr-3">
+                                <a href="#" class="btn bg-transparent border-primary text-primary rounded-round border-2 btn-icon"><i class="icon-git-pull-request"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                Have Carousel ignore keyboard events
+                                <div class="text-muted font-size-sm">Dec 12, 05:46</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dropdown-content-footer bg-light">
+                    <a href="#" class="text-grey mr-auto">All updates</a>
+                    <div>
+                        <a href="#" class="text-grey" data-popup="tooltip" title="Mark all as read"><i class="icon-radio-unchecked"></i></a>
+                        <a href="#" class="text-grey ml-2" data-popup="tooltip" title="Bug tracker"><i class="icon-bug2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </li>*@
+            </ul>
+
+            <span class="badge bg-success ml-md-3 mr-md-0">Online</span>
+            <div class="header-elements ml-md-3 mr-md-auto">
+                <form action="#">
+                    <div class="form-group form-group-feedback form-group-feedback-right">
+                        <input type="search" class="form-control bg-grey text-white border-transparent rounded-pill wmin-lg-600" id="txtSearch" placeholder="Search">
+                        <div class="form-control-feedback text-white">
+                            <i class="icon-search4 font-size-sm opacity-50"></i>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+
+
+                    <a class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown" data-placement="top" id="open" data-myval="1" title="FullScreen">
+                        <i class="icon-enlarge" id="enlarge"></i>
+                        <i class="icon-shrink" style="display:none;" id="shrink"></i>
+                    </a>
+
+
+                </li>
+                <li class="nav-item dropdown">
+
+
+                    <a href="#" id="OptionDark" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+                        <i class="far fa-sun" id="LightSun"></i>
+                        <i class="fas fa-moon" style="display:none;" id="DarkMoon"></i>
+                    </a>
+
+
+                </li>
+
+                <li class="nav-item dropdown">
+
+
+                    <a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown" id="alertsCount">
+                        <i class="icon-bell2"></i>
+                        <span class="d-md-none ml-2">Alerts</span>
+
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+                        <div class="dropdown-content-header">
+                            <span class="font-weight-semibold">Alerts</span>
+                            @*<a href="#" class="text-default"><i class="icon-compose"></i></a>*@
+                        </div>
+
+                        <div class="dropdown-content-body dropdown-scrollable">
+                            <ul class="media-list" id="alerts">
+                            </ul>
+                        </div>
+
+                        <div class="dropdown-content-footer justify-content-center p-0">
+                            <a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Load more"><i class="icon-menu7 d-block top-0"></i></a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown dropdown-user">
+                    <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
+                        <img src="../../../../global_assets/images/demo/users/face11.jpg" class="rounded-circle mr-2" height="34" alt="">
+
+                        <span id="dvUserName"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                        @*<a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
+                            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>*@
+                        <a href="javascript:void(0);" class="dropdown-item" onclick="logoutapp();"><i class="icon-switch2"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar navbar-dark navbar-expand-md">
+
+        <div class="header-elements ml-md-2 mr-md-auto">
+            <div class="breadcrumb py-2">
+
+                <a href="#" class="breadcrumb">User&Time:&nbsp; </a>
+                <span class="breadcrumb" id="spnUserNameheder"></span>
+                <span class="breadcrumb">&nbsp;& @DateTime.Now.ToString("dddd, dd MMMM yyyy h:mm tt")</span>
+            </div>
+
+
+        </div>
+
+        <div class="header-elements ml-md-2 mr-md-auto">
+            <div class="breadcrumb py-2">
+
+                <a href="#" class="breadcrumb">&nbsp;Data Last Updated:&nbsp; </a>
+                <span class="breadcrumb">@DateTime.Now.ToString("dddd, dd MMMM yyyy h:mm tt")</span>
+            </div>
+
+
+        </div>
+        <div class="header-elements ml-md-2 mr-md-auto">
+            <div class="breadcrumb py-2">
+
+                <a href="#" class="breadcrumb">&nbsp;Store:&nbsp; </a>
+                <span class="breadcrumb">StoreName</span>
+            </div>
+
+
+        </div>
+        <div class="header-elements ml-md-2 mr-md-auto">
+            <div class="breadcrumb py-2">
+
+                <a href="#" class="breadcrumb">&nbsp;Store Ranking:&nbsp; </a>
+                <span class="breadcrumb">0</span>
+            </div>
+
+
+        </div>
+        <ul class="navbar-nav">
+
+            <li class="nav-item dropdown dropdown-user">
+                <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
+
+                    <span>My Store</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="#" class="dropdown-item"> Store Information</a>
+                    <a href="#" class="dropdown-item"> Store Profile</a>
+                    <a href="#" class="dropdown-item"> Business Case & ROI</a>
+                    <a href="#" class="dropdown-item"> Program Plan</a>
+                    <a href="#" class="dropdown-item"> Asset View</a>
+                    <a href="#" class="dropdown-item"> IOT Kit</a>
+                    <a href="#" class="dropdown-item"> Solution</a>
+                    <a href="#" class="dropdown-item"> Site Survey</a>
+                    <a href="#" class="dropdown-item"> Layout & SLD</a>
+                    <a href="#" class="dropdown-item"> Saving Strategies</a>
+                    <a href="#" class="dropdown-item"> Store Operational Schedule</a>
+                    <a href="#" class="dropdown-item"> Compliance Policy</a>
+                    <a href="#" class="dropdown-item"> Baseline data</a>
+                    <a href="#" class="dropdown-item"> Energy Spend data</a>
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <!-- /main navbar -->
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-dark  sidebar-main sidebar-expand-md">
+
+            <!-- Sidebar mobile toggler -->
+            <div class="sidebar-mobile-toggler text-center">
+                <a href="#" class="sidebar-mobile-main-toggle">
+                    <i class="icon-arrow-left8"></i>
+                </a>
+                Navigation
+                <a href="#" class="sidebar-mobile-expand">
+                    <i class="icon-screen-full"></i>
+                    <i class="icon-screen-normal"></i>
+                </a>
+            </div>
+            <!-- /sidebar mobile toggler -->
+            <!-- Sidebar content -->
+            <div class="sidebar-content">
+
+                <!-- User menu -->
+                <div class="sidebar-user">
+                    <div class="card-body">
+                        <div class="media">
+                            <div class="mr-3">
+                                <a href="#"><img src="../../../../global_assets/images/demo/users/face11.jpg" width="38" height="38" class="rounded-circle" alt=""></a>
+                            </div>
+
+                            <div class="media-body">
+                                <div class="media-title font-weight-semibold" id="spnUserName"></div>
+                                <div class="font-size-xs opacity-50">
+                                    <i class="icon-pin font-size-sm"></i> <span id="dvRoleName"></span>
+                                    @*<i class="icon-database-time2 font-size-sm"></i> <span>@DateTime.UtcNow.ToString("dddd, dd MMMM yyyy")</span>*@
+                                </div>
+                            </div>
+
+                            <div class="ml-3 align-self-center">
+                                <a href="#" class="text-white"><i class="icon-cog3"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /user menu -->
+                <!-- Main navigation -->
+                <div class="card card-sidebar-mobile">
+                    <ul class="nav nav-sidebar" data-nav-type="accordion" id="mMenu">
+                    </ul>
+                </div>
+                <!-- /main navigation -->
+
+            </div>
+            <!-- /sidebar content -->
+
+        </div>
+        <!-- /main sidebar -->
+        <!-- Main content -->
+        <div class="content-wrapper">
+            @RenderBody()
+            <!-- Footer -->
+            <!--<div class="navbar navbar-expand-lg navbar-light">
+                <div class="text-center d-lg-none w-100">
+                    <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+                        <i class="icon-unfold mr-2"></i>
+                        Footer
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbar-footer">
+                    <span class="navbar-text">
+                        &copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+                    </span>
+
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
+                        <li class="nav-item"><a href="http://demo.interface.club/limitless/docs/" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a></li>
+                        <li class="nav-item"><a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link font-weight-semibold"><span class="text-pink-400"><i class="icon-cart2 mr-2"></i> Purchase</span></a></li>
+                    </ul>
+                </div>
+            </div>-->
+            <!-- /footer -->
+        </div>
+
+    </div>
+    <!-- Core JS files -->
+    <script src="~/global_assets/js/main/jquery.min.js"></script>
+    <script src="~/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="~/global_assets/js/plugins/visualization/d3/d3.min.js"></script>
+    <script src="~/global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+
+    <script src="~/global_assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="~/global_assets/js/plugins/pickers/daterangepicker.js"></script>
+
+    <script src="~/assets/js/app.js?@DateTime.Now.Ticks"></script>
+
+    <script src="~/vendor/chart/highcharts.js"></script>
+    <script src="~/vendor/chart/exporting.js"></script>
+    <script src="~/vendor/chart/export-data.js"></script>
+
+    <script src="~/vendor/chart/accessibility.js"></script>
+    <script src="~/vendor/chart/darkhighchart.js"></script>
+    <!-- /theme JS files -->
+    <!---datatable-->
+    <script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js"></script>
+    <script src="~/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
+
+    <script src="~/js/sweetalert.min.js"></script>
+    <!--/datatable-->
+    <!--FromValidtion-->
+
+    <script src="~/global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
+    <script src="~/global_assets/js/demo_charts/echarts/light/bars/columns_basic.js"></script>
+    <script src="~/global_assets/js/demo_charts/echarts/light/lines/area_stacked.js"></script>
+    <script src="~/global_assets/js/demo_charts/echarts/light/pies/pie_donut.js"></script>
+    @*<script src="~/global_assets/js/demo_charts/echarts/light/pies/pie_multiple.js"></script>*@
+    <script src="~/global_assets/js/demo_charts/echarts/light/lines/area_point_values.js"></script>
+    <script src="~/global_assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+
+    <script src="~/js/selects/nselect2.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/styling/switch.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script src="~/global_assets/js/demo_pages/form_validation.js"></script>
+    <script src="~/global_assets/js/demo_pages/form_checkboxes_radios.js"></script>
+    <script src="~/global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+    <script src="~/global_assets/js/plugins/notifications/noty.min.js"></script>
+    <script src="~/global_assets/js/plugins/loaders/progressbar.min.js"></script>
+    <script src="~/js/Notif.js"></script>
+
+    <script src="~/ViewJs/Layout/Layout.js?@DateTime.Now.Ticks"></script>
+    <script src="~/www.gstatic.com/charts/loader.js"></script>
+
+    <script src="~/global_assets/js/plugins/pickers/pickadate/picker.js"></script>
+    <script src="~/global_assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+    <script src="~/js/DateTimePicker/jquery.datetimepicker.full.js"></script>
+    <script src="~/js/DateTimePicker/jquery.datetimepicker.min.js"></script>
+    <script src="~/js/DateTimePicker/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/js/FullScreenJS/full-screen-helper.js"></script>
+    <script src="~/global_assets/js/demo_pages/picker_date.js"></script>
+    <script src="~/js/Theme.js"></script>
+
+
+    <script src="~/global_assets/js/demo_charts/echarts/light/bars/bars_floating.js"></script>
+       <script src="~/global_assets/js/demo_charts/google/light/pies/3d_exploded.js"></script>
+
+    <!--/FromValidtion-->
+    <script>
+
+        $(document).ready(function () {
+            alerts();
+                $('.form-control-select2').each(function () {
+                    var $p = $(this).parent();
+                    $(this).select2({
+                        dropdownParent: $p
+                    });
+                });
+            jQuery('.DAteTimePick').datetimepicker();
+           // $('.datepicker').datepicker();
+            //var blink = document.getElementById('blink');
+            //setInterval(function () {
+            //    blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+            //}, 600);
+
+            //----------------------------------------
+
+            $.ajax({
+                url: "@Url.Action("GetCurrentUserInfo", "Home")",
+                success: function (result) {
+                    document.getElementById('dvUserName').innerHTML = result.UserName;
+                    document.getElementById('spnUserName').innerHTML = result.UserName;
+                    document.getElementById('spnUserNameheder').innerHTML = result.UserName;
+                    document.getElementById('dvRoleName').innerHTML = result.RoleName;
+
+                },
+                error: function (xhr, status, error) {
+                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+
+            //----------------------------------------------
+
+            //-------------------------------------------------------
+        //                      $.ajax({
+        //     url: "/Home/GetCurrentUserInfo",
+        //     type: "GET",
+        //     success: function (result) {
+
+        //         console.log("API RESULT =>", result);
+
+        //         if (!result || !result.userName) {
+        //             console.error("userName missing in response");
+        //             return;
+        //         }
+
+        //         $('#dvUserName, #spnUserName, #spnUserNameheder').text(result.userName);
+        //         $('#dvRoleName').text(result.roleName);
+        //     },
+        //     error: function (xhr) {
+        //         console.error("API Error:", xhr.responseText);
+        //     }
+        // });
+
+
+
+        //------------------------------------------------------------
+
+            //$(".icon-arrow-left52").click(function () {
+            //    window.history.back();
+            //});
+
+            //$(':input[type=number]').bind('input keyup', function () {
+            //    if (this.value != '') {
+            //        if (this.value < 0 || this.value > 50000 || this.value == '-0') {
+            //            $(this).css("border", "1px solid red");
+            //            this.value = '0';
+
+            //        }
+            //        else {
+            //            $(this).css("border", "1px solid green");
+            //        }
+            //    }
+            //});
+
+        });
+
+        console.log()
+        function ConfirmOnLogout() {
+            if (confirm("Are you sure want to logout?") == true)
+                return true;
+            else
+                return false;
+        }
+          function logoutapp() {
+             //var MyData = { menu: [], submenu: [] };
+             //localStorage.saveData = JSON.stringify(MyData);
+              localStorage.clear();
+              window.location.href = '/Account/Logout';
+        }
+
+        function alerts() {
+            $.ajax({
+                type: "post",
+                url: "/Deshboard/GetAlerts",
+                data: {},
+                success: function (data) {
+
+                    var myJSON = JSON.parse(data)
+
+                    var txthtm = '';
+                    for (var i = 0; i < myJSON.length; i++) {
+
+                        txthtm += ' <li class="media">';
+                        txthtm += '  <div class="media-body">';
+                        txthtm += '  <div class="media-title">';
+                        txthtm += '   <a href="#">';
+                        txthtm += '  <span class="font-weight-semibold">' + myJSON[i].Name + '</span>';
+                        txthtm += '  <span class="text-muted float-right font-size-sm">' + myJSON[i].Time + '</span>';
+                        txthtm += '  </a>';
+                        txthtm += '  </div>';
+                        txthtm += '  <span class="text-muted">' + myJSON[i].Temp_in_degree + '</span>';
+                        txthtm += '  </div>';
+                        txthtm += '</li>';
+
+                    }
+                    $('#alerts').append(txthtm);
+                    $('#alertsCount').append('<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">' + myJSON.length + '</span>');
+
+                }
+            });
+        }
+
+    </script>
+
+   @*  <!-- Mobiscroll JS -->
+    <script src="https://cdn.mobiscroll.com/5.28.0/js/mobiscroll.min.js"></script> *@
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿#slider-div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+    #slider-div > div {
+        margin: 8px;
+    }
+
+.slider-label {
+    position: absolute;
+    padding: 4px;
+    font-size: 0.75rem;
+    background: none;
+    color: gray;
+    background-color: white;
+}
+
+#slider-outer-div {
+    display: flex;
+    justify-content: center;
+}
+
+.slider-handle .min-slider-handle .round {
+    border-radius: 1499.4px;
+    border: 1.501px solid rgb(52, 211, 153);
+    background: rgb(218, 254, 237);
+}
+
+.slider-handle, .max-slider-handle, .round {
+    border-radius: 1499.4px;
+    border: 1.501px solid rgb(52, 211, 153);
+    background: rgb(218, 254, 237);
+}
+
+.slider-selection {
+    background: rgb(52, 211, 153);
+}
+
+.slider-track-low, .slider-track-high {
+    background: #DAFEED;
+}
+
+.slider.slider-horizontal {
+    width: 240px;
+}
+
+.page2 {
+    padding-left: 10%;
+}

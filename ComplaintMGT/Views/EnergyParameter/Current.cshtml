@@ -1,0 +1,169 @@
+﻿@{
+    ViewData["Title"] = "Current";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/EnergyParameter/Current/css/current.css" rel="stylesheet" />
+<link href="~/v2.0/EnergyParameter/Current/css/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <!-- ===================== BANNER / HEADER ===================== -->
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/Current" style="text-decoration: none;">
+                            <div class="step-counter active">Hot<span class="material-symbols-outlined" id="check">check_circle</span></div>
+                        </a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/CurrentWarm" style="text-decoration: none;">
+                            <div class="step-counter warm">Warm</div>
+                        </a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/CurrentCold" style="text-decoration: none;">
+                            <div class="step-counter cold">Cold</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== current – REAL-TIME CIRCLES ===================== -->
+    <section class="current-circles">
+        <h3>
+            <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+            Current - Real-time
+        </h3>
+        <!-- First row of circles (up to 7) -->
+        <div class="current-grid" id="current-grid-1">
+            <!-- Dynamically populated by current.js -->
+        </div>
+        <!-- Overflow row (8th device onwards) -->
+        <div class="current-grid" id="current-grid-2" style="margin-top: 80px;">
+            <!-- Dynamically populated by current.js -->
+        </div>
+    </section>
+
+    <!-- ===================== PIE CHART – current DISTRIBUTION ===================== -->
+    <div class="row3">
+        <div class="row3_a">
+            <div class="pie_container">
+                <h3 class="pie-heading">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+                    Current Distribution - Real-Time
+                </h3>
+                <div class="chart-container" id="pie_graph"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== HIGH CURRENT SECTION ===================== -->
+    <section class="current-circles high-current-section">
+        <h3>
+            <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+            Average High Current - Today
+        </h3>
+        <div class="current-grid" id="high-current-grid">
+            <!-- Dynamically populated by current.js (first half of API rows) -->
+        </div>
+        <div id="no-high-current-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+            No high current data available.
+        </div>
+    </section>
+
+    <!-- ===================== LOW current SECTION ===================== -->
+    <section class="current-circles low-current-section">
+        <h3>
+            <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+            Average Low Current - Today
+        </h3>
+        <div class="current-grid" id="low-current-grid">
+            <!-- Dynamically populated by current.js (second half of API rows) -->
+        </div>
+        <div id="no-low-current-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+            No low current data available.
+        </div>
+    </section>
+
+    <!-- ===================== OPS SCHEDULE WISE LOAD (ROW 6 – DYNAMIC) ===================== -->
+    <section class="ops-schedule-section">
+        <h3>
+            <img src="~/Images/Energy assets/Time_of_day.png" style="width:45px;height:45px;" alt="" />
+            Ops Schedule Wise Load
+        </h3>
+        <!-- Device filter – default shows Main Meter; user can add more -->
+        <div class="meter-filter-container" id="ops-device-filter-wrapper" style="display:none;">
+            <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+            <div id="ops-schedule-filter-checkboxes" class="filter-checkboxes"></div>
+        </div>
+        <!-- Cards are injected here by current.js → buildOpsScheduleSection() -->
+        <div id="ops-schedule-grid">
+            <p style="color:#999;padding:10px 0;">Loading...</p>
+        </div>
+    </section>
+
+    <!-- ===================== AVERAGE current - HOURLY (BAR) ===================== -->
+    <section class="chart-section avg-voltage-section">
+        <div class="chart-card full-width-chart">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="~/Images/Energy assets/UPS_Health_Monitoring.png" />
+                </div>
+                Average Current - Hourly
+            </div>
+            <div class="meter-filter-container">
+                <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+                <div id="current-bar-filter-checkboxes" class="filter-checkboxes"></div>
+            </div>
+            <div id="chart-avg-current"></div>
+            <div class="legend-footer">Today</div>
+        </div>
+    </section>
+
+    <!-- ===================== ACTUAL current – HOURLY + TODAY (LINE) ===================== -->
+    <section class="chart-section second-chart">
+        <!-- HOURLY WITH HOUR FILTER -->
+        <div class="chart-card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="~/Images/Energy assets/UPS_Health_Monitoring.png" />
+                </div>
+                Actual Current - Hourly
+            </div>
+            <div id="current-hourly-hour-filter" style="margin-bottom:15px;"></div>
+            <div class="meter-filter-container">
+                <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+                <div id="current-hourly-filter-checkboxes" class="filter-checkboxes"></div>
+            </div>
+            <div id="chart-hourly-current"></div>
+            <div class="legend-footer">Real-Time Data</div>
+        </div>
+
+        <!-- TODAY FULL LINE CHART -->
+        <div class="chart-card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="~/Images/Energy assets/UPS_Health_Monitoring.png" />
+                </div>
+                Actual Current - Today
+            </div>
+            <div class="meter-filter-container">
+                <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+                <div id="current-today-filter-checkboxes" class="filter-checkboxes"></div>
+            </div>
+            <div id="chart-today-current"></div>
+            <div class="legend-footer">Real-time Data</div>
+        </div>
+    </section>
+
+</div>
+
+<script src="~/v2.0/EnergyParameter/Current/current.js"></script>

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "RealKitchenReport";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <!-- Show values -->
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i> Temperature-Real Time Kitchen Assets </h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="dataTables_wrapper no-footer">
+
+                    <div class="datatable-scroll-wrap">
+
+                        <table class="table table-striped media-library" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>Zone</th>
+                                    <th>Site </th>
+                                    <th>Asset</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Temperature</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody></tbody>
+                        </table>
+                        <input type="hidden" id="hfTotalrows" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /show values -->
+    </div>
+
+
+</div>
+
+
+@section scripts {
+
+    <script src="~/ViewJs/Report/RealKitchenReport.js"></script>
+}

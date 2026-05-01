@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewData["Title"] = "GetAllMenu";
+}
+
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">All Menu</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                    <a href="#" class="breadcrumb-item">Configuration</a>
+                    <span class="breadcrumb-item active">Menu</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+
+
+    <!-- Pagination types -->
+    <div class="card">
+        <div class="card-header header-elements-inline border">
+            <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnAdd" isactive="true" cid="0" roleName="" onclick="CallFunc(this);">
+                <i class="icon-add"></i> Add New
+            </button>
+            <h5 class="card-title">All Menu</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload" onclick="GetDataTableData()"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="table datatable-button-html5-columns" id="tlbConfiguration">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Parent Menu</th>
+                        <th>Name</th>
+                        <th>Order</th>
+                        <th>Icon</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                </tfoot>
+                <tbody>
+                </tbody>
+            </table>
+           
+            <input type="hidden" id="hfTotalrows" value="0" />
+        </div>
+    </div>
+    <!-- /pagination types -->
+
+
+
+</div>
+<!-- /content area -->
+<!-- Vertical form modal -->
+<div id="modal_form_vertical" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form class="form-validate-jquery" onsubmit="return Formsubmit();" name="registration">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+               
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="hidden" id="MenuId" value="0" />
+                                    <label>Parent Name</label>
+                                    <span class="text-danger">*</span>
+                                    <select id="ParentId" required class="form-control form-control-select2">
+                                     
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label>Name</label>
+                                    <span class="text-danger">*</span>
+                                    <input type="text" placeholder="Enter Name" class="form-control" id="MenuName" required>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label>Order</label>
+                                    <span class="text-danger">*</span>
+                                    <input type="number" placeholder="Enter Order" class="form-control" id="Order" required>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label>Icon</label>
+                                    <span class="text-danger">*</span>
+                                    <input type="text" placeholder="Enter Name" class="form-control" id="Icon" required>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>IsActive</label>
+                                    <span class="text-danger">*</span>
+                                    <div class="form-check form-check-switchery form-check-switchery-double">
+                                        <label class="form-check-label">
+                                            Enable
+                                            <input type="checkbox" id="IsActive" class="form-check-input-switchery" checked data-fouc>
+                                            Disable
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+                    <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+                    <button onclick="SaveAndUpdateMenuInfo();" type="button" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /vertical form modal -->
+@section scripts {
+    <script src="~/ViewJs/Configuration/Menu.js?@DateTime.Now.Ticks"></script>
+}
+
+

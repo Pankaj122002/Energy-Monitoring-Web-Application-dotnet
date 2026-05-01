@@ -1,0 +1,30 @@
+{
+    "CategoryGraph": [
+        {
+            "Id": 1,
+            "Name": "Ambient Trends",
+            "SubGraph": [
+                {
+                    "Id": 1,
+                    "Name": "Ambient Thermal Monitoring",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 2,
+                    "Name": "Ambient Thermal Monitoring - Peak Temperature",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 3,
+                    "Name": "Ambient Thermal Monitoring - Daily Average",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 4,
+                    "Name": "Ambient Thermal Profile - Daily Average",
+                    "EnableGraph": true
+                }
+            ]
+        }
+    ]
+}

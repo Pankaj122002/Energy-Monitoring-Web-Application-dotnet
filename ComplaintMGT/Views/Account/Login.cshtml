@@ -1,0 +1,129 @@
+﻿@{
+
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>syntechsys</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="../../../../global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+ @*    <link href="~/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.min.css" rel="stylesheet" type="text/css"> *@
+@*  <link rel="stylesheet" href="~/login/loginStyle.css" /> *@
+    <link href="~/login/newlogin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="parent_div">
+        <img class="img-1" src="~/login/assests/ellipse64.png" />
+        <div class="child_div">
+            <div class="frame">
+                <form class="form" asp-action="login" method="post">
+                    <div class="input-group">
+                        <label class="text1" for="username"><b>Username</b></label><br />
+                        <input type="text"
+                               id="username" name="username"
+                               placeholder="Enter your username" />
+                    </div>
+                    <div class="input-group2">
+                        <label class="text2" for="password"><b>Password</b></label>
+                        <input type="password"
+                               id="password" name="password"
+                               placeholder="Enter your password" />
+                        <div class="show-hide"></div>
+                    </div>
+                    <div class="option">
+                        <label class="checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password</a>
+                    </div>
+                    <button type="submit" class="sign-in-button" style="margin-top: -4%;">Sign in</button>
+                </form>
+            </div>
+            <div class="image-box">
+            </div>
+        </div>
+    </div>
+    @* <div class="login-container">
+        <div class="ellipse ellipse-1"></div>
+        <div class="desktop">
+            <div class="frame">
+                <div class="welcome-back">
+                    <b>Welcome<br />Back</b>
+                </div>
+                <form class="form" asp-action="login" method="post">
+                    <div class="input-group">
+                        <label class="text1" for="username"><b>Username</b></label><br />
+                        <input type="text" name="username"
+                               id="username"
+                               placeholder="Enter your username" />
+                    </div>
+                    <div class="input-group2">
+                        <label class="text2" for="password"><b>Password</b></label>
+                        <input type="password"
+                               id="password" name="password"
+                               placeholder="Enter your password" />
+                        <div class="show-hide"></div>
+                    </div>
+                    <div class="option">
+                        <label class="checkbox">
+                            <input type="checkbox" />
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password</a>
+                    </div>
+                    <button type="submit" class="sign-in-button">Sign in</button>
+                </form>
+            </div>
+            <img src="~/login/assests/Ellipse45.png" alt="elpp" class="Ellipse45" />
+            <img src="~/login/assests/Property 1=Default.png" alt="image1" class="image-container">
+            <img src="~/login/assests/Group 36641.png" alt="bubbles" class="image-container2">
+        </div>
+    </div> *@
+    <script src="../../../../global_assets/js/main/jquery.min.js"></script>
+    <script src="../../../../global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="../../../../global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="../../../../global_assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script src="../../../../global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+    <script src="~/assets/js/app.js"></script>
+    <script src="../../../../global_assets/js/demo_pages/login_validation.js"></script>
+    <!-- /theme JS files -->]
+    <!-- Theme JS files -->
+    <script src="../../../../global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+    <script src="../../../../global_assets/js/plugins/notifications/noty.min.js"></script>
+    <!-- /theme JS files -->
+    @if (ViewBag.msg != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.jGrowl('You have entered an invalid username or password', {
+                    header: 'Error',
+                    position: 'top-left',
+                    theme: 'alert-styled-left alert-arrow-left  bg-warning'
+                });
+            });
+
+        </script>
+    }
+</body>
+</html>
+
+

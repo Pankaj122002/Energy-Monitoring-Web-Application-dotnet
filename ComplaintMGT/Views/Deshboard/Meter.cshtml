@@ -1,0 +1,376 @@
+﻿
+@{
+    ViewData["Title"] = "Meter";
+}
+<div class="row">
+
+
+
+    <div class="col-xl-12">
+
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title">
+                    Energy Consumption (Average)
+                </h5>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+
+
+                    <div class="col-sm-1 col-xl-3">
+                        <div class="card card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill text-center">
+                                    <h4 class="mb-0" id="yesterday">0</h4>
+                                    <span class="text-muted">yesterday</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-xl-3">
+                        <div class="card card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill text-center">
+                                    <h4 class="mb-0" id="CurrentWeek">0</h4>
+                                    <span class="text-muted">Current Week</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-xl-3">
+                        <div class="card card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill text-center">
+                                    <h4 class="mb-0" id="LastWeek">0</h4>
+                                    <span class="text-muted">Last Week</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-xl-3">
+                        <div class="card card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill text-center">
+                                    <h4 class="mb-0" id="montht">0</h4>
+                                    <span class="text-muted">Current Month</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title"><i class="fas fa-search mr-3 fa-2x"></i> Energy Details Search</h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+
+                            <select id="devi" required class="form-control form-control-select2">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+
+                            <select class="form-control form-control-select2" id="selectMetersPara"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+
+                            <input name="Dated" type="text" id="txtFDate" class="form-control daterange-single" placeholder="Select From Date" readonly="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+
+                            <input name="Dated" type="text" id="txtTDate" class="form-control daterange-single" placeholder="Select To Date" readonly="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnSearch">
+                                View Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <!-- Show values -->
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Energy Details </h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="chart-container">
+                    <div class="chart has-fixed-height" id="container4"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /show values -->
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title">Actual KWH And KAVH Hourly</h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="chart-container">
+                    <div class="chart has-fixed-height" id="columns_basic2"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="~/ViewJs/DeshBoard/Deshboard.js?@DateTime.Now.Ticks"></script>
+    <script>
+        $(document).ready(function () {
+            
+            EnergyConsumptionAverage();
+
+        });
+        function EnergyConsumptionAverage() {
+
+            $.ajax({
+                type: "post",
+                url: "/Deshboard/EnergyConsumptionAverage",
+                data: {},
+                datatype: "json",
+                //traditional: true,
+                success: function (data) {
+                    var myJSON = JSON.parse(data);
+                    if (myJSON.length > 0) {
+                        $("#montht").empty();
+                        $("#LastWeek").empty();
+                        $("#CurrentWeek").empty();
+                        $("#yesterday").empty();
+
+
+
+
+                        $("#yesterday").append(myJSON[0].yesterday);
+                        $("#CurrentWeek").append(myJSON[0].CurrentWeek);
+                        $("#LastWeek").append(myJSON[0].LastWeek);
+                        $("#montht").append(myJSON[0].montht);
+
+                    }
+
+                }
+            });
+
+        }
+
+        
+
+        var timemetre = [];
+        var datametr = [];
+
+        $.ajax({
+            type: "POST",
+            // contentType: "application/json; charset=utf-8",
+            url: '/Deshboard/GetallmeterdetailsbymeternameChart',
+            data: { Device: 1001, Per: "p15" },
+            //  dataType: "json",
+            success: function (data) {
+
+                var myJSON = JSON.parse(data);
+                for (i = 0; i < myJSON.length; i++) {
+                    timemetre.push(myJSON[i].TTime);
+                    datametr.push(parseInt(myJSON[i].P));
+
+                }
+
+                //alert(JSON.stringify(datametr));
+
+
+                Highcharts.chart('container4', {
+                    chart: {
+                        type: 'line',
+                        zoomType: 'x'
+                    },
+
+                    rangeSelector: {
+                        buttons: [{
+                            text: '+',
+                            events: {
+                                click() {
+                                    /* const xAxis = chart.xAxis[0];
+                                    xAxis.setExtremes(Date.UTC(2000, 11, 30), Date.UTC(2001, 11, 30)); */
+                                    return false
+                                }
+                            }
+                        }, {
+                            text: '-',
+                            events: {
+                                click() {
+                                    return false
+                                }
+                            }
+
+                        }]
+                    },
+                    title: {
+                        text: 'Main-Energy'
+                    },
+                    subtitle: {
+                        text: 'total_pow(KW)'
+                    },
+                    xAxis: {
+                        categories: timemetre //['00:01', '00:12', '00:22', '00:32', '00:42', '00:52', '00:60', '13:23', '13:33', '13:43', '13:53', '14:05']
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    series: [{
+                        name: 'total_pow(KW)',
+                        data: datametr //[16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
+                        //22.0, 17.8]
+                    }]
+                });
+
+            }
+        });
+
+        $('#btnSearch').click(function () {
+            timemetre = [];
+            datametr = [];
+            var Fromdate = $("#txtFDate").val();
+            var Todate = $("#txtTDate").val();
+            if (Fromdate != '' || Todate != '' || $('#devi').find('option:selected').val().trim() != '0') {
+                if ($("#txtFDate").val() < $("#txtTDate").val()) {
+                    $.ajax({
+                        type: "POST",
+                        // contentType: "application/json; charset=utf-8",
+                        url: '/Deshboard/GetallmeterdetailsbymeternameChartByDate',
+                        data: { Device: $("#devi").val(), Per: $("#selectMetersPara").val(), Fdate: $("#txtFDate").val(), Tdate: $("#txtTDate").val() },
+                        //  dataType: "json",
+                        success: function (data) {
+
+                            var myJSON = JSON.parse(data);
+                            for (i = 0; i < myJSON.length; i++) {
+                                timemetre.push(myJSON[i].TTime);
+                                datametr.push(parseInt(myJSON[i].P));
+
+                            }
+
+                            // alert(JSON.stringify(datametr));
+
+
+                            Highcharts.chart('container4', {
+                                chart: {
+                                    type: 'line'
+                                },
+                                title: {
+                                    text: $("#devi option:selected").text()
+                                },
+                                subtitle: {
+                                    text: $("#selectMetersPara option:selected").text()
+                                },
+                                xAxis: {
+                                    categories: timemetre //['00:01', '00:12', '00:22', '00:32', '00:42', '00:52', '00:60', '13:23', '13:33', '13:43', '13:53', '14:05']
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: ''
+                                    }
+                                },
+                                plotOptions: {
+                                    line: {
+                                        dataLabels: {
+                                            enabled: true
+                                        },
+                                        enableMouseTracking: false
+                                    }
+                                },
+                                series: [{
+                                    name: $("#selectMetersPara option:selected").text(),
+                                    data: datametr //[16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
+                                    //22.0, 17.8]
+                                }]
+                            });
+
+                        }
+                    });
+                }
+                else {
+                    massage('2', 'Please select To Date greater than From Date');
+                }
+            }
+            else {
+                massage('2', 'Please select all required field');
+            }
+            EchartsColumnsBasicLight3.init();
+        });
+
+
+    </script>
+}
+

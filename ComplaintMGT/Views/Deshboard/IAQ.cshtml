@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewData["Title"] = "IAQ";
+}
+
+
+<style>
+    .rcorners2 {
+        border-radius: 50%;
+        border: 5px solid #73AD21;
+        padding: 30px;
+        color: #73AD21;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">IAQ</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">IAQ</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="order-2 order-md-1"></div>
+
+    <div class="row">
+        <div class="col-xl-12">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                        IAQ 
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6> 0 </h6>
+                                </div>
+                                <br>
+                                <p>AQI</p>
+                            </div>
+
+                        </div>
+
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Temperature</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Humidity</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6> 0 </h6>
+                                </div>
+                                <br>
+                                <p>PM2.5</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6 id="PM10"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>PM10</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6 id="VOC"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>VOC</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2">
+                            <div style="width:100px">
+                                <div class="rcorners2">
+                                    <h6 id="CO2"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>CO2</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+            IAQ -  Avg
+
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3">
+
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                AQI
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Temp
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Humidity
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                PM2.5
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                PM10
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                VOC
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                CO2
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9">
+
+            <div class="table-responsive">
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+                            <th>Hrly</th>
+                            <th>Current Day</th>
+                            <th>Prev Day</th>
+                            <th>Current Week</th>
+                            <th>Pre Week</th>
+                            <th>Current Month</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /content area -->

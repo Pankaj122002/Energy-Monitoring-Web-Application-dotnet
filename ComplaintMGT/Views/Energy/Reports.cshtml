@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Reports";
+    Layout = null; // remove layout to make it full screen
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Reports</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Optional: Zoom (if needed) */
+        /*
+        .iframe-container iframe {
+            width: 125%;
+            height: 125%;
+            zoom: 0.8;
+        }
+        */
+    </style>
+</head>
+<body>
+
+    <div class="iframe-container">
+        <iframe src="http://pe.report.syncotics.com/"></iframe>
+    </div>
+
+</body>
+</html>

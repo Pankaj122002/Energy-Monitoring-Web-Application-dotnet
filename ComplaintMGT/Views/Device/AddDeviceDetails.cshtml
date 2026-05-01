@@ -1,0 +1,153 @@
+﻿@model ComplaintMGT.Abstractions.Entities.Device.DeviceInfo
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Device Details</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <fieldset>
+            <legend>Device Details</legend>
+            <input type="hidden" asp-for="DeviceId" name="DeviceId" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Asset</label>
+                        <span class="text-danger">*</span>
+                        <select id="AssetId" asp-for="AssetId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.Asset,"AssetId", "Name"))">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <span class="text-danger">*</span>
+                        <select id="CustomerId" asp-for="CustomerId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.Custmer,"CustomerId", "Name"))">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Site Name</label>
+                        <span class="text-danger">*</span>
+                        <select id="SiteId" asp-for="SiteId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.SiteLst,"SiteId", "Name"))">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Device Type</label>
+                        <span class="text-danger">*</span>
+                        <select id="DeviceTypeId" asp-for="DeviceTypeId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.DeviceType,"DeviceTypeId", "DeviceType"))">
+
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Device Status</label>
+                        <span class="text-danger">*</span>
+                        <select id="DeviceStatusId" asp-for="DeviceStatusId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.DeviceStatusLst,"DeviceStatusId", "Description"))">
+
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Asset Tag</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Asset Tag" class="form-control" asp-for="AssetTag" name="AssetTag" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Imei No</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Imei No" class="form-control" asp-for="ImeiNo" name="ImeiNo" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Device Id</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Device Id" class="form-control" asp-for="DeviceIdForExternal" name="DeviceIdForExternal" required>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Dispaly Name</label>
+
+                        <input type="text" placeholder="Enter Dispaly Name" class="form-control" asp-for="DispalyName" name="DispalyName" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Firmware Version</label>
+
+                        <input type="text" placeholder="Enter Firmware Version" class="form-control" asp-for="FirmwareVersion" name="FirmwareVersion" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Access key</label>
+
+                        <input type="text" placeholder="Enter Access key" class="form-control" asp-for="Accesskey" name="Accesskey" required />
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Upgrade Available</label>
+
+                        <input type="text" placeholder="Enter Upgrade Available" class="form-control" asp-for="Upgradeavailable" name="Upgradeavailable" required />
+                    </div>
+
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="form-check form-check-switchery">
+
+                            <label class="form-check-label">
+                                <input type="checkbox" id="IsActive" class="form-check-input-switchery" asp-for="IsActive" name="IsActive" checked data-fouc>
+                                Is Active
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </fieldset>
+
+    </div>
+
+
+    <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+        <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+        <button type="submit" id="modSubmit" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+    </div>
+
+</div>
+
+<script src="~/ViewJs/Device/AddDevice.js?@DateTime.Now.Ticks"></script>

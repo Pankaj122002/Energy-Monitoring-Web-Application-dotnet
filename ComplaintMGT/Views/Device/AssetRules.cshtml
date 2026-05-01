@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "AssetRules";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">All Asset Rules</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                    <span class="breadcrumb-item active">Asset Rules</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+
+
+    <!-- Pagination types -->
+    <div class="card">
+        <div class="card-header header-elements-inline border">
+            <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnAdd" isactive="true" cid="0" roleName="" onclick="CallFunc(this);">
+                <i class="icon-add"></i> Add New
+            </button>
+            <h5 class="card-title">All Asset Rules</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload" onclick="GetDataTableData()"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-scroll-wrap">
+                    <table class="table datatable-button-html5-columns" id="tlb">
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Rule Name</th>
+                                <th>Asset</th>
+                                <th>LCL</th>
+                                <th>UCL</th>
+                                <th>Measurement</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                    <input type="hidden" id="hfTotalrows" value="0" />
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /pagination types -->
+
+
+
+    </div>
+    <!-- /content area -->
+    <!-- Vertical form modal -->
+    <div id="modal_form_vertical" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form class="form-validate-jquery" onsubmit="return Formsubmit();" name="registration">
+                <div id="user_content">
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /vertical form modal -->
+</div>
+@section scripts {
+    <script src="~/ViewJs/Device/AssetRules.js?@DateTime.Now.Ticks"></script>
+    <script src="~/ViewJs/Device/AddAssetRules.js?@DateTime.Now.Ticks"></script>
+}
+
+

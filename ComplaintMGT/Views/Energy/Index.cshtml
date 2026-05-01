@@ -1,0 +1,249 @@
+﻿@{
+    ViewData["Title"] = "Energy Dashboard";
+    Layout = "_LayoutNew";
+}
+
+<link href="~/v2.0/energy/dashboard/css/energydashboard.css" rel="stylesheet" />
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <img class="energy-header" style="margin-left:-15.5%" src="~/v2.0/common/images/banner 5.png" alt="">
+    </div>
+    <div class="navigation-box">
+        <div id="flowBoxes" style="width: 100%;">
+            <div class="right active" style="cursor:pointer;" id="divHot"> Hot</div>
+            <div class="left right " style="cursor:pointer;" id="divWarm">Warm</div>
+            <div class="left" style="cursor:pointer;" id="divCold">Cold</div>
+        </div>
+        <div class="report">
+            @*  <a href="#">
+            <button class="report-button">Trends & Reports</button>
+            </a> *@
+            <a class="report-button" href="/Energy/Trends_Hot">Trends & Reports</a>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row1">
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Actual)</sub>
+                    </div>
+                    <a href="#"><span class="material-symbols-outlined">add</span></a>
+                </div>
+                <div class="eccA-container">
+                    <div class="eccA-container1">
+                        <div class="chart-container-small" id="eca-kwh-chart-container"></div>
+                    </div>
+                    <div class="eccA-container2">
+                        <div class="chart-container-small" id="eca-kvah-chart-container"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row1_b">
+                <div class="b_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Cumulative)</sub>
+                    </div>
+                </div>
+                <div class="eccA-container">
+                    <div class="eccA-container1">
+                        <div class="chart-container-small" id="ecc-kwh-chart-container"></div>
+                    </div>
+                    <div class="eccA-container2">
+                        <div class="chart-container-small" id="ecc-kvah-chart-container"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row1_c">
+                <div class="c_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Average)</sub>
+                    </div>
+                </div>
+                <div class="eccA-container">
+                    <div class="eccA-container1">
+                        <div class="chart-container-small" id="ecavg-kwh-chart-container"></div>
+                    </div>
+                    <div class="eccA-container2">
+                        <div class="chart-container-small" id="ecavg-kvah-chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="row2_a" style="width:49%">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Actual)</sub>
+                    </div>
+                </div>
+                <div class="eca-container_1">
+                    <div class="chart-container-large" id="eca-kwh-kvah-chart-container"></div>
+                </div>
+            </div>
+            <div class="row2_b" style="width:49%">
+                <div class="twob_header" style="padding:4%">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Average)</sub>
+                    </div>
+                </div>
+                <div class="eca-container_2">
+                    <div class="chart-container-large" id="ecavg-kwh-kvah-chart-container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="row3_a">
+                <div class="threea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Actual)</sub>
+                    </div>
+                    <a href="#"><span class="material-symbols-outlined">add</span></a>
+                </div>
+                <div class="r3_arow1" style="margin-top:5%">
+                    <div class="r3_arow1A">
+                        <div class="r3_arow-box"><span id="eca_OpsSchedule"></span></div>
+                        <div class="r3_arow-box"><span id="eca_NonOpsSchedule"></span></div>
+                    </div>
+                    <div class="r3_arow1B">
+                        <div class="r3_arow-heading">Ops Schedule</div>
+                        <div class="r3_arow-heading">Non-Ops Schedule</div>
+                    </div>
+                </div>
+                <div class="r3_arow1">
+                    <div class="r3_arow1A">
+                        <div class="r3_arow-box">
+                            <div style="text-align: center;"><span id="eca_PeakKWHValue"></div>
+                            <div style="font-size: 10.78px;font-weight: 550;text-align:center;"><span id="eca_PeakKWHText"></div>
+                        </div>
+                        <div class="r3_arow-box">
+                            <div style="text-align: center;"><span id="Least_PeakKWHValue"></div>
+                            <div style="font-size: 10.78px;font-weight: 550;text-align:center;"><span id="eca_LeastKWHText"></div>
+                        </div>
+                    </div>
+                    <div class="r3_arow1B">
+                        <div class="r3_arow-heading" style="text-align:center;">Peak Consumption Schedule</div>
+                        <div class="r3_arow-heading" style="text-align:center;">Least Consumption Schedule</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row3_b">
+                <div class="threeb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Consumption</div><sub>(Cumulative)</sub>
+                    </div>
+                    <a href="#"><span class="material-symbols-outlined">add</span></a>
+                </div>
+                <div class="ecCumalitive_container">
+                    <div class="chart-container-medium" id="ecc-kwh-kvah-chart-container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row4">
+            <div class="row4_a">
+                <div class="foura_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Distribution</div>
+                    </div>
+                </div>
+                <div class="pie_container">
+                    <div class="chart-container-medium-ext" id="energy-distribution-chart-container"></div>
+                </div>
+            </div>
+            <div class="row4_b">
+                <div class="fourb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">No. of Power Outage & Total Duration</div>
+                    </div>
+                </div>
+                <div class="powerOutrage_container">
+                    <div class="powerOutrage_containerA">
+                        <div class="chart-container-medium" id="power-outrage-count-chart-container"></div>
+                    </div>
+                    <div class="powerOutrage_containerB">
+                        <div class="chart-container-medium" id="power-outrage-total-chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row5">
+            <div class="row5_a">
+                <div class="fivea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Energy Usage Index</div>
+                    </div>
+                </div>
+                <div class="energyUsage-container">
+                    <div class="chart-container-medium" id="energy-usage-index-chart-container"></div>
+                </div>
+            </div>
+            <div class="row5_b">
+                <div class="fiveb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/Icons/4.png" alt="" class="icon"></a>
+                        <div class="img1-button">Carbon Footprint</div>
+                    </div>
+                </div>
+                <div class="carbon-container">
+                    <div class="chart-container-medium" id="carbon-footprint-chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/v2.0/energy/dashboard/js/tmpaandpa-container.js"></script>
+<script src="~/v2.0/energy/dashboard/js/eca-container.js"></script>
+<script src="~/v2.0/energy/dashboard/js/piegraph.js"></script>
+<script src="~/v2.0/energy/dashboard/js/eccumalitive_graph.js"></script>
+<script src="~/v2.0/energy/dashboard/js/poweroutrage_container.js"></script>
+<script src="~/v2.0/energy/dashboard/js/carbon-container.js"></script>
+
+<script type="text/javascript">
+    $('#divHot').click(function () {
+        $('#flowBoxes div.active').removeClass('active');
+        $('#divHot').addClass('active');
+
+        EnergyConsumptionActualEnergyDashboard.init("Hot");
+        EnergyConsumptionBarGraphDashboard.init("Hot");
+        EC_EnergyDistributionGraphDashboard.init("Hot");
+        OutrageDashboard.init("Hot");
+    })
+    $('#divWarm').click(function () {
+        $('#flowBoxes div.active').removeClass('active');
+        $('#divWarm').addClass('active');
+
+        EnergyConsumptionActualEnergyDashboard.init("Warm");
+        EnergyConsumptionBarGraphDashboard.init("Warm");
+        EC_EnergyDistributionGraphDashboard.init("Warm");
+        OutrageDashboard.init("Warm");
+    })
+    $('#divCold').click(function () {
+        $('#flowBoxes div.active').removeClass('active');
+        $('#divCold').addClass('active');
+
+        EnergyConsumptionActualEnergyDashboard.init("Cold");
+        EnergyConsumptionBarGraphDashboard.init("Cold");
+        EC_EnergyDistributionGraphDashboard.init("Cold");
+        OutrageDashboard.init("Cold");
+    })
+    document.querySelector(".menu_button").addEventListener("click", function () {
+        var isActive = $('.sidebar-menu').hasClass('active')
+        if (!isActive)
+            $('.energy-header').css('margin-left', '-15.5%');
+        else
+            $('.energy-header').css('margin-left', '0%');
+    });
+</script>

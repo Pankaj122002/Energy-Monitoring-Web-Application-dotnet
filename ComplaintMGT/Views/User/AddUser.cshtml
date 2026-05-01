@@ -1,0 +1,203 @@
+﻿@model ComplaintMGT.Abstractions.Entities.UserInfo
+<style>
+    .visually-hidden { /* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility */
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input type="hidden" asp-for="UserId" />
+                        <label>Name</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Enter Name" class="form-control " asp-for="FullName" required>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Customer</label>
+                        @*<input type="text" placeholder="Employee Code" class="form-control" id="EmpCode">*@
+                        <select asp-for="ddlCustomer" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.Custmer,"CustomerId", "Name"))">
+                            <option value="0">select</option>
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Role</label>
+                        <span class="text-danger">*</span>
+                        <select asp-for="ddlRole" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.Role,"fnRoleId", "ftRoleName"))">
+                            <option value="0">-select-</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>Mobile</label>
+                        <input type="text" placeholder="Mobile No" class="form-control" asp-for="Mobile">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Password</label>
+                        <span class="text-danger">*</span>
+                        <input type="text" placeholder="Password"  required class="form-control" asp-for="Password">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <span class="text-danger">*</span>
+                            <input type="text" placeholder="Enter User Name" class="form-control" asp-for="UserName" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Email</label>
+                        <span class="text-danger">*</span>
+                        <input type="email" placeholder="Email"  required class="form-control" asp-for="Email">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <span class="text-danger">*</span>
+                            <input type="text" placeholder="Enter Address" class="form-control" asp-for="Address" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+
+
+
+                            <p id="file-list-x"></p>
+
+                            <p>
+                                <a id="file-input-button-x" href="#" class="btn btn-success file-input-button" data-id="x">
+                                    <i class="fa fa-plus"></i>
+                                    Upload Image
+                                </a>
+
+                                <input id="file-input-x" class="file-input visually-hidden" type="file" name="file-input-x" data-id="x">
+                            </p>
+                            <input type="hidden" asp-for="filename" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>IsActive</label>
+                            <span class="text-danger">*</span>
+                            <div class="form-check form-check-switchery form-check-switchery-double">
+                                <label class="form-check-label">
+                                    Enable
+                                    <input type="checkbox" id="IsActive" class="form-check-input-switchery" checked data-fouc>
+                                    Disable
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="datatable-scroll-wrap">
+                    <table class="table datatable-button-html5-columns" id="tblCirclemaster">
+                        <thead>
+                            <tr>
+                                <th>User Area Details</th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Country</label>
+                        <span class="text-danger">*</span>
+                        <select asp-for="CountryId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.cuntry,"CountryId", "CountryName"))">
+                            <option value="0">select</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>State</label>
+                        <span class="text-danger">*</span>
+                        <select asp-for="StateId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.StateLst,"StateId", "StateName"))">
+                            <option value="0">select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>City</label>
+                        <span class="text-danger">*</span>
+                        <select asp-for="CityId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.CityLst,"CityId", "CityName"))">
+                            <option value="0">select</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>Zone</label>
+                        <span class="text-danger">*</span>
+                        <select asp-for="ZoneId" required class="form-control form-control-select2" asp-items="@(new SelectList(@ViewBag.Zone,"ZoneId", "ZoneName"))">
+                            <option value="0">select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+            <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+        </div>
+
+    </div>
+</div>
+<script src="~/ViewJs/UserAccount/AddUser.js"></script>
+<script>
+    $(function () {
+        $('.file-input').on('change', function (e) {
+            var file = this.files[0]
+            $('#file-list-' + $(this).data('id')).append('<span>' + file.name + '</span>')
+        })
+
+        $('.file-input-button').on('click', function (e) {
+            $('#file-input-' + $(this).data('id')).trigger('click');
+        })
+    })
+</script>

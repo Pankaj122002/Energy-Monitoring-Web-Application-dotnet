@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Thermal Kitchen - Dashboard";
+    Layout = "_LayoutNew";
+}
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<link href="~/v2.0/thermal/kitchen/css/thermalproductiondashboard.css" rel="stylesheet" />
+<div class="main-box">
+    <div class="header-image">
+        <img class="energy-header" src="~/v2.0/thermal/kitchen/images/thermal banner.png" alt="" />
+    </div>
+    <div class="navigation-box">
+        <div id="flowBoxes" style="width: 100%;">
+            <div class="right active" id="hotDataAction">Hot</div>
+            <div class="left right" id="warmDataAction"> Warm</div>
+            <div class="left" id="coldDataAction"> Cold</div>
+        </div>
+        <div class="report">
+            <a href="/Thermal/Kitchen_TrendsHot"><button class="report-button">Trends & Reports</button></a>
+        </div>
+    </div>
+    <div class="content-area">
+        <div class="row2">
+            <div class="row2_a">
+                <div class="twoa_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/Icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Alerts</div>
+                    </div>
+                </div>
+                <div class="alerts-container">
+                    <div class="chart-container" id="kitchen-asset-alert"></div>
+                </div>
+            </div>
+            <div class="row2_c">
+                <div class="twoc_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/Icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Compliance</div>
+                    </div>
+                </div>
+                <div class="compliance-container">
+                    <div class="chart-container" id="kitchen-asset-compliance"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="row3_a">
+                <div class="threea_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/Icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring - Production Area  (Actual)</div>
+                    </div>
+                </div>
+                <div class="table-box" id="kitchen-asset-thermal-monitoring">
+                  
+                </div>
+            </div>
+            <div class="row3_b">
+                <div class="threeb_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/Icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring</div><sub>(Production Area)</sub>
+                    </div>
+                </div>
+                <div class="tmpA-container">
+                    <div class="chart-container" id="kitchen-asset-thermalMonitoring"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row1">
+            <div class="row1_a">
+                <div class="a_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/Icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring</div><sub>(Refrigeration)</sub>
+                    </div>
+                </div>
+                <div class="tmrefrigeration-graph">
+                    <div class="chart-container" id="refrigeration-thermal-dash"></div>
+                    <div class="tmAA-graph_heading">Production Area</div>
+                </div>
+            </div>
+            <div class="row1_b">
+                <div class="b_header">
+                    <div class="icon-h">
+                        <a href="#" style="text-decoration: none;"><img src="~/v2.0/common/images/icons/Icons/13.png" alt="" class="icon"></a>
+                        <div class="img1-button">Thermal Monitoring</div><sub>(Non - Refrigeration)</sub>
+                    </div>
+                </div>
+                <div class="tmAA-graph">
+                    <div class="tmAA-graph1">
+                        <div class="chart-container" id="kitchen-asset-ops-max"></div>
+                        <div class="tmAA-graph_heading">Ops Schedule (MAX)</div>
+                    </div>
+                    <div class="tmAA-graph2" style="width: 50%;">
+                        <div class="chart-container" id="kitchen-asset-ops-min"></div>
+                        <div class="tmAA-graph_heading">Non-Ops Schedule (MIN)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="~/v2.0/thermal/kitchen/js/kitchen.js"></script>
+
+@* <script src="~/v2.0/thermal/kitchen/js/hot.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/thermalmonitoring_refrigeration.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/tmaa-graph1.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/tmaa-graph2.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/alerts-graph.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/compliance-graph.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/tmpa.js"></script>
+<script src="~/v2.0/thermal/kitchen/js/tmpaandpa-container.js"></script> *@

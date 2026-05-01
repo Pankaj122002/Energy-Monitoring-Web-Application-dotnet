@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "KitchenReport";
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title"><i class="fas fa-search mr-3 fa-2x"></i> Temperature-Kitchen Assets Search</h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4" style="display:none">
+                        <div class="form-group">
+                            <label>Customer</label>
+                            <span class="text-danger">*</span>
+                            <select id="ddlCustomer" name="ddlCustomer" class="form-control form-control-select2" required>
+                                <option value="0">Please Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Site</label>
+                            <span class="text-danger">*</span>
+                            <select id="ddlSite" name="ddlSite" class="form-control form-control-select2" required>
+                                <option value="0">Please Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Asset</label>
+                            <span class="text-danger">*</span>
+                            <select id="ddlAsset" name="ddlAsset" class="form-control form-control-select2" required>
+                                <option value="0">Please Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>From Date</label>
+                            <span class="text-danger">*</span>
+                            <input name="Dated" type="text" id="txtFDate" class="form-control DAteTimePick" placeholder="Select From Date" readonly="">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>To Date</label>
+                            <span class="text-danger">*</span>
+                            <input name="Dated" type="text" id="txtTDate" class="form-control DAteTimePick" placeholder="Select To Date" readonly="">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group" style="padding-top:25px">
+                            <button type="submit" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnSearch" onclick="GetDataTableData()">
+                                View Report
+                            </button>
+                            <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" onclick="GetFile('Excel');">
+                                <i class="icon-file-excel"></i> Excel
+                            </button>
+                            <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" onclick="GetFile('Pdf');">
+                                <i class="icon-file-pdf"></i> Pdf
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <!-- Show values -->
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i> Temperature-Kitchen Assets </h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item" data-action="reload"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="dataTables_wrapper no-footer">
+
+                    <div class="datatable-scroll-wrap">
+
+                        <table class="table table-striped media-library" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>Zone</th>
+                                    <th>Site </th>
+                                    <th>Asset</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Temperature</th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                            </tfoot>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /show values -->
+    </div>
+
+
+</div>
+
+
+@section scripts {
+
+    <script src="~/ViewJs/Report/KitchenReport.js"></script>
+}

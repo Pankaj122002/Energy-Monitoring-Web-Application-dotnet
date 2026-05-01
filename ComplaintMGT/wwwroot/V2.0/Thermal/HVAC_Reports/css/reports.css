@@ -1,0 +1,30 @@
+﻿.report-table-div {
+    width: 84vw;
+    min-height: 60px;
+    padding: 20px 30px;
+}
+
+
+th.dt-orderable-asc {
+    background: #3c3c3c !important;
+    border: 1px solid;
+}
+
+th.dt-orderable-asc span {
+    color: white;
+    font-size: 12px;
+}
+
+#hvacreport-body td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#hvacreport th {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.change-class{
+    min-height: 50vh;
+}

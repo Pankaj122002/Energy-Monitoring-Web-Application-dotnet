@@ -1,0 +1,30 @@
+{
+    "CategoryGraph": [
+        {
+            "Id": 1,
+            "Name": "Thermal Trends",
+            "SubGraph": [
+                {
+                    "Id": 1,
+                    "Name": "Thermal Monitoring HVAC (Live)",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 2,
+                    "Name": "Thermal Monitoring HVAC - Peak Temperature",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 3,
+                    "Name": "Thermal Monitoring HVAC - Hourly Average",
+                    "EnableGraph": true
+                },
+                {
+                    "Id": 4,
+                    "Name": "Thermal Profile - Hourly Average",
+                    "EnableGraph": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,313 @@
+{
+    "CategoryGraph": [
+        {
+            "Id": 1,
+            "Name": "Energy Consumption",
+            "SubGraph": [
+                {
+                    "Id": 1,
+                    "Name": "Energy Consumption (Live)",
+                    "Meters": [ "Main", "SubMeter" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": false,
+                    "OpsScheduleandAssetWiseFilterEnable": false
+                },
+                {
+                    "Id": 2,
+                    "Name": "Cumulative Energy Consumption (Live)",
+                    "Meters": [ "Main", "SubMeter" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": false,
+                    "OpsScheduleandAssetWiseFilterEnable": false
+                },
+                {
+                    "Id": 3,
+                    "Name": "Energy Consumption vs Temperature (Live)",
+                    "Meters": [ "Main", "SubMeter" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": false,
+                    "OpsScheduleandAssetWiseFilterEnable": false
+                },
+                {
+                    "Id": 4,
+                    "Name": "Energy Consumption with Peak Energy Consumption",
+                    "Meters": [ "Main" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 401, 402 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 5,
+                    "Name": "Energy Consumption vs Rated Energy Consumption",
+                    "Meters": [ "HVAC" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 6,
+                    "Name": "Energy Consumption - KWH vs KVAH",
+                    "Meters": [ "Main" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 601, 602 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 7,
+                    "Name": "Energy Consumption - KWH vs KVAH vs Cost",
+                    "Meters": [ "Main" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 701, 702 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 8,
+                    "Name": "Energy Consumption - KWH vs KVAH vs Temperature",
+                    "Meters": [
+                        "Main",
+                        "SubMeter"
+                    ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 801, 802 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": false,
+                    "OpsScheduleandAssetWiseFilterEnable": false
+                }
+            ]
+        },
+        {
+            "Id": 2,
+            "Name": "Energy Profile",
+            "SubGraph": [
+                {
+                    "Id": 14,
+                    "Name": "Energy Profile",
+                    "Meters": [ "Main", "SubMeter" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 1401, 1402 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": false,
+                    "OpsScheduleandAssetWiseFilterEnable": false
+                }
+            ]
+        },
+        {
+            "Id": 3,
+            "Name": "Power Cuts & Duration",
+            "SubGraph": [
+                {
+                    "Id": 15,
+                    "Name": "Power Cuts & Duration",
+                    "Meters": [ "Main", "SubMeter" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 1501, 1502 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": false,
+                    "OpsScheduleandAssetWiseFilterEnable": false
+                }
+            ]
+        },
+        {
+            "Id": 4,
+            "Name": "Carbon Footprint",
+            "SubGraph": [
+                {
+                    "Id": 9,
+                    "Name": "Carbon Footprint Live",
+                    "Meters": [ "Main" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 10,
+                    "Name": "Carbon Footprint",
+                    "Meters": [ "Main" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 1001, 1002 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 11,
+                    "Name": "Carbon Footprint vs Energy Consumption",
+                    "Meters": [ "Main", "Dining Temperature" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 12,
+                    "Name": "Carbon Foot print with Peak carbon FootPrint",
+                    "Meters": [ "Main" ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 13,
+                    "Name": "Carbon footprint - KWH vs KVAH vs Cost",
+                    "Meters": [ "Main" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 1301, 1302 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                }
+            ]
+        },
+        {
+            "Id": 5,
+            "Name": "Carbon Profile",
+            "SubGraph": [
+                {
+                    "Id": 16,
+                    "Name": "Carbon Profile",
+                    "Meters": [ "Main" ],
+                    "Frequency": [ "Weekly Actual", "Weekly Average" ],
+                    "FrequencyIndex": [ 1601, 1602 ],
+                    "EnableGraph": true,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                }
+            ]
+        },
+        {
+            "Id": 6,
+            "Name": "Frequency",
+            "SubGraph": [
+                {
+                    "Id": 17,
+                    "Name": "Weekly Actual",
+                    "Meters": [ "Main" ],
+                    "EnableGraph": false,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                },
+                {
+                    "Id": 18,
+                    "Name": "Weekly Average",
+                    "Meters": [ "Main" ],
+                    "EnableGraph": false,
+                    "AssetWiseFilterEnable": true,
+                    "OpsScheduleWiseFilterEnable": true,
+                    "OpsScheduleandAssetWiseFilterEnable": true
+                }
+            ]
+        }
+    ],
+    "backupJson": [
+        {
+            "Id": 14,
+            "Name": "Weekly Actual No of Power Cuts & Duration",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 15,
+            "Name": "Weekly Avg No of Power Cuts & Duration",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 16,
+            "Name": "Carbon Footprint",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": false,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 17,
+            "Name": "Carbon Footprint Weekly avg",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 18,
+            "Name": "Carbon Footprint Weekly Actual",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 19,
+            "Name": "Carbon Footprint vs Energy Consumption",
+            "Meters": [ "Mains Corbon Footprint", " Main Energy Consumption" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": false,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 20,
+            "Name": "Carbon Foot print with Peak carbon FootPrint",
+            "Meters": [ "Main Corbon Footprint" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 21,
+            "Name": "Weekly Actual carbon footprint - KWH vs KVAH vs Cost",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 22,
+            "Name": "Weekly Avg CO2 - KWH vs KVAH vs Cost",
+            "Meters": [ "Main" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 23,
+            "Name": "Carbon Profile - Weekly Actual",
+            "Meters": [ "Main CO2" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        },
+        {
+            "Id": 24,
+            "Name": "Carbon Profile - Weekly Avg",
+            "Meters": [ "Main CO2" ],
+            "AssetWiseFilterEnable": false,
+            "OpsScheduleWiseFilterEnable": true,
+            "OpsScheduleandAssetWiseFilterEnable": false
+        }
+    ]
+}

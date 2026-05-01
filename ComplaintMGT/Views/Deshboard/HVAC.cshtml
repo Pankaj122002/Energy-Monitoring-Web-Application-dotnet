@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewData["Title"] = "HVAC";
+}
+<div class="content">
+    <div class="order-2 order-md-1"></div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+            Thermal Monitoring - HVAC - Avg
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3">
+
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HVAC Unit 1 Near Entrance</td>
+
+                        </tr>
+                        <tr>
+                            <td>HVAC Unit 2 Opposite Entrance</td>
+
+                        </tr>
+                        <tr>
+                            <td>HVAC Unit 3 Near Window</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9">
+
+            <div class="table-responsive">
+                <table id="tlb" class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>Prev Day</th>
+                            <th>Current Week</th>
+                            <th>Pre Week</th>
+                            <th>Current Month</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-search mr-3 fa-2x"></i> Temperature-HVAC Search</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="fullscreen"></a>
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4" style="display:none">
+                            <div class="form-group">
+                                <label>Customer</label>
+                                <span class="text-danger">*</span>
+                                <select id="ddlCustomer" name="ddlCustomer" class="form-control form-control-select2" required>
+                                    <option value="0">Please Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Site</label>
+                                <span class="text-danger">*</span>
+                                <select id="ddlSite" name="ddlSite" class="form-control form-control-select2" required>
+                                    <option value="0">Please Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Asset</label>
+                                <span class="text-danger">*</span>
+                                <select id="ddlAsset" name="ddlAsset" class="form-control form-control-select2" required>
+                                    <option value="0">Please Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <span class="text-danger">*</span>
+                                <input name="Dated" type="text" id="txtFDate" class="form-control DAteTimePick" placeholder="Select From Date" readonly="">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <span class="text-danger">*</span>
+                                <input name="Dated" type="text" id="txtTDate" class="form-control DAteTimePick" placeholder="Select To Date" readonly="">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group" style="padding-top:25px">
+                                <button type="submit" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnSearch">
+                                    View Report
+                                </button>
+                                <button type="submit" class="btn btn-outline-primary bg-teal-400 text-teal-400 border-teal-400" id="btnReset">
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Show values -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Temperature-HVAC </h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="fullscreen"></a>
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="container"></div>
+                        @*<input type="radio" name="mychart" class="mychart" id="area" value="area" onclick="chartfunc()" checked>area
+                            <input type="radio" name="mychart" class="mychart" id="areaspline" value="areaspline" onclick="chartfunc()">arearange*@
+                    </div>
+                </div>
+            </div>
+            <!-- /show values -->
+        </div>
+
+
+    </div>
+</div>
+    
+
+
+    @section scripts {
+
+        <script>
+            $(document).ready(function () {
+
+                GetDataTableData();
+
+            });
+
+            function GetDataTableData() {
+
+                $.ajax({
+                    type: "post",
+                    url: "/Deshboard/ThermalMonitoringHVACAvg?devicetype=4",
+                    data: {},
+                    datatype: "json",
+                    //traditional: true,
+                    success: function (data) {
+
+                        var myJSON = JSON.parse(data);
+                        for (var i = 0; i < myJSON.length; i++) {
+                            if (myJSON[i].asset == 'Dining - HVAC Unit 1 - Near Entrance') {
+                                txtrow = '<tr><td>' + myJSON[i].PrevDay + '</td><td>' + myJSON[i].CurrentWeek + '</td><td>' + myJSON[i].PreWeek + '</td><td>' + myJSON[i].CurrentMonth + '</td></tr>';
+                            }
+
+                            else if (myJSON[i].asset == 'Dining - HVAC Unit 2 - Opp Entrance') {
+                                txtrow = '<tr><td>' + myJSON[i].PrevDay + '</td><td>' + myJSON[i].CurrentWeek + '</td><td>' + myJSON[i].PreWeek + '</td><td>' + myJSON[i].CurrentMonth + '</td></tr>';
+                            }
+                            else if (myJSON[i].asset == 'Dining - HVAC Unit 3 - Near Window') {
+                                txtrow = '<tr><td>' + myJSON[i].PrevDay + '</td><td>' + myJSON[i].CurrentWeek + '</td><td>' + myJSON[i].PreWeek + '</td><td>' + myJSON[i].CurrentMonth + '</td></tr>';
+                            }
+                            $('#tlb tbody').append(txtrow);
+                        }
+
+
+                    }
+                });
+
+            };
+        </script>
+
+        <script src="~/ViewJs/DeshBoard/HAVCTrands.js"></script>
+    }
+

@@ -1,0 +1,869 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<style>
+    .tooltip1 {
+        position: relative;
+        display: inline-block;
+       
+    }
+
+        .tooltip1 .tooltiptext1 {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+           
+        }
+
+        .tooltip1:hover .tooltiptext1 {
+            visibility: visible;
+        }
+    .rcorners2 {
+        border-radius: 50%;
+        border: 5px solid #ad2121;
+        padding: 30px;
+        color: #ad2121;
+        width: 100px;
+        height: 100px;
+    }
+    .rcorners1 {
+        border-radius: 50%;
+        border: 5px solid #73AD21;
+        padding: 30px;
+        color: #73AD21;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">DashBoard</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">DashBoard</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="order-2 order-md-1"></div> 
+    <div class="mb-3">
+        <h6 class="mb-0">Savings Dashboard</h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">0</h4>
+                        <span class="text-muted">Yesterday</span>
+                    </div>
+
+                    <i class="icon-piggy-bank me-3 icon-3x"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+
+                    <div class="flex-fill text-end">
+                        <h4 class="mb-0">0</h4>
+                        <span class="text-muted">Current Week</span>
+                    </div>
+
+                    <i class="icon-wallet me-3 icon-3x"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-fill">
+                        <h4 class="mb-0">0</h4>
+                        <span class="text-muted">Previous Week</span>
+                    </div>
+
+                    <i class="icon-coins me-3 icon-3x"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-fill">
+                        <h4 class="mb-0">0</h4>
+                        <span class="text-muted">Current Month </span>
+                    </div>
+
+                    <i class="icon-cash me-3 icon-3x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--<div class="mb-3">
+        <h6 class="mb-0">
+            Compliance Dashboard
+        </h6>-->
+        @*<span class="text-muted">Boxes with icons</span>*@
+    <!--</div>-->
+    
+    <div class="mb-3">
+        <h6 class="mb-0">
+            Energy Dashboard
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+
+        <div class="col-xl-8">
+
+            <!-- Basic donut -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="icon-watch2 mr-2"></i>Real Time View</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="pie_donut"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /basic donut -->
+
+        </div>
+        <div class="col-xl-4">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="icon-watch2 mr-2"></i>Real Time View Table</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <select id="Device" required class="form-control form-control-select2">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="table-responsive" style="height: 343px;">
+                    <table id="tbl" class="">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+
+        <div class="col-xl-12">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                        Time of Day - ENERGY CONSUMPTION (Current Day)
+                    </h5>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-xl-4">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="OpsWindow">0</h4>
+                                        <span class="text-muted">Ops Window	</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-xl-4">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="NonOps">0</h4>
+                                        <span class="text-muted">Non-Ops Window </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xl-4">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="PreviousDayNoOps">0</h4>
+                                        <span class="text-muted">Previous Day No Operations </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="Crew">0</h4>
+                                        <span class="text-muted">Crew Setup</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="PreLunch">0</h4>
+                                        <span class="text-muted">Pre Lunch </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="PeakLunch">0</h4>
+                                        <span class="text-muted">Peak Lunch</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="PostLunch">0</h4>
+                                        <span class="text-muted">Post Lunch</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="PreDinner">0</h4>
+                                        <span class="text-muted">Pre Dinner</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="PeakDinner">0</h4>
+                                        <span class="text-muted">Peak Dinner</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="CrewShutdown">0</h4>
+                                        <span class="text-muted">Crew Shutdown</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="NoOperations">0</h4>
+                                        <span class="text-muted">No Operations </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+
+        <div class="col-xl-12">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                        Energy Consumption (Actual)
+                    </h5>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 id="tPreviousHR" class="mb-0">0</h4>
+                                        <span class="text-muted">Previous hr</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="tToday">0</h4>
+                                        <span class="text-muted">Today </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="tyesterday">0</h4>
+                                        <span class="text-muted">yesterday</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="tCurrentWeek">0</h4>
+                                        <span class="text-muted">Current Week</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="tLastWeek">0</h4>
+                                        <span class="text-muted">Last Week</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-xl-2">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="tmontht">0</h4>
+                                        <span class="text-muted">Current Month</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Actual KWH And KAVH Hourly</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="columns_basic"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="col-xl-12">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                        Electrical Health - Mains (Real Time)
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1"> Power Factor : 10</span>
+                            <div style="width:100px">
+                                <div id="p3div" class="rcorners1">
+                                    <h6 id="p3"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Power Factor </p>
+                            </div>
+
+                        </div>
+
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1">Current R : 30</span>
+                            <div style="width:100px">
+                                <div id="p6div" class="rcorners1">
+                                    <h6 id="p6"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Current R</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1">Current Y : 30</span>
+                            <div style="width:100px">
+                                <div id="p9div" class="rcorners1">
+                                    <h6 id="p9"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Current Y</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1">Current B : 30</span>
+                            <div style="width:100px">
+                                <div id="p12div" class="rcorners1">
+                                    <h6 id="p12"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Current B</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1">Voltage R : 240</span>
+                            <div style="width:100px">
+                                <div id="p5div" class="rcorners1">
+                                    <h6 id="p5"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Voltage R</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1">Voltage Y : 240</span>
+                            <div style="width:100px">
+                                <div id="p8div" class="rcorners1">
+                                    <h6 id="p8"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Voltage Y</p>
+                            </div>
+
+                        </div>
+                        <div class="text-center col-sm-2 tooltip1">
+                            <span class="tooltiptext1"> Voltage B : 240</span>
+                            <div style="width:100px">
+                                <div id="p11div" class="rcorners1">
+                                    <h6 id="p11"> 0 </h6>
+                                </div>
+                                <br>
+                                <p>Voltage B</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /pie and donut -->
+    <!-- Donut multiples -->
+    <!--<div class="row">
+
+        <div class="col-xl-12">-->
+    <!-- Show values -->
+    <!--<div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title"><i class="fas fa-tachometer-alt mr-3 fa-2x"></i>Energy Meter Details</h5>
+            <select id="devi"></select>
+            <select class="selectBox" id="selectMetersPara"></select>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="chart-container">
+                <div class="chart has-fixed-height" id="container4"></div>
+            </div>
+        </div>
+    </div>-->
+    <!-- /show values -->
+    <!--</div>
+
+    </div>-->
+
+
+
+    <div class="mb-3">
+        <h6 class="mb-0">
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-half mr-3 fa-2x"></i>Thermal Monitoring - HVAC</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row" id="HVAC">
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-xl-12">-->
+    <!-- Show values -->
+    <!--<div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Thermal Monitoring - HVAC</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="chart-container">
+                <div class="chart has-fixed-height" id="container"></div>
+            </div>
+        </div>
+    </div>-->
+    <!-- /show values -->
+    <!--</div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">-->
+    <!-- Show values -->
+    <!--<div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Thermal Monitoring - HVAC</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="chart-container">
+                <div class="chart has-fixed-height" id="container3"></div>
+            </div>
+        </div>
+    </div>-->
+    <!-- /show values -->
+    <!--</div>
+    </div>-->
+    <div class="row">
+
+        <div class="col-xl-12">
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-half mr-3 fa-2x"></i>Thermal Monitoring - Kitchen Equipments</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row" id="Kitchen">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+   
+    <div class="mb-3">
+        <h6 class="mb-0">
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+        <div class="col-xl-12">
+            <!-- Table header styling -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                        HVAC Control
+                    </h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="bg-blue">
+                                <th>Name</th>
+                                <th>Temp</th>
+                                <th>Temp High</th>
+                                <th>Temp Low</th>
+                                <th>ON Hour</th>
+                                <th>ON Minute</th>
+                                <th>OFF Hour</th>
+                                <th>OFF Minute</th>
+                                <th>Days</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ENE01266</td>
+                                <td>29</td>
+                                <td>31</td>
+                                <td>24</td>
+                                <td>16</td>
+                                <td>7</td>
+                                <td>16</td>
+                                <td>10</td>
+                                <td><span class="badge badge-success">S</span><span class="badge badge-success">M</span><span class="badge badge-success">T</span><span class="badge badge-success">W</span><span class="badge badge-success">T</span><span class="badge badge-success">S</span><span class="badge badge-success">F</span><span class="badge badge-success">S</span></td>
+                                <td><button type="button" class="btn btn-success">ON</button></td>
+                            </tr>
+                            <tr>
+                                <td>ENE01266</td>
+                                <td>29</td>
+                                <td>31</td>
+                                <td>24</td>
+                                <td>16</td>
+                                <td>7</td>
+                                <td>16</td>
+                                <td>10</td>
+                                <td><span class="badge badge-success">S</span><span class="badge badge-success">M</span><span class="badge badge-success">T</span><span class="badge badge-success">W</span><span class="badge badge-success">T</span><span class="badge badge-success">S</span><span class="badge badge-success">F</span><span class="badge badge-success">S</span></td>
+                                <td><button type="button" class="btn btn-success">ON</button></td>
+                            </tr>
+                            <tr>
+                                <td>ENE01266</td>
+                                <td>29</td>
+                                <td>31</td>
+                                <td>24</td>
+                                <td>16</td>
+                                <td>7</td>
+                                <td>16</td>
+                                <td>10</td>
+                                <td><span class="badge badge-success">S</span><span class="badge badge-success">M</span><span class="badge badge-success">T</span><span class="badge badge-success">W</span><span class="badge badge-success">T</span><span class="badge badge-success">S</span><span class="badge badge-success">F</span><span class="badge badge-success">S</span></td>
+                                <td><button type="button" class="btn btn-success">ON</button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /table header styling -->
+        </div>
+
+    </div>
+
+</div>
+        <!-- /content area -->
+
+        @section scripts {
+
+
+            <script src="~/ViewJs/DeshBoard/Deshboard.js?@DateTime.Now.Ticks"></script>
+            @*<script>
+                    Highcharts.chart('container123', {
+                        chart: {
+                            type: 'pie',
+                            options3d: {
+                                enabled: true,
+                                alpha: 45,
+                                beta: 0
+                            }
+                        },
+                        title: {
+                            text: 'Alerts Dashboard'
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: '%'
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                depth: 35,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}'
+                                }
+                            }
+                        },
+                        series: [{
+                            type: 'pie',
+                            name: 'Share',
+                            data: [
+
+                                {
+                                    name: 'Low',
+                                    y: 12,
+                                    sliced: true,
+                                    selected: true
+                                },
+                                ['High', 9],
+                                ['Medium', 8]
+                            ]
+                        }]
+                    });
+                </script>*@
+        }
+

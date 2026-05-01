@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "ElectricalHealth";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Electrical Health</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">Electrical Health</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="order-2 order-md-1"></div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+            ELECTRICAL HEALTH (Average)
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+        <div class="col-xl-3">
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Power Factor</td>
+
+                        </tr>
+                        <tr>
+                            <td>Voltage(R)</td>
+
+                        </tr>
+                        <tr>
+                            <td>Voltage(Y)</td>
+
+                        </tr>
+                        <tr>
+                            <td>Voltage(B)</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-xl-9">
+
+            <div class="table-responsive">
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+                            @*<th>Hrly</th>*@
+                            <th>Current Day</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @*<td id="PowPreviousHR">0</td>*@
+                            <td id="PowToday">0</td>
+
+                        </tr>
+                        <tr>
+                            @*<td id="VolPreviousHR">0</td>*@
+                            <td id="VolToday">0</td>
+
+                        </tr>
+                        <tr>
+                            @*<td id="VolYPreviousHR">0</td>*@
+                            <td id="VolYToday">0</td>
+
+                        </tr>
+                        <tr>
+                            @*<td id="VolBPreviousHR">0</td>*@
+                            <td id="VolBToday">0</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+        ELECTRICALHEALTHAverage();
+        
+    });
+    function ELECTRICALHEALTHAverage() {
+
+        $.ajax({
+            type: "post",
+            url: "/Deshboard/ELECTRICALHEALTHAverage",
+            data: {},
+            datatype: "json",
+            //traditional: true,
+            success: function (data) {
+                var myJSON = JSON.parse(data);
+                if (myJSON.length > 0) {
+                    // $("#PowPreviousHR").empty();
+                    $("#PowToday").empty();
+                    // $("#VolPreviousHR").empty();
+                    $("#VolToday").empty();
+                    // $("#VolYPreviousHR").empty();
+                    $("#VolYToday").empty();
+                    // $("#VolBPreviousHR").empty();
+                    $("#VolBToday").empty();
+
+                    // $("#PowPreviousHR").append(myJSON[0].PowPreviousHR);
+                    $("#PowToday").append(myJSON[0].PowToday);
+                    //$("#VolPreviousHR").append(myJSON[0].VolPreviousHR);
+                    $("#VolToday").append(myJSON[0].VolToday);
+                    //$("#VolYPreviousHR").append(myJSON[0].VolYPreviousHR);
+                    $("#VolYToday").append(myJSON[0].VolYToday);
+                    //$("#VolBPreviousHR").append(myJSON[0].VolBPreviousHR);
+                    $("#VolBToday").append(myJSON[0].VolBToday);
+
+
+                }
+
+            }
+        });
+
+    }
+</script>
+}

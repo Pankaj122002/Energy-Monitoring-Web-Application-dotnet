@@ -1,0 +1,429 @@
+﻿
+@{
+    ViewData["Title"] = "RealHVAC";
+}
+
+
+<style>
+    .rcorners2 {
+        border-radius: 50%;
+        border: 5px solid #73AD21;
+        padding: 30px;
+        color: #73AD21;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Thermal Monitoring - HVAC</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">Thermal Monitoring - HVAC</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="order-2 order-md-1"></div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+            Thermal Monitoring - HVAC - Avg
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3">
+
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HVAC Unit 1 Near Entrance</td>
+
+                        </tr>
+                        <tr>
+                            <td>HVAC Unit 2 Opposite Entrance</td>
+
+                        </tr>
+                        <tr>
+                            <td>HVAC Unit 3 Near Window</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9">
+
+            <div class="table-responsive">
+                <table id="tlb" class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+                            <th>Hrly</th>
+                            <th>Current Day</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Show values -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Thermal Monitoring - HVAC</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="container"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /show values -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Show values -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Thermal Monitoring - HVAC</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="container3"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /show values -->
+        </div>
+    </div>
+
+
+</div>
+<!-- /content area -->
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+           
+            GetDataTableData();
+
+        });
+
+        function GetDataTableData() {
+
+            $.ajax({
+                type: "post",
+                url: "/Deshboard/ThermalMonitoringHVACAvg?devicetype=4",
+                data: {},
+                datatype: "json",
+                //traditional: true,
+                success: function (data) {
+
+                    var myJSON = JSON.parse(data);
+                    for (var i = 0; i < myJSON.length; i++) {
+                        if (myJSON[i].asset == 'Dining - HVAC Unit 1 - Near Entrance') {
+                            txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                        }
+
+                        else if (myJSON[i].asset == 'Dining - HVAC Unit 2 - Opp Entrance') {
+                            txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                        }
+                        else if (myJSON[i].asset == 'Dining - HVAC Unit 3 - Near Window') {
+                            txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                        }
+                        $('#tlb tbody').append(txtrow);
+                    }
+
+                  
+                }
+            });
+
+        };
+        var time = [];
+        var ac11 = [];
+        var AC1C = 0;
+        var seriesArray = [];
+        var time1 = [];
+        var time2 = [];
+        var time3 = [];
+        var ac111 = [];
+        var ac112 = [];
+        var ac113 = [];
+        var AC1C1 = 0;
+        var seriesArray1 = [];
+        var seriesArray2 = [];
+        var seriesArray3 = [];
+
+        $.ajax({
+            type: "POST",
+            // contentType: "application/json; charset=utf-8",
+            url: '/Deshboard/GetAllTimeForChart',
+            data: { DeviceType: 4 },
+            //  dataType: "json",
+            success: function (data) {
+
+                var myJSON = JSON.parse(data.Time);
+                for (i = 0; i < myJSON.length; i++) {
+                    time.push(myJSON[i].TTime);
+
+                }
+
+                var a1 = JSON.parse(data.ac1);
+                //debugger;
+                for (i = 0; i < a1.length; i++) {
+
+                    var device = a1[i].Name;
+
+                    var nameArr = a1[i].Temp_in_degree.split(',')
+                    //for (i = 0; i < nameArr.length; i++) {
+                    //    ac11.push(parseInt(nameArr[i]));
+
+                    //}
+
+                    const arrOfNum = nameArr.map(str => Number(str));
+                    // alert(JSON.stringify(arrOfNum));
+
+                    temp = { name: device, data: arrOfNum }
+                    seriesArray.push(temp);
+                    nameArr = '';
+                    ac11 = [];
+
+                }
+
+                // alert(JSON.stringify(seriesArray));
+
+
+
+
+
+
+                //alert(a1.length - 1);
+                // alert(JSON.stringify(ac11[2]));
+                Highcharts.chart('container', {
+
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+
+                        categories: time, //['00:01', '00:12', '00:22', '00:32', '00:42', '00:52', '00:60', '13:23', '13:33', '13:43', '13:53'],
+                        tickmarkPlacement: 'on',
+                        title: {
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Temperature (°C)'
+                        },
+                        labels: {
+                            formatter: function () {
+                                return this.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                        valueSuffix: ' '
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
+                            lineWidth: 1,
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
+                        }
+                    },
+                    series: seriesArray
+                    //series: [{
+                    //    name: 'AC1',
+                    //    data: ac11
+                    //}
+                    //    , {
+                    //        name: 'AC2',
+                    //        data: [34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 44, 10, 30, 10]
+                    //    }, {
+                    //        name: 'AC3',
+                    //        data: [34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 44, 10, 30, 10]
+                    //    }]
+
+                });
+            }
+
+        });
+        $.ajax({
+            type: "POST",
+            // contentType: "application/json; charset=utf-8",
+            url: '/Deshboard/GetAllTimeForChart',
+            data: { DeviceType: 7 },
+            //  dataType: "json",
+            success: function (data) {
+
+                var myJSON = JSON.parse(data.Time);
+                for (i = 0; i < myJSON.length; i++) {
+                    time2.push(myJSON[i].TTime);
+
+                }
+
+                var a1 = JSON.parse(data.ac1);
+                //debugger;
+                for (i = 0; i < a1.length; i++) {
+
+                    var device = a1[i].Name;
+
+                    var nameArr = a1[i].Temp_in_degree.split(',')
+                    //for (i = 0; i < nameArr.length; i++) {
+                    //    ac11.push(parseInt(nameArr[i]));
+
+                    //}
+
+                    const arrOfNum = nameArr.map(str => Number(str));
+                    // alert(JSON.stringify(arrOfNum));
+
+                    temp2 = { name: device, data: arrOfNum }
+                    seriesArray2.push(temp2);
+                    nameArr = '';
+                    ac112 = [];
+
+                }
+
+                // alert(JSON.stringify(seriesArray2));
+
+
+
+
+
+
+                //alert(a1.length - 1);
+                // alert(JSON.stringify(ac11[2]));
+                Highcharts.chart('container3', {
+
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+
+                        categories: time2, //['00:01', '00:12', '00:22', '00:32', '00:42', '00:52', '00:60', '13:23', '13:33', '13:43', '13:53'],
+                        tickmarkPlacement: 'on',
+                        title: {
+                            enabled: false
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Temperature (°C)'
+                        },
+                        labels: {
+                            formatter: function () {
+                                return this.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                        valueSuffix: ' '
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
+                            lineWidth: 1,
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
+                        }
+                    },
+                    series: seriesArray2
+                    //series: [{
+                    //    name: 'AC1',
+                    //    data: ac11
+                    //}
+                    //    , {
+                    //        name: 'AC2',
+                    //        data: [34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 44, 10, 30, 10]
+                    //    }, {
+                    //        name: 'AC3',
+                    //        data: [34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 34, 12, 34, 44, 10, 30, 10, 44, 10, 30, 10]
+                    //    }]
+
+                });
+
+            }
+
+        });
+
+    </script>
+}
+

@@ -1,0 +1,636 @@
+﻿
+@{
+    ViewData["Title"] = "RealMeter";
+}
+
+
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Real Time Energy Details</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">Real Time Energy Details</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="d-flex align-items-start flex-column flex-md-row">
+        <div class="w-100 overflow-auto order-2 order-md-1">
+            <!-- /pie and donut -->
+
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">
+                        Energy Consumption (Average)
+                    </h5>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+
+                        <div class="col-sm-1 col-xl-6">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 id="PreviousHR" class="mb-0">0</h4>
+                                        <span class="text-muted">Previous hr</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1 col-xl-6">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill text-center">
+                                        <h4 class="mb-0" id="Today">0</h4>
+                                        <span class="text-muted">Today </span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Donut multiples -->
+            <!-- Show values -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-tachometer-alt mr-3 fa-2x"></i>Energy Meter Details</h5>
+                    <select id="devi"></select>
+                    <select class="selectBox" id="selectMetersPara"></select>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="container4"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Actual KWH And KAVH Hourly</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="columns_basic"> </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Right sidebar component -->
+        <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
+
+            <!-- Sidebar content -->
+            <div class="sidebar-content">
+
+
+                <!-- Filters -->
+                <div class="card">
+                    <div class="card-header bg-transparent header-elements-inline">
+                        <span class="text-uppercase font-size-sm font-weight-semibold">Trend Filters</span>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        
+
+
+                            <div class="form-group">
+                                <div class="font-size-xs text-uppercase text-muted mb-3">
+                                    Energy
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_posted" value="Live" class="form-input-styled" data-fouc checked>
+                                        Live Energy Consumption
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_posted" value="Actual" class="form-input-styled" data-fouc>
+                                        Actual Energy Consumption - KWH vs KVAH vs Cost
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_posted" value="Avg" class="form-input-styled" data-fouc>
+                                        Hrly Avg Energy Consumption - KWH vs KVAH vs Cost
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_posted" value="Mains" class="form-input-styled" data-fouc>
+                                        Mains
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="font-size-xs text-uppercase text-muted mb-3 form-check"><input type="radio" name="when_menu" value="ASSETS" class="form-input-styled" data-fouc><b>Assets</b></div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="1002" class="form-input-styled cek-Assets" data-fouc>
+                                        DG
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="1004" class="form-input-styled cek-Assets" data-fouc>
+                                        Light
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="1005" class="form-input-styled cek-Assets" data-fouc>
+                                        Fresh Air - Exhaust
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="1003" class="form-input-styled cek-Assets" data-fouc>
+                                        HVAC
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="1007" class="form-input-styled cek-Assets" data-fouc>
+                                        Refrigeration
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" value="1007" class="form-input-styled cek-Assets" data-fouc>
+                                        Non-Refrigeration-Oven
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label"> 
+                                        <input type="checkbox" class="form-input-styled cek-Assets" data-fouc>
+                                        Oven
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="font-size-xs text-uppercase text-muted mb-3 form-check"><input type="radio" name="when_menu" value="Ops" class="form-input-styled" data-fouc><b>Ops Window</b></div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_OPS_WINDOW_menu" value="All" class="form-input-styled" data-fouc>
+                                        All
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="font-size-xs text-uppercase text-muted mb-3 form-check"><input type="radio" name="when_OPS_WINDOW_menu" class="form-input-styled" value="OpsWindow" data-fouc>Ops Window</div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Store Setup" data-fouc>
+                                        Crew Setup
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Pre Lunch" data-fouc>
+                                        Pre Lunch
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Peak Lunch" data-fouc>
+                                        Peak Lunch
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Post Lunch" data-fouc>
+                                        Post Lunch
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Peak Dinner" data-fouc>
+                                        Peak Dinner
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Store Shutdown" data-fouc>
+                                        Crew Shutdown
+                                    </label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="font-size-xs text-uppercase text-muted mb-3 form-check"><input type="radio" value="NonOps" name="when_OPS_WINDOW_menu" class="form-input-styled" data-fouc>Non-Ops Window</div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled ops-check" value="Current Day No Ops" data-fouc>
+                                        No Operations
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="font-size-xs text-uppercase text-muted mb-3 form-check"><input type="radio" name="when_menu" class="form-input-styled" data-fouc>Ops Window and Assets</div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_OPS_WINDOW_Asset_menu" class="form-input-styled" data-fouc>
+                                        All
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_OPS_WINDOW_Asset_menu" class="form-input-styled" data-fouc>
+                                        Ops Window
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Crew Setup
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Pre Lunch
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Peak Lunch
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Post Lunch
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Peak Dinner
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Crew Shutdown
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_OPS_WINDOW_Asset_menu" class="form-input-styled" data-fouc>
+                                        Non-Ops Window
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        No Operations
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" name="when_OPS_WINDOW_Asset_menu" class="form-input-styled" data-fouc>
+                                        Assets
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        DG
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Light
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Fresh Air - Exhaust
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        HVAC
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Refrigeration
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Non-Refrigeration-Oven
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-input-styled" data-fouc>
+                                        Oven
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" id="Filter" class="btn bg-blue btn-block"><i class="icon-filter4 mr-2"></i>Filter</button>
+                     
+                    </div>
+                </div>
+                <!-- /filters -->
+
+            </div>
+            <!-- /sidebar content -->
+
+        </div>
+        <!-- /right sidebar component -->
+    </div>
+
+
+</div>
+
+<!-- /content area -->
+
+@section scripts {
+    <script src="~/global_assets/js/plugins/extensions/jquery_ui/core.min.js"></script>
+    <script src="~/global_assets/js/plugins/extensions/jquery_ui/effects.min.js"></script>
+    <script src="~/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
+    <script src="~/global_assets/js/plugins/extensions/cookie.js"></script>
+    <script src="/global_assets/js/demo_pages/ecommerce_product_list.js"></script>
+    
+    <script src="~/global_assets/js/demo_pages/extra_trees.js"></script>
+    <script src="~/ViewJs/DeshBoard/Deshboard.js?@DateTime.Now.Ticks"></script>
+    <script src="~/ViewJs/DeshBoard/RealMeter.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            EnergyConsumptionAverage();
+
+        });
+        function EnergyConsumptionAverage() {
+
+            $.ajax({
+                type: "post",
+                url: "/Deshboard/EnergyConsumptionAverage",
+                data: {},
+                datatype: "json",
+                //traditional: true,
+                success: function (data) {
+                    var myJSON = JSON.parse(data);
+                    if (myJSON.length > 0) {
+
+                        $("#Today").empty();
+                        $("#PreviousHR").empty();
+
+
+                        $("#PreviousHR").append(myJSON[0].PreviousHR);
+                        $("#Today").append(myJSON[0].Today);
+
+
+                    }
+
+                }
+            });
+
+        }
+
+        var timemetre = [];
+        var datametr = [];
+
+        $.ajax({
+            type: "POST",
+            // contentType: "application/json; charset=utf-8",
+            url: '/Deshboard/GetallmeterdetailsbymeternameChart',
+            data: { Device: 1001, Per: "p15" },
+            //  dataType: "json",
+            success: function (data) {
+
+                var myJSON = JSON.parse(data);
+                for (i = 0; i < myJSON.length; i++) {
+                    timemetre.push(myJSON[i].TTime);
+                    datametr.push(parseInt(myJSON[i].P));
+
+                }
+
+                //alert(JSON.stringify(datametr));
+
+
+                Highcharts.chart('container4', {
+                    chart: {
+                        type: 'areaspline',
+                        zoomType: 'x'
+                    },
+
+                    rangeSelector: {
+                        buttons: [{
+                            text: '+',
+                            events: {
+                                click() {
+                                    /* const xAxis = chart.xAxis[0];
+                                    xAxis.setExtremes(Date.UTC(2000, 11, 30), Date.UTC(2001, 11, 30)); */
+                                    return false
+                                }
+                            }
+                        }, {
+                            text: '-',
+                            events: {
+                                click() {
+                                    return false
+                                }
+                            }
+
+                        }]
+                    },
+                    title: {
+                        text: 'Main-Energy'
+                    },
+                    subtitle: {
+                        text: 'total_pow(KW)'
+                    },
+                    xAxis: {
+                        categories: timemetre //['00:01', '00:12', '00:22', '00:32', '00:42', '00:52', '00:60', '13:23', '13:33', '13:43', '13:53', '14:05']
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    series: [{
+                        name: 'total_pow(KW)',
+                        data: datametr //[16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
+                        //22.0, 17.8]
+                    }]
+                });
+
+            }
+        });
+
+        $("#selectMetersPara").change(function () {
+            timemetre = [];
+            datametr = [];
+            $.ajax({
+                type: "POST",
+                // contentType: "application/json; charset=utf-8",
+                url: '/Deshboard/GetallmeterdetailsbymeternameChart',
+                data: { Device: $("#devi").val(), Per: $("#selectMetersPara").val() },
+                //  dataType: "json",
+                success: function (data) {
+
+                    var myJSON = JSON.parse(data);
+                    for (i = 0; i < myJSON.length; i++) {
+                        timemetre.push(myJSON[i].TTime);
+                        datametr.push(parseInt(myJSON[i].P));
+
+                    }
+
+                    // alert(JSON.stringify(datametr));
+
+
+                    Highcharts.chart('container4', {
+                        chart: {
+                            type: 'areaspline'
+                        },
+                        title: {
+                            text: $("#devi option:selected").text()
+                        },
+                        subtitle: {
+                            text: $("#selectMetersPara option:selected").text()
+                        },
+                        xAxis: {
+                            categories: timemetre //['00:01', '00:12', '00:22', '00:32', '00:42', '00:52', '00:60', '13:23', '13:33', '13:43', '13:53', '14:05']
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+                        },
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        },
+                        series: [{
+                            name: $("#selectMetersPara option:selected").text(),
+                            data: datametr //[16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
+                            //22.0, 17.8]
+                        }]
+                    });
+
+                }
+            });
+
+
+        })
+
+    </script>
+}
+

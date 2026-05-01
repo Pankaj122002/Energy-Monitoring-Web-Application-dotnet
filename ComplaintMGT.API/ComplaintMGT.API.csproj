@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DAL\**" />
+    <Compile Remove="HELPERS\**" />
+    <Compile Remove="INTERFACE\**" />
+    <Compile Remove="REPOSITORY\**" />
+    <Compile Remove="SERVICES\**" />
+    <Content Remove="DAL\**" />
+    <Content Remove="HELPERS\**" />
+    <Content Remove="INTERFACE\**" />
+    <Content Remove="REPOSITORY\**" />
+    <Content Remove="SERVICES\**" />
+    <EmbeddedResource Remove="DAL\**" />
+    <EmbeddedResource Remove="HELPERS\**" />
+    <EmbeddedResource Remove="INTERFACE\**" />
+    <EmbeddedResource Remove="REPOSITORY\**" />
+    <EmbeddedResource Remove="SERVICES\**" />
+    <None Remove="DAL\**" />
+    <None Remove="HELPERS\**" />
+    <None Remove="INTERFACE\**" />
+    <None Remove="REPOSITORY\**" />
+    <None Remove="SERVICES\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\MapView.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JWT" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ComplaintMGT.Abstractions\ComplaintMGT.Abstractions.csproj" />
+    <ProjectReference Include="..\ComplaintMGT.Bootstrapper\ComplaintMGT.Bootstrapper.csproj" />
+    <ProjectReference Include="..\ComplaintMTG.Core\ComplaintMTG.Core.csproj" />
+    <ProjectReference Include="..\CompliantMGT.Scheduler\CompliantMGT.Scheduler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logger\" />
+  </ItemGroup>
+
+
+</Project>

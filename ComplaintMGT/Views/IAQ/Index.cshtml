@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "IAQ Dashboard";
+    Layout = "_LayoutNew";
+}
+
+<style type="text/css">
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Hide scrollbar from body */
+        height: 100%;
+    }
+
+    iframe {
+        width: 100vw; /* Full width of viewport */
+        height: 100vh; /* Full height of viewport */
+        border: none; /* Remove iframe border */
+        transform: scale(0.8);
+        margin-top: -18%;
+        margin-left: -10%;
+    }
+</style>
+
+<div class="main-box" style="background-color: white;width: 100%;padding-left: 15.5%;overflow: hidden;">
+    <iframe src="http://uat.syncotics.com/" frameborder="0"></iframe>
+</div>

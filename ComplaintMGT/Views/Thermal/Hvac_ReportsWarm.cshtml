@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "ThermalHVACReport - Warm";
+    Layout = "_LayoutNew";
+}
+
+<link rel="stylesheet" href="~/v2.0/thermal/hvac_trends/hot/Thermalhot.css" />
+<link rel="stylesheet" href="~/V2.0/Thermal/HVAC_Reports/css/reports.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
+
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <img class="energy-header" src="~/images/Energy assets/Thermal Banner.png" alt="">
+    </div>
+
+    <div class="navigation-box2">
+        <div class="trends-box">
+            <div class="box1">
+                <button class="trends">Reports</button>
+                <div class="trends-nav">
+                    <a href="/Thermal/Hvac_ReportsHot">Hot</a>
+                    <a href="/Thermal/Hvac_ReportsWarm" id="first">Warm</a>
+                    <a href="/Thermal/Hvac_ReportsCold">Cold</a>
+                </div>
+            </div>
+            <div class="report">
+                <a href="/Thermal/HVAC_TrendsHot"><button class="report-button">Trends</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-box">
+        <div id="flowBoxes">
+        </div>
+    </div>
+
+
+    <div class="content-box">
+
+        <div class="content-box3">
+
+            <div class="consumption-box3">
+                <div class="graph-box">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" style="background-color:black;" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="change-class">
+
+                                    <table id="hvacreport" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Site Name</th>
+                                                <th>Asset Name</th>
+                                                <th>Transaction Date</th>
+                                                <th>Templerature (°C)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="hvacreport-body">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="change-class">
+
+                                    <table id="hvacreport_2" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Site Name</th>
+                                                <th>Asset Name</th>
+                                                <th>Transaction Hour</th>
+                                                <th>Templerature (°C)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="hvacreport-body_2">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Hrly Avg Thermal Monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="change-class">
+
+                                    <table id="hvacreport_3" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Site Name</th>
+                                                <th>Asset Name</th>
+                                                <th>Transaction Time</th>
+                                                <th>Templerature (°C)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="hvacreport-body_3">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="30000">
+                                <div class="img1-header" style="margin-bottom: 3%">
+                                    <div class="icon-h">
+                                        <a href="#" style="text-decoration: none;"><img src="~/images/Energy assets/Icons/13.png" alt="" class="icon"></a>
+                                        <div class="img1-button" style="display: block;" id="h1">Thermal Profile</div>
+                                    </div>
+                                </div>
+                                <div class="change-class">
+
+                                    <table id="hvacreport_4" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Site Name</th>
+                                                <th>Asset Name</th>
+                                                <th>Transaction Date</th>
+                                                <th>Templerature (°C)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="hvacreport-body_4">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @* <div class="report-table-div">
+        <table id="hvacreport" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Site Name</th>
+                    <th>Asset Name</th>
+                    <th>Transaction Date</th>
+                    <th>Templerature (°C)</th>
+                </tr>
+            </thead>
+            <tbody id="hvacreport-body">
+            </tbody>
+
+        </table>
+
+    </div> *@
+</div>
+
+<script src="~/V2.0/Thermal/HVAC_Reports/js/Warm/hvac_report.js"></script>
+
+@* <script src="~/v2.0/thermal/hvac_trends/hot/thermalhvactrends.js"></script>
+<script src="~/V2.0/Thermal/HVAC_Trends/Hot/Hot.js"></script> *@

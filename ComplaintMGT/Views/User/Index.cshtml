@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "All User";
+}
+
+
+<div class="content pt-0">
+
+    <!-- Page header -->
+    <div class="page-header border-bottom-0">
+        <div class="page-header-content header-elements-md-inline">
+            <div class="page-title d-flex">
+                <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Users</span></h4>
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+            <div class="d-flex">
+                <div class="breadcrumb">
+                    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+                    <span class="breadcrumb-item active">Admin Task</span>
+                    <span class="breadcrumb-item active">Master</span>
+                    <span class="breadcrumb-item active">Users</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <div class="page-title d-flex">
+                <h4> <span class="font-weight-semibold">All User </span> </h4>&nbsp;
+                <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnAdd" loginid="" cid="" onclick="CallFunc(this);">
+                    <i class="icon-add"></i> Add New
+                </button>
+            </div>
+
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="reload"></a>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            <div class="dataTables_wrapper no-footer">
+
+                <div class="datatable-scroll-wrap">
+
+                    <table class="table table-striped media-library" id="example">
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Customar Name</th>
+                                <th>Name</th>
+                                <th>User Name</th>
+                                <th>Role</th>
+                                <th>Email </th>
+                                <th>Mobile</th>
+                                <th>Last Active on</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Vertical form modal -->
+<div id="modal_form_vertical" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form class="form-validate-jquery" autocomplete="off" onsubmit="return Formsubmit();" name="registration">
+            <div id="user_content">
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- /vertical form modal -->
+@section scripts {
+    <script src="~/ViewJs/UserAccount/UserAccount.js?@DateTime.Now.Ticks"></script>
+    <script src="~/global_assets/js/demo_pages/gallery_library.js"></script>
+}

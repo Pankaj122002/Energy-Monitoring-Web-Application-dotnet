@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewData["Title"] = "RealEquipments";
+}
+
+
+<style>
+    .rcorners2 {
+        border-radius: 50%;
+        border: 5px solid #73AD21;
+        padding: 30px;
+        color: #73AD21;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Thermal Monitoring - HVAC</span> </h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+
+                    <span class="breadcrumb-item active">Thermal Monitoring - HVAC</span>
+                </div>
+
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="order-2 order-md-1"></div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+            Thermal Monitoring - KKitchen Assets - Avg
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3">
+
+
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Deep Freezer-Veg</td>
+
+                        </tr>
+                        <tr>
+                            <td>Deep Freezer - Non Veg</td>
+
+                        </tr>
+                        <tr>
+                            <td>Deep Freezer - Ice Cream</td>
+
+                        </tr>
+                        <tr>
+                            <td>Vertical Fridge-Veg</td>
+
+                        </tr>
+                        <tr>
+                            <td>Vertical Fridge - Non veg</td>
+
+                        </tr>
+                        <tr>
+                            <td>Vertical Chiller-Near Under Counter</td>
+
+                        </tr>
+                        <tr>
+                            <td>MakeLine</td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                Oven
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9">
+
+            <div id="tlb" class="table-responsive">
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+                            <th>Hrly</th>
+                            <th>Current Day</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <h6 class="mb-0">
+        </h6>
+        @*<span class="text-muted">Boxes with icons</span>*@
+    </div>
+    <div class="row">
+
+        <div class="col-xl-12">
+            <!-- Show values -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Thermal Monitoring - Kitchen Equipments</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="container1"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /show values -->
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xl-12">
+            <!-- Show values -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"><i class="fas fa-thermometer-quarter mr-3 fa-2x"></i>Thermal Monitoring - Kitchen Equipments</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart has-fixed-height" id="container2"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /show values -->
+        </div>
+
+    </div>
+
+</div>
+<!-- /content area -->
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+
+        GetDataTableData();
+
+    });
+
+    function GetDataTableData() {
+
+        $.ajax({
+            type: "post",
+            url: "/Deshboard/ThermalMonitoringHVACAvg?devicetype=5,8",
+            data: {},
+            datatype: "json",
+            //traditional: true,
+            success: function (data) {
+
+                var myJSON = JSON.parse(data);
+                for (var i = 0; i < myJSON.length; i++) {
+                    if (myJSON[i].asset == 'Deep Freezer Veg') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+
+                    else if (myJSON[i].asset == 'Deep Freezer Non Veg') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    else if (myJSON[i].asset == 'Deep Freezer Ice Cream') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    else if (myJSON[i].asset == 'Vertical fridge - veg') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    else if (myJSON[i].asset == 'Vertical fridge -Non veg') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    else if (myJSON[i].asset == 'Vertical chiller - 1 Near under counter') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    else if (myJSON[i].asset == 'Makeline') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    else if (myJSON[i].asset == 'Oven') {
+                        txtrow = '<tr><td>' + myJSON[i].Hrly + '</td><td>' + myJSON[i].CurrentDay + '</td></tr>';
+                    }
+                    $('#tlb tbody').append(txtrow);
+                }
+
+
+            }
+        });
+
+    };
+</script>
+    <script src="~/js/Chart.js"></script>
+}
+

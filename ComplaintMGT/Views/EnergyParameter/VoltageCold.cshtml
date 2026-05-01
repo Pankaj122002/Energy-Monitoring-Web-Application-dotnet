@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Voltage- Cold";
+    Layout = "_LayoutNew";
+}
+
+<link href="~/v2.0/VoltageCold/VoltageCold.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/VoltageHot" style="text-decoration: none;"><div class="step-counter hot">Hot</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/VoltageWarm" style="text-decoration: none;"><div class="step-counter warm">Warm</div></a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/VoltageCold" style="text-decoration: none;"><div class="step-counter cold active">Cold<span class="material-symbols-outlined" id="check">check_circle</span></div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- VOLTAGE CIRCLES SECTION - ALL DEVICES -->
+    <section class="voltage-circles">
+        <h3>
+            <img src="../images/Energy assets/Icons/voltage.png" class="icon-box" /> Voltage - Real-time
+        </h3>
+        <div class="voltage-grid" id="voltage-grid-1">
+            <!-- Dynamic circles will be inserted here by JS -->
+        </div>
+        <div class="voltage-grid" id="voltage-grid-2">
+            <!-- Overflow circles will be inserted here by JS -->
+        </div>
+    </section>
+
+    <!-- HIGH VOLTAGE SECTION - ONLY VOLTAGE > 240 -->
+    <section class="voltage-circles high-voltage-section">
+        <h3>
+            <img src="../images/Energy assets/Icons/voltage.png" class="icon-box" /> Average High Voltage (> 240V) - Last 3 Months
+        </h3>
+        <div class="voltage-grid" id="high-voltage-grid">
+            <!-- High voltage circles will be inserted here by JS -->
+        </div>
+        <div id="no-high-voltage-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+            No devices with high voltage detected.
+        </div>
+    </section>
+
+    <!-- LOW VOLTAGE SECTION - ONLY VOLTAGE < 220 -->
+    <section class="voltage-circles low-voltage-section">
+        <h3>
+            <img src="../images/Energy assets/Icons/voltage.png" class="icon-box" /> Average Low Voltage (< 220V) - Last 3 Months
+        </h3>
+        <div class="voltage-grid" id="low-voltage-grid">
+            <!-- Low voltage circles will be inserted here by JS -->
+        </div>
+        <div id="no-low-voltage-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+            No devices with low voltage detected.
+        </div>
+    </section>
+
+    <!-- AVERAGE VOLTAGE BAR CHART SECTION - SINGLE COMBINED CHART -->
+    <section class="chart-section avg-voltage-section">
+        <div class="chart-card full-width-chart">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="../images/Energy assets/Icons/voltage.png" />
+                </div>
+                Average Voltage (Weekly) 
+            </div>
+            <div id="chart-avg-voltage"></div>
+            <div class="legend-footer">
+                 Month Wise
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTUAL VOLTAGE CHART SECTIONS - UNCHANGED -->
+    <section class="chart-section second-chart">
+        <div class="chart-card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="../images/Energy assets/Icons/voltage.png" />
+                </div>
+                Actual Voltage (Previous HR)
+            </div>
+
+            <div id="chart-prev2"></div>
+            <div class="legend-footer">
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="../images/Energy assets/Icons/voltage.png" />
+                </div>
+                Actual Voltage (Today)
+            </div>
+
+            <div id="chart-today2"></div>
+            <div class="legend-footer">
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/v2.0/VoltageCold/VoltageCold.js"></script>

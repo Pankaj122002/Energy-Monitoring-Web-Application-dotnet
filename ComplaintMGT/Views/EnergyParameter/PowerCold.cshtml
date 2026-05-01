@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Power Cold";
+    Layout = "_LayoutNew";
+}
+<link href="~/v2.0/powercold/css/power.css" rel="stylesheet" />
+<link href="~/v2.0/powercold/css/dHeader.css" rel="stylesheet" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+<div class="main-box">
+    <!-- ===================== BANNER / HEADER ===================== -->
+    <div class="header-image">
+        <div class="energy-header">
+            <div class="navigation-box">
+                <div class="stepper-wrapper">
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/Power" style="text-decoration: none;">
+                            <div class="step-counter hot">Hot</div>
+                        </a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/PowerWarm" style="text-decoration: none;">
+                            <div class="step-counter warm">Warm</div>
+                        </a>
+                    </div>
+                    <div class="stepper-item">
+                        <a href="/EnergyParameter/PowerCold" style="text-decoration: none;">
+                            <div class="step-counter active cold">Cold<span class="material-symbols-outlined" id="check">check_circle</span></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="report">
+                <a href="#"><button class="report-button">Trends & Reports</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== POWER – REAL-TIME CIRCLES ===================== -->
+    <section class="power-circles">
+        <h3>
+            <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+            Power - Real-time
+        </h3>
+        <div class="power-grid" id="power-grid-1"></div>
+        <div class="power-grid" id="power-grid-2" style="margin-top: 80px;"></div>
+    </section>
+
+    <!-- ===================== PIE CHART – POWER DISTRIBUTION ===================== -->
+    <div class="row3">
+        <div class="row3_a">
+            <div class="pie_container">
+                <h3 class="pie-heading">
+                    <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+                    Power Distribution - Real-Time
+                </h3>
+                <div class="chart-container" id="pie_graph"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== HIGH POWER SECTION ===================== -->
+    <section class="power-circles high-power-section">
+        <h3>
+            <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+            Average High Power - Last 3 Months
+        </h3>
+        <div class="power-grid" id="high-power-grid"></div>
+        <div id="no-high-power-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+            No high power data available.
+        </div>
+    </section>
+
+    <!-- ===================== LOW POWER SECTION ===================== -->
+    <section class="power-circles low-power-section">
+        <h3>
+            <img src="../images/Energy assets/UPS_Health_Monitoring.png" class="icon-box" style="width:45px;height:45px;" />
+            Average Low Power - Last 3 Months
+        </h3>
+        <div class="power-grid" id="low-power-grid"></div>
+        <div id="no-low-power-message" style="text-align: center; padding: 20px; color: #999; display: none;">
+            No low power data available.
+        </div>
+    </section>
+
+    <!-- ===================== OPS SCHEDULE WISE LOAD ===================== -->
+    <section class="ops-schedule-section">
+        <h3>
+            <img src="~/Images/Energy assets/Time_of_day.png" style="width:45px;height:45px;" alt="" />
+            Ops Schedule Wise Load - Last 3 Months
+        </h3>
+        <div class="meter-filter-container" id="ops-device-filter-wrapper" style="display:none;">
+            <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+            <div id="ops-schedule-filter-checkboxes" class="filter-checkboxes"></div>
+        </div>
+        <div id="ops-schedule-grid">
+            <p style="color:#999;padding:10px 0;">Loading...</p>
+        </div>
+    </section>
+
+    <!-- ===================== AVERAGE POWER - WEEKLY (BAR) ===================== -->
+    <section class="chart-section avg-voltage-section">
+        <div class="chart-card full-width-chart">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="~/Images/Energy assets/UPS_Health_Monitoring.png" />
+                </div>
+				Average Power - Last 3 Months (Weekly)
+            </div>
+            <div class="meter-filter-container">
+                <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+                <div id="power-bar-filter-checkboxes" class="filter-checkboxes"></div>
+            </div>
+            <div id="chart-avg-power"></div>
+            <div class="legend-footer">Week No with Month grouping</div>
+        </div>
+    </section>
+
+    <!-- ===================== ACTUAL POWER – BY DATE (LINE) ===================== -->
+    <section class="chart-section actual-power-section">
+        <div class="chart-card full-width-chart">
+            <div class="card-header">
+                <div class="icon-box">
+                    <img src="~/Images/Energy assets/UPS_Health_Monitoring.png" />
+                </div>
+                Actual Power - Last 3 Months
+            </div>
+            <!-- Date filter added for Cold -->
+            <div id="power-date-filter" style="margin-bottom:12px;display:flex;align-items:center;gap:10px;">
+                <label style="font-weight:600;">Filter by Date:</label>
+                <input type="date" id="power-date-picker" style="padding:5px 8px;border:1px solid #ccc;border-radius:4px;" />
+                <span id="power-date-range" style="color:#666;font-size:12px;"></span>
+            </div>
+            <div class="meter-filter-container">
+                <label style="font-weight:600;margin-right:10px;">Filter by Device:</label>
+                <div id="power-actual-filter-checkboxes" class="filter-checkboxes"></div>
+            </div>
+            <div id="chart-actual-power" style="height:280px;width:100%;"></div>
+            <div class="legend-footer">Real-Time Data for Selected Date</div>
+        </div>
+    </section>
+
+</div>
+
+<script src="~/v2.0/PowerCold/power.js"></script>

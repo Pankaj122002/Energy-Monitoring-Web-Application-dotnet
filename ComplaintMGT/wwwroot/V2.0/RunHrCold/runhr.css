@@ -1,0 +1,540 @@
+/* MAIN SECTION */
+
+main {
+    margin-top: 157px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-box {
+    background-color: white;
+    width: 100%;
+    margin-left: 1%;
+    padding-left: 15.5%;
+    overflow: hidden;
+}
+
+.header-image {
+    width: 101vw;
+    height: 317px;
+    overflow: hidden;
+    padding: 0.3px 3% 0 3%;
+    margin-bottom: 5%;
+}
+
+.energy-header {
+    background-image: url("/Images/Energy assets/RunHrs_Banner.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    width: 79vw;
+    height: 315px;
+}
+
+/* NAVIGATION BOX */
+
+.stepper-wrapper {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 40%;
+}
+
+.stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .stepper-item {
+        font-size: 12px;
+    }
+}
+
+.stepper-item::before {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    top: 20px;
+    left: -50%;
+    z-index: 2;
+}
+
+.stepper-item::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 2;
+}
+
+.stepper-item .step-counter {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 500px;
+    background: white;
+    margin-top: 6px;
+    border: 1.46px #908EAD solid;
+    color: #908EAD;
+    font-size: 17.50px;
+    font-weight: 400;
+    line-height: 23.33px;
+    word-wrap: break-word;
+}
+
+/*.step-counter.active {
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    color: #D91616;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}*/
+.step-counter.hot.active {
+    color: #D91616; /* Red - Matches your Hot hover */
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}
+
+.step-counter.warm.active {
+    color: #F4A343; /* Yellow/Orange - Matches your Warm hover */
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}
+
+.step-counter.cold.active {
+    color: #1490D4; /* Blue - Matches your Cold hover */
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}
+  
+.step-counter.warm:hover {
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    color: #F4A343;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}
+
+.step-counter.hot:hover {
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    color: #D91616;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}
+
+.step-counter.cold:hover {
+    width: 110px;
+    height: 45px;
+    font-weight: bold;
+    color: #1490D4;
+    font-size: 20.54px;
+    margin-top: 0%;
+    cursor: pointer;
+}
+
+#check {
+    color: red;
+    padding-top: 5%;
+    padding-left: 5%;
+}
+
+.stepper-item.completed .step-counter {
+    background-color: #4bb543;
+}
+
+.stepper-item.completed::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #4bb543;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 3;
+}
+
+.stepper-item:first-child::before {
+    content: none;
+}
+
+.stepper-item:last-child::after {
+    content: none;
+}
+
+.navigation-box {
+    display: flex;
+    justify-content: end;
+}
+
+.material-symbols-outlined {
+    color: #908EAD;
+    font-size: 19px;
+}
+
+/* REPORT BUTTON */
+
+.report {
+    display: flex;
+    justify-content: end;
+    width: 75%;
+    margin-top: 1%;
+    margin-left: 20%;
+}
+
+.report-button {
+    width: 100%;
+    height: 48.081px;
+    padding-left: 14.42px;
+    padding-right: 14.42px;
+    border-radius: 10.06px;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    border: 0 white;
+    color: white;
+    font-size: 15.48px;
+    font-weight: 400;
+    word-wrap: break-word;
+    font-weight: 600;
+    margin-right: 5%;
+    background: linear-gradient(90deg, rgba(17.64, 203.56, 124.51, 0.70) 0%, rgba(9.26, 131.64, 198.46, 0.70) 100%);
+}
+
+    .report-button:hover {
+        border: 1px solid linear-gradient(90deg, rgba(17.64, 203.56, 124.51, 0.70) 0%, rgba(9.26, 131.64, 198.46, 0.70) 100%);
+        cursor: pointer;
+    }
+
+/* ROW 2: RUNHRS SECTION */
+
+.row2 {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: -4%;
+    margin-bottom: 6.5%;
+    margin-left: 2.5%;
+    min-height: 300px;
+    height: auto;
+    width: 95%;
+}
+
+.row2_a {
+    position: relative;
+    margin-left: 1%;
+    margin-top: 1%;
+    width: 99%;
+    min-height: 300px;
+    height: auto;
+    padding-bottom: 20px;
+    border-radius: 13.612px;
+    background: var(--Main-gohan, #FFF);
+    box-shadow: 0px 1.702px 5.105px 0px rgba(0, 0, 0, 0.25);
+}
+
+.icon-h {
+    width: 85px;
+    height: 85px;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+.img1-button {
+    width: 400%;
+    color: #505050;
+    margin-left: 64%;
+    margin-top: -36%;
+    margin-bottom: -36%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15.216px;
+    font-style: normal;
+    font-weight: 550;
+    line-height: normal;
+}
+
+/* DYNAMIC CONTAINER STYLES */
+
+.ceContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: -40px;
+}
+
+.ceContainer1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 5px 30px 15px 30px;
+    width: 100%;
+}
+
+.ceContainer2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 5px 30px 15px 30px;
+    width: 100%;
+}
+
+.ceContainer3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 5px 30px 15px 30px;
+    width: 100%;
+    margin-top: -40px;
+}
+
+.ceContainer4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 5px 30px 15px 30px;
+    width: 100%;
+    margin-top: -40px;
+}
+
+.ceContainer1a,
+.ceContainer2a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 0 auto;
+    min-width: 140px;
+    width: calc((100% - (5 * 20px)) / 6); /* 6 items per row with 20px gap */
+    max-width: 180px;
+}
+
+.chart-containerCG {
+    height: 18vh;
+    width: 100%;
+    min-width: 130px;
+}
+
+/* ROW 3: BAR CHARTS */
+
+.row3 {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: -6%;
+    margin-bottom: 6.5%;
+    margin-left: 2.5%;
+    height: 580px;
+    width: 95%;
+}
+
+.row3_a {
+    position: relative;
+    margin-left: 1%;
+    margin-top: 1.5%;
+    width: 49%;
+    height: 95%;
+    border-radius: 13.612px;
+    background: var(--Main-gohan, #FFF);
+    box-shadow: 0px 1.702px 5.105px 0px rgba(0, 0, 0, 0.25);
+}
+
+.row3_b {
+    position: absolute;
+    left: 51%;
+    top: 3%;
+    width: 49%;
+    height: 95%;
+    border-radius: 13.612px;
+    background: var(--Main-gohan, #FFF);
+    box-shadow: 0px 1.702px 5.105px 0px rgba(0, 0, 0, 0.25);
+}
+
+.controlA,
+.controlB {
+    position: relative;
+    top: -1rem;
+    height: 100%;
+}
+
+.chart-container_controlA {
+    position: relative;
+    top: 0.5rem;
+    height: 80%;
+    overflow: visible;
+}
+
+.chart-container_controlB {
+    position: relative;
+    top: 0.5rem;
+    height: 80%;
+    overflow: visible;
+}
+
+/* ROW 4: HIGH RUNHRS */
+
+.row4 {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: -6%;
+    margin-bottom: 1.5%;
+    margin-left: 2.5%;
+    min-height: 220px;
+    height: auto;
+    width: 95%;
+}
+
+.row4_c {
+    position: relative;
+    margin-left: 1%;
+    margin-bottom: 1.5%;
+    width: 99%;
+    min-height: 220px;
+    height: auto;
+    padding-bottom: 20px;
+    border-radius: 13.612px;
+    background: var(--Main-gohan, #FFF);
+    box-shadow: 0px 1.702px 5.105px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* ROW 5: LOW RUNHRS */
+
+.row5 {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    margin-top: -1%;
+    margin-bottom: 1.5%;
+    margin-left: 2.5%;
+    min-height: 220px;
+    height: auto;
+    width: 95%;
+}
+
+.row5_c {
+    position: relative;
+    margin-left: 1%;
+    margin-bottom: 1.5%;
+    width: 99%;
+    min-height: 220px;
+    height: auto;
+    padding-bottom: 20px;
+    border-radius: 13.612px;
+    background: var(--Main-gohan, #FFF);
+    box-shadow: 0px 1.702px 5.105px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Large screens: 6 items per row (default above) */
+@media (max-width: 1800px) {
+    .ceContainer1a,
+    .ceContainer2a {
+        width: calc((100% - (4 * 20px)) / 5); /* 5 items per row */
+    }
+}
+
+@media (max-width: 1500px) {
+    .ceContainer1a,
+    .ceContainer2a {
+        width: calc((100% - (3 * 20px)) / 4); /* 4 items per row */
+    }
+
+    .ceContainer1,
+    .ceContainer2,
+    .ceContainer3,
+    .ceContainer4 {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .ceContainer1a,
+    .ceContainer2a {
+        width: calc((100% - (2 * 18px)) / 3); /* 3 items per row */
+    }
+
+    .ceContainer1,
+    .ceContainer2,
+    .ceContainer3,
+    .ceContainer4 {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ceContainer1a,
+    .ceContainer2a {
+        width: calc((100% - (1 * 18px)) / 2); /* 2 items per row */
+    }
+
+    .row3_a,
+    .row3_b {
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+
+    .row3 {
+        height: auto;
+        min-height: 1150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ceContainer1a,
+    .ceContainer2a {
+        width: calc((100% - 18px) / 2); /* 2 items per row */
+    }
+
+    .ceContainer1,
+    .ceContainer2,
+    .ceContainer3,
+    .ceContainer4 {
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .main-box {
+        padding-left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .ceContainer1a,
+    .ceContainer2a {
+        width: 100%; /* 1 item per row on very small screens */
+    }
+}

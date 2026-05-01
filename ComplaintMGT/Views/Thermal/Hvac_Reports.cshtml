@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Hvac_Reports";
+    Layout = "_LayoutNew";
+}
+
+
+<link href="~/v2.0/thermal/hvac/css/slider.css" rel="stylesheet" />
+<link href="~/v2.0/thermal/hvac/css/havc.css" rel="stylesheet" />
+<link href="~/v2.0/thermal/hvac/thermalhvacdashobard.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/V2.0/Thermal/HVAC_Reports/css/reports.css" />
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+
+
+<div class="main-box">
+    <div class="header-image">
+        <img class="energy-header" src="~/v2.0/thermal/hvac/images/Thermal Banner.png" alt="">
+    </div>
+
+    <div class="report-table-div">
+        <table id="hvacreport" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Site Name</th>
+                    <th>Asset Name</th>
+                    <th>Transaction Date</th>
+                    <th>Transaction Time</th>
+                    <th>Templerature (°C)</th>
+                </tr>
+            </thead>
+            <tbody id="hvacreport-body">
+
+            </tbody>
+           
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="~/V2.0/Thermal/HVAC_Reports/reports.js"></script>
+
+

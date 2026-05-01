@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "Ambient_Reports";
+    Layout = "_LayoutNew";
+}
+
+
+<link href="~/v2.0/thermal/Ambient_Humidity/css/slider.css" rel="stylesheet" />
+<link href="~/v2.0/thermal/Ambient_Humidity/css/ambient.css" rel="stylesheet" />
+<link href="~/v2.0/thermal/Ambient_Humidity/thermalAmbientdashobard.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/V2.0/Thermal/Ambient_Humidity_Reports/css/reports.css" />
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
+
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+
+
+<div class="main-box">
+    <div class="header-image">
+        <img class="energy-header" src="~/v2.0/thermal/Ambient_Humidity/images/Thermal Banner.png" alt="">
+    </div>
+
+    <div class="report-table-div">
+        <table id="ambientreport" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Site Name</th>
+                    <th>Asset Name</th>
+                    <th>Transaction Date</th>
+                    <th>Transaction Time</th>
+                    <th>Templerature (g.m-3)</th>
+                </tr>
+            </thead>
+            <tbody id="ambientreport-body">
+
+            </tbody>
+           @*  <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot> *@
+        </table>
+
+    </div>
+
+</div>
+
+
+<script src="~/V2.0/Thermal/Ambient_Humidity_Reports/reports.js"></script>
+
+

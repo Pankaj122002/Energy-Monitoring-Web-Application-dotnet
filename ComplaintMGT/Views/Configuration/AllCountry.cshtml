@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "AllCountry";
+}
+
+
+<div class="content pt-0">
+
+    <!-- Page header -->
+    <div class="page-header border-bottom-0">
+        <div class="page-header-content header-elements-md-inline">
+            <div class="page-title d-flex">
+                <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">All Country </span></h4>
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <div class="page-title d-flex">
+                <h4> <span class="font-weight-semibold">All Country </span> </h4>&nbsp;
+                <button type="button" class="btn btn-outline bg-teal-400 text-teal-400 border-teal-400" id="btnAdd" isactive="true" cid="0" roleName="" onclick="CallFunc(this);">
+                    <i class="icon-add"></i> Add New Country
+                </button>
+            </div>
+
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            <div class="dataTables_wrapper no-footer">
+
+                <div class="datatable-scroll-wrap">
+
+                    <table class="table datatable-button-html5-columns" id="tlbRole">
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Country Name</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<input type="hidden" id="hfTotalrows" />
+<!-- Vertical form modal -->
+<div id="modal_form_vertical" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form class="form-validate-jquery" onsubmit="return Formsubmit();" name="registration">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                @*<button type="button" class="btn bg-primary" id="alert" onclick="ShowMessage('1','record added');">Launch <i class="icon-play3 ml-2"></i></button>*@
+
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="hidden" id="CountryId" value="0" />
+                                    <label>Country Name</label>
+                                    <span class="text-danger">*</span>
+                                    <input type="text" placeholder="Enter Country Name" class="form-control" id="txtCountry" required>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>IsActive</label>
+                                    <input type="checkbox" checked="checked" id="cbIsActive" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center bg-teal-400 border-top-0">
+                    <button type="button" class="btn bg-transparent text-white border-white border-2" data-dismiss="modal">Close</button>
+                    <button onclick="SaveAndUpdateCountry();" type="button" class="btn btn-outline bg-white text-white border-white border-2">Submit <i class="icon-paperplane ml-2"></i></button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /vertical form modal -->
+
+@section scripts {
+
+    <script src="~/ViewJs/Configuration/Master.js?@DateTime.Now.Ticks"></script>
+}
+
+

@@ -1,0 +1,7 @@
+﻿Dos
+1) Create all global service interfaces at the root of the project
+2) Create all Database table POCO entities in "entities" folder
+3) Create all API consumable domain business model classes in "DomainModels" folder.
+4) Create all repository related interfaces in "Repositories" folder.
+5) Any core or infrastructure services that should are meant 
+to consume only in "Core" layer should be marked with attribute [CoreAccessOnly]

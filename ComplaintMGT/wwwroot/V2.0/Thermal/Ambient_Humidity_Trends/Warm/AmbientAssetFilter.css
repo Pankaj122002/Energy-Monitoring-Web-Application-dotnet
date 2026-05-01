@@ -1,0 +1,149 @@
+/* ============================
+   HVAC Graph Cards
+   ============================ */
+
+.hvac-graph-card {
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.18);
+    padding: 16px 18px 12px 18px;
+    margin-bottom: 28px;
+}
+
+.hvac-graph-header {
+    margin-bottom: 6px;
+}
+
+.hvac-graph-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.hvac-graph-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.hvac-live-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: #12CC7D;
+    background: rgba(18, 204, 125, 0.1);
+    border: 1px solid #12CC7D;
+    border-radius: 20px;
+    padding: 2px 9px;
+    letter-spacing: 0.5px;
+    animation: hvac-pulse 1.6s ease-in-out infinite;
+}
+
+.hvac-single-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0984C6;
+    background: rgba(9, 132, 198, 0.1);
+    border: 1px solid #0984C6;
+    border-radius: 20px;
+    padding: 2px 9px;
+}
+
+@keyframes hvac-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ============================
+   Asset Filter Bar
+   ============================ */
+
+.hvac-asset-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 0 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+    min-height: 38px;
+}
+
+.hvac-filter-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #908EAD;
+    letter-spacing: 0.3px;
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+/* ============================
+   Asset Chips
+   ============================ */
+
+.hvac-asset-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px 4px 7px;
+    border-radius: 20px;
+    border: 1.5px solid #d0d0d0;
+    background: #f7f7f7;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.18s ease;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.hvac-asset-chip input[type="checkbox"],
+.hvac-asset-chip input[type="radio"] {
+    display: none;
+}
+
+.hvac-chip-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.hvac-chip-name {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hvac-asset-chip.selected {
+    border-color: var(--chip-color, #5470C6);
+    background: rgba(84, 112, 198, 0.08);
+    color: #222;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+}
+
+.hvac-asset-chip:hover {
+    border-color: var(--chip-color, #5470C6);
+    background: rgba(84, 112, 198, 0.05);
+    color: #222;
+}
+
+/* "All Assets" chip */
+.hvac-select-all {
+    border-style: dashed;
+    border-color: #908EAD;
+    background: #f0f0f6;
+    font-style: italic;
+}
+
+.hvac-select-all.selected {
+    border-style: solid;
+    border-color: #12CC7D;
+    background: rgba(18, 204, 125, 0.08);
+    color: #0a7a4b;
+    font-style: normal;
+}
